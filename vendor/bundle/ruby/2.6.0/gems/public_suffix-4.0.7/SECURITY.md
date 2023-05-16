@@ -11,7 +11,6 @@ Exceptionally, we may support previous minor versions upon request if there are 
 
 Older major versions are no longer supported.
 
-
 ## Reporting a Vulnerability
 
 To make a report, please email weppos@weppos.net.
@@ -97,7 +96,6 @@ q59MIs/Fb3SgaO+zN2FZTYp6dyRJHbeEz55JdOu6F+6ihZYH
 =j6Xr
 -----END PGP PUBLIC KEY BLOCK-----
 ```
-
 
 ## Tracking Security Updates
 

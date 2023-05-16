@@ -19,10 +19,13 @@ hydra.run
 ```
 
 ## Installation
+
 Add the following line to your Gemfile:
+
 ```
 gem "typhoeus"
 ```
+
 Then run `bundle install`
 
 Or install it yourself as:
@@ -33,8 +36,8 @@ gem install typhoeus
 
 ## Project Tracking
 
-* [Documentation](http://rubydoc.info/github/typhoeus/typhoeus/frames/Typhoeus) (GitHub master)
-* [Mailing list](http://groups.google.com/group/typhoeus)
+- [Documentation](http://rubydoc.info/github/typhoeus/typhoeus/frames/Typhoeus) (GitHub master)
+- [Mailing list](http://groups.google.com/group/typhoeus)
 
 ## Usage
 
@@ -75,10 +78,9 @@ req = Typhoeus::Request.new(url, options)
 
 Note that `proxyuserpwd` is a colon-separated username and password, in the vein of basic auth `userpwd` option.
 
-
 You can run the query either on its own or through the hydra:
 
-``` ruby
+```ruby
 request.run
 #=> <Typhoeus::Response ... >
 ```
@@ -112,8 +114,11 @@ Typhoeus.post("www.example.com/posts", body: { title: "test post", content: "thi
 Typhoeus.delete("www.example.com/posts/1")
 Typhoeus.options("www.example.com")
 ```
+
 #### Sending params in the body with PUT
-When using POST the content-type is set automatically to 'application/x-www-form-urlencoded'. That's not the case for any other method like PUT, PATCH, HEAD and so on,  irrespective of whether you are using body or not. To get the same result as POST, i.e. a hash in the body coming through as params in the receiver, you need to set the content-type as shown below:
+
+When using POST the content-type is set automatically to 'application/x-www-form-urlencoded'. That's not the case for any other method like PUT, PATCH, HEAD and so on, irrespective of whether you are using body or not. To get the same result as POST, i.e. a hash in the body coming through as params in the receiver, you need to set the content-type as shown below:
+
 ```ruby
 Typhoeus.put("www.example.com/posts/1",
         headers: {'Content-Type'=> "application/x-www-form-urlencoded"},
@@ -227,7 +232,7 @@ hydra.queue second_request
 hydra.run # this is a blocking call that returns once all requests are complete
 ```
 
-The execution of that code goes something like this. The first and second requests are built and queued. When hydra is run the first and second requests run in parallel. When the first request completes, the third request is then built and queued, in this example based on the result of the first request. The moment it is queued Hydra starts executing it.  Meanwhile the second request would continue to run (or it could have completed before the first). Once the third request is done, `hydra.run` returns.
+The execution of that code goes something like this. The first and second requests are built and queued. When hydra is run the first and second requests run in parallel. When the first request completes, the third request is then built and queued, in this example based on the result of the first request. The moment it is queued Hydra starts executing it. Meanwhile the second request would continue to run (or it could have completed before the first). Once the third request is done, `hydra.run` returns.
 
 How to get an array of response bodies back after executing a queue:
 
@@ -244,6 +249,7 @@ responses = requests.map { |request|
   request.response.body
 }
 ```
+
 `hydra.run` is a blocking request. You can also use the `on_complete` callback to handle each request as it completes:
 
 ```ruby
@@ -465,12 +471,12 @@ Typhoeus.get("www.example.com", accept_encoding: "gzip")
 ```
 
 The above has a different behavior than setting the header directly in the header hash, eg:
+
 ```ruby
 Typhoeus.get("www.example.com", headers: {"Accept-Encoding" => "gzip"})
 ```
 
-Setting the header hash directly will not include the `--compressed` flag in the libcurl command and therefore libcurl will not decompress the response.  If you want the `--compressed` flag to be added automatically, set `:accept_encoding` Typhoeus option.
-
+Setting the header hash directly will not include the `--compressed` flag in the libcurl command and therefore libcurl will not decompress the response. If you want the `--compressed` flag to be added automatically, set `:accept_encoding` Typhoeus option.
 
 ### Cookies
 
@@ -538,7 +544,6 @@ STDERR), so you’ll need to run your scripts from the console to see it.
 
 In many cases, all HTTP requests made by an application require the same User-Agent header set. Instead of supplying it on a per-request basis by supplying a custom header, it is possible to override it for all requests using:
 
-
 ```ruby
 Typhoeus::Config.user_agent = "custom user agent"
 ```
@@ -551,6 +556,7 @@ Running the specs should be as easy as:
 bundle install
 bundle exec rake
 ```
+
 ## Semantic Versioning
 
 This project conforms to [semver](http://semver.org/).

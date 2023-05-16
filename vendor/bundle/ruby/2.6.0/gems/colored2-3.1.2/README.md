@@ -15,7 +15,7 @@ This fork comes with a slightly spruced up syntax, some additional features, and
 
 ## Usage
 
-In addition to the simple syntax of the original gem, which affected only the string to the left of the method call, the new "bang" syntax affects a string to the right. If the block or a method argument is provided, the contents is wrapped in the color, and the color is then reset back. 
+In addition to the simple syntax of the original gem, which affected only the string to the left of the method call, the new "bang" syntax affects a string to the right. If the block or a method argument is provided, the contents is wrapped in the color, and the color is then reset back.
 
 If no block or argument is provided, the color is left open-ended, and must be explicitly reset – when using the 'bang' notation.
 
@@ -23,53 +23,51 @@ If no block or argument is provided, the color is left open-ended, and must be e
 
 ### Complete set of colors:
 
- * black
- * red
- * green
- * yellow
- * blue
- * magenta
- * cyan
- * white
+- black
+- red
+- green
+- yellow
+- blue
+- magenta
+- cyan
+- white
 
 ### Complete Set of Effects
 
 > Note: previous versions used method name `clear` instead of `no_color`, which clashed with many 3rd party frameworks that defined similarly named method in the global namespace.
 > This highlights the dangers of introducing so many words into the `String` namespace.
 
- * no_color
- * bold
- * dark
- * italic
- * underlined
- * reversed 
- * plain
- * normal   
- 
+- no_color
+- bold
+- dark
+- italic
+- underlined
+- reversed
+- plain
+- normal
+
 ## Usage in Other Classes
 
 With this gem you can add color to not just strings, but to any other class. `String` class is automatically decorated as soon as `require 'colored2'` is parsed by the ruby interpreter. Note that future versions may refrain from auto-requiring `colored2/strings`, and rely on explicitly requiring components they need colorized, eg `require 'colored2/numbers'`.
 
-To color numbers, require the following file, which automatically decorates `Integer` and `Float`.  You can also add color methods to the `Object`. Finally, you can add the methods to any custom class by including the `Colored2` Module.
+To color numbers, require the following file, which automatically decorates `Integer` and `Float`. You can also add color methods to the `Object`. Finally, you can add the methods to any custom class by including the `Colored2` Module.
 
 Below is an `IRB` — session that shows a slightly more advanced usage.
 
 ![](doc/colored2-session2.png)
 
-##  Additional Helpers
+## Additional Helpers
 
 There are several additional helpers tucked onto the `String` class.
 
- * `#to_bol` (to beginning of the line) will rewind the cursor back to the beginning of the current line.
- * `#to_eol` (to end of line)
- 
+- `#to_bol` (to beginning of the line) will rewind the cursor back to the beginning of the current line.
+- `#to_eol` (to end of line)
+
 ## Installation
 
 Add this line to your application's Gemfile:
 
-
     gem 'colored2'
-
 
 And then execute:
 
@@ -78,7 +76,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install colored2
-
 
 ## Development
 

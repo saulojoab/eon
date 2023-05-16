@@ -40,5 +40,5 @@ See the [ARCHITECTURE](ARCHITECTURE.md) file for an overview and look at the tes
 
 ## The Name
 
-[Molinillo](http://en.wikipedia.org/wiki/Molinillo_(whisk)) is a special whisk used in Mexico in the preparation of beverages such as hot chocolate.
+[Molinillo](<http://en.wikipedia.org/wiki/Molinillo_(whisk)>) is a special whisk used in Mexico in the preparation of beverages such as hot chocolate.
 Much like a dependency resolver, a molinillo helps take a list of ingredients and turn it into a delicious concoction!

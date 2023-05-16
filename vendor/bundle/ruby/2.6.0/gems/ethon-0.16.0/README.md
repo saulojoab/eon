@@ -1,14 +1,14 @@
 [![Gem Version](https://badge.fury.io/rb/ethon.svg)](https://badge.fury.io/rb/ethon)
 [![Build Status](https://github.com/typhoeus/ethon/workflows/Ruby/badge.svg)](https://github.com/typhoeus/ethon/actions/workflows/ruby.yml)
 
-#  Ethon
+# Ethon
 
 In Greek mythology, Ethon, the son of Typhoeus and Echidna, is a gigantic eagle. So much for the history.
 In the modern world, Ethon is a very basic libcurl wrapper using ffi.
 
-* [Documentation](http://rubydoc.info/github/typhoeus/ethon/frames/Ethon)
-* [Website](http://typhoeus.github.com/)
-* [Mailing list](http://groups.google.com/group/typhoeus)
+- [Documentation](http://rubydoc.info/github/typhoeus/ethon/frames/Ethon)
+- [Website](http://typhoeus.github.com/)
+- [Mailing list](http://groups.google.com/group/typhoeus)
 
 ## Installation
 
@@ -71,10 +71,12 @@ This is really handy when making requests since you don't have to care about set
 everything up correctly.
 
 ## Http2
+
 Standard http2 servers require the client to connect once and create a session (multi) and then add simple requests to the multi handler.
 The `perform` method then takes all the requests in the multi handler and sends them to the server.
 
 See the following example
+
 ```ruby
 multi = Ethon::Multi.new
 easy = Ethon::Easy.new
@@ -93,7 +95,7 @@ multi.add(easy)
 multi.perform
 ```
 
-##  LICENSE
+## LICENSE
 
 (The MIT License)
 

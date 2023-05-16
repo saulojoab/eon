@@ -1,32 +1,31 @@
-import React, { useEffect } from "react";
-import { Dimensions, ScrollView, View } from "react-native";
-import api from "../../services/api";
-import styled from "styled-components/native";
-import _ from "lodash";
+import React, { useEffect } from 'react'
+import { Dimensions } from 'react-native'
+import api from '@/services/api'
+import styled from 'styled-components/native'
 
 interface Chapter {
-  page: number;
-  img: string;
+  page: number
+  img: string
 }
 
 export default function MangaReader({ route }: { route: any }) {
-  const { id } = route.params;
-  const [mangaChapters, setMangaChapters] = React.useState<Chapter[]>();
+  const { id } = route.params
+  const [mangaChapters, setMangaChapters] = React.useState<Chapter[]>()
 
   async function getMangaData() {
-    const response = await api.get(`/manga/mangapill/read?chapterId=${id}`);
-    console.log(response.data);
-    setMangaChapters(response.data);
+    const response = await api.get(`/manga/mangapill/read?chapterId=${id}`)
+    console.log(response.data)
+    setMangaChapters(response.data)
   }
 
   useEffect(() => {
-    getMangaData();
-  }, []);
+    getMangaData()
+  }, [])
 
   return (
     <Container>
       <PageImagesScrollView>
-        {mangaChapters?.map((chapter) => (
+        {mangaChapters?.map(chapter => (
           <PageImage
             resizeMode="contain"
             source={{ uri: chapter.img }}
@@ -35,19 +34,19 @@ export default function MangaReader({ route }: { route: any }) {
         ))}
       </PageImagesScrollView>
     </Container>
-  );
+  )
 }
 
 const Container = styled.View`
   flex: 1;
   background-color: #000;
-`;
+`
 
 const PageImage = styled.Image`
-  width: ${Dimensions.get("window").width}px;
-  height: ${Dimensions.get("window").height}px;
-`;
+  width: ${Dimensions.get('window').width}px;
+  height: ${Dimensions.get('window').height}px;
+`
 
 const PageImagesScrollView = styled.ScrollView`
   flex: 1;
-`;
+`

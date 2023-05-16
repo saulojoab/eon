@@ -82,7 +82,6 @@ is really easy and gratifying.
 Follow [@CocoaPods][twitter] to get up to date information about what's
 going on in the CocoaPods world.
 
-
 ## LICENSE
 
 These works are available under the MIT license. See the [LICENSE][license] file

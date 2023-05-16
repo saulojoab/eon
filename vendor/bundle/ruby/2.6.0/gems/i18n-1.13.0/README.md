@@ -34,7 +34,7 @@ A simple translation file in your project might live at `config/locales/en.yml` 
 
 ```yml
 en:
-  test: "This is a test"
+  test: 'This is a test'
 ```
 
 You can then access this translation by doing:
@@ -52,30 +52,30 @@ I18n.t(:test) # => "Dies ist ein Test"
 
 ## Features
 
-* Translation and localization
-* Interpolation of values to translations
-* Pluralization (CLDR compatible)
-* Customizable transliteration to ASCII
-* Flexible defaults
-* Bulk lookup
-* Lambdas as translation data
-* Custom key/scope separator
-* Custom exception handlers
-* Extensible architecture with a swappable backend
+- Translation and localization
+- Interpolation of values to translations
+- Pluralization (CLDR compatible)
+- Customizable transliteration to ASCII
+- Flexible defaults
+- Bulk lookup
+- Lambdas as translation data
+- Custom key/scope separator
+- Custom exception handlers
+- Extensible architecture with a swappable backend
 
 ## Pluggable Features
 
-* Cache
-* Pluralization: lambda pluralizers stored as translation data
-* Locale fallbacks, RFC4647 compliant (optionally: RFC4646 locale validation)
-* [Gettext support](https://github.com/ruby-i18n/i18n/wiki/Gettext)
-* Translation metadata
+- Cache
+- Pluralization: lambda pluralizers stored as translation data
+- Locale fallbacks, RFC4647 compliant (optionally: RFC4646 locale validation)
+- [Gettext support](https://github.com/ruby-i18n/i18n/wiki/Gettext)
+- Translation metadata
 
 ## Alternative Backend
 
-* Chain
-* ActiveRecord (optionally: ActiveRecord::Missing and ActiveRecord::StoreProcs)
-* KeyValue (uses active_support/json and cannot store procs)
+- Chain
+- ActiveRecord (optionally: ActiveRecord::Missing and ActiveRecord::StoreProcs)
+- KeyValue (uses active_support/json and cannot store procs)
 
 For more information and lots of resources see [the 'Resources' page on the wiki](https://github.com/ruby-i18n/i18n/wiki/Resources).
 
@@ -83,12 +83,12 @@ For more information and lots of resources see [the 'Resources' page on the wiki
 
 You can run tests both with
 
-* `rake test` or just `rake`
-* run any test file directly, e.g. `ruby -Ilib:test test/api/simple_test.rb`
+- `rake test` or just `rake`
+- run any test file directly, e.g. `ruby -Ilib:test test/api/simple_test.rb`
 
 You can run all tests against all Gemfiles with
 
-* `ruby test/run_all.rb`
+- `ruby test/run_all.rb`
 
 The structure of the test suite is a bit unusual as it uses modules to reuse
 particular tests in different test cases.
@@ -111,12 +111,12 @@ Additional documentation can be found here: https://github.com/ruby-i18n/i18n/wi
 
 ## Contributors
 
-* @radar
-* @carlosantoniodasilva
-* @josevalim
-* @knapo
-* @tigrish
-* [and many more](https://github.com/ruby-i18n/i18n/graphs/contributors)
+- @radar
+- @carlosantoniodasilva
+- @josevalim
+- @knapo
+- @tigrish
+- [and many more](https://github.com/ruby-i18n/i18n/graphs/contributors)
 
 ## License
 

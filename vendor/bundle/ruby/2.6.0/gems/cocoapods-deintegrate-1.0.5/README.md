@@ -53,4 +53,3 @@ This CocoaPods plugin was created by [Kyle Fuller](http://kylefuller.co.uk/)
 ### License
 
 cocoapods-deintegrate is released under the MIT license. See [LICENSE](LICENSE).
-

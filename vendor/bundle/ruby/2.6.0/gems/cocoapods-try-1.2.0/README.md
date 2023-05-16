@@ -13,5 +13,3 @@ CocoaPods plugin which allows to quickly try the demo project of a Pod.
 ## Installation
 
     $ gem install cocoapods-try
-
-

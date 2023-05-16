@@ -24,7 +24,7 @@ create an inspector instance. This class is main public API for querying issues.
 Create an instance of `GhInspector::Inspector`, you can then ask it to search
 based on your raised exception, or as a direct query yourself.
 
-``` ruby
+```ruby
 require 'gh_inspector'
 inspector = GhInspector::Inspector.new "orta", "eigen"
 # Either use an error:
@@ -50,7 +50,8 @@ Looking for related issues on CocoaPods/CocoaPods...
 and 10 more at:
 https://github.com/CocoaPods/CocoaPods/search?q=undefined+method+%60to_ary%27&type=Issues
 ```
-#### Presenting Your Report 
+
+#### Presenting Your Report
 
 The default user interface for the inspector, its public API should be
 considered the protocol for other classes wanting to provide a user interface.
@@ -62,7 +63,7 @@ You can see the default implementation at
 
 Both `search_query` and `search_exception` take your custom delegate as a 2nd optional parameter.
 
-``` ruby
+```ruby
 require 'gh_inspector'
 inspector = GhInspector::Inspector.new "orta", "eigen"
 inspector.search_exception an_error, ArtsyUI.new
@@ -70,7 +71,7 @@ inspector.search_exception an_error, ArtsyUI.new
 
 or
 
-``` ruby
+```ruby
 require 'gh_inspector'
 inspector = GhInspector::Inspector.new "fastlane", "fastlane"
 inspector.search_query "Someone set us up the bomb", FastlaneUI.new
@@ -78,12 +79,12 @@ inspector.search_query "Someone set us up the bomb", FastlaneUI.new
 
 Protocol for custom objects:
 
- - `inspector_started_query(query, inspector)` - Called just as the investigation has begun.
- - `inspector_successfully_recieved_report(report, inspector)` - Deprecated: Please use `inspector_successfully_received_report` instead.
- - `inspector_successfully_received_report(report, inspector)` - Called once the inspector has received a report with more than one issue.
- - `inspector_recieved_empty_report(report, inspector)` - Deprecated: Please use `inspector_received_empty_report` instead.
- - `inspector_received_empty_report(report, inspector)` - Called once the report has been received, but when there are no issues found.
- - `inspector_could_not_create_report(error, query, inspector)` - Called when there have been networking issues in creating the report.
+- `inspector_started_query(query, inspector)` - Called just as the investigation has begun.
+- `inspector_successfully_recieved_report(report, inspector)` - Deprecated: Please use `inspector_successfully_received_report` instead.
+- `inspector_successfully_received_report(report, inspector)` - Called once the inspector has received a report with more than one issue.
+- `inspector_recieved_empty_report(report, inspector)` - Deprecated: Please use `inspector_received_empty_report` instead.
+- `inspector_received_empty_report(report, inspector)` - Called once the report has been received, but when there are no issues found.
+- `inspector_could_not_create_report(error, query, inspector)` - Called when there have been networking issues in creating the report.
 
 ## Development
 

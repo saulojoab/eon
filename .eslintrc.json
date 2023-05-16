@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["@react-native-community", "airbnb-typescript", "prettier"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "jest", "import"],
+  "rules": {
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react-hooks/exhaustive-deps": "off"
+  }
+}

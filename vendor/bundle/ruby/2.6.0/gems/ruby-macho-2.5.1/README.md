@@ -1,5 +1,4 @@
-ruby-macho
-================
+# ruby-macho
 
 [![Gem Version](https://badge.fury.io/rb/ruby-macho.svg)](http://badge.fury.io/rb/ruby-macho)
 [![Build Status](https://travis-ci.org/Homebrew/ruby-macho.svg?branch=master)](https://travis-ci.org/Homebrew/ruby-macho)
@@ -47,20 +46,20 @@ puts lc_vers.version_string # => "10.10.0"
 
 ### What works?
 
-* Reading data from x86/x86_64/PPC Mach-O files
-* Changing the IDs of Mach-O and Fat dylibs
-* Changing install names in Mach-O and Fat files
-* Adding, deleting, and modifying rpaths.
+- Reading data from x86/x86_64/PPC Mach-O files
+- Changing the IDs of Mach-O and Fat dylibs
+- Changing install names in Mach-O and Fat files
+- Adding, deleting, and modifying rpaths.
 
 ### What needs to be done?
 
-* Unit and performance testing.
+- Unit and performance testing.
 
 Attribution:
 
-* Constants were taken from Apple, Inc's
-[`loader.h` in `cctools/include/mach-o`](https://www.opensource.apple.com/source/cctools/cctools-870/include/mach-o/loader.h).
-(Apple Public Source License 2.0).
+- Constants were taken from Apple, Inc's
+  [`loader.h` in `cctools/include/mach-o`](https://www.opensource.apple.com/source/cctools/cctools-870/include/mach-o/loader.h).
+  (Apple Public Source License 2.0).
 
 ### License
 

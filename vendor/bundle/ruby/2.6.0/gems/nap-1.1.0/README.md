@@ -28,7 +28,8 @@ end
 
 ## Advanced request configuration
 
-If you need more control over the Net::HTTP request you can pass a block to all of the request methods. 
+If you need more control over the Net::HTTP request you can pass a block to all of the request methods.
+
 ```ruby
 response = REST.get('http://google.com') do |http_request|
   http_request.open_timeout = 15
@@ -38,7 +39,7 @@ end
 
 ## Proxy support
 
-To enable the proxy settings in Nap, you can either use the HTTP\_PROXY or http\_proxy enviroment variable.
+To enable the proxy settings in Nap, you can either use the HTTP_PROXY or http_proxy enviroment variable.
 
     $ env HTTP_PROXY=http://rob:secret@192.167.1.254:665 ruby app.rb
 
@@ -46,10 +47,10 @@ To enable the proxy settings in Nap, you can either use the HTTP\_PROXY or http\
 
 Nap defines one top-level and three main error types which allow you to catch a whole range of exceptions thrown by underlying protocol implementations.
 
-* *REST::Error*: Any type of error
-* *REST::Error::Timeout*: Read timeouts of various sorts
-* *REST::Error::Connection*: Connection errors caused by dropped sockets
-* *REST::Error::Protocol*: Request failed because of a problem when handling the HTTP request or response
+- _REST::Error_: Any type of error
+- _REST::Error::Timeout_: Read timeouts of various sorts
+- _REST::Error::Connection_: Connection errors caused by dropped sockets
+- _REST::Error::Protocol_: Request failed because of a problem when handling the HTTP request or response
 
 In the most basic case you can rescue from the top-level type to warn about fetching problems.
 
@@ -65,16 +66,16 @@ end
 
 Nap couldn't be the shining beacon in the eternal darkness without help from:
 
-* Eloy Durán
-* Joshua Sierles
-* Thijs van der Vossen
+- Eloy Durán
+- Joshua Sierles
+- Thijs van der Vossen
 
 For all other great human beings, please visit the GitHub contributors page.
 
 ## Changes from 1.0.0 to 1.1.0
 
-* REST::Request now allows all HTTP verbs to send a body entity.
+- REST::Request now allows all HTTP verbs to send a body entity.
 
 ## Changes from 0.8.0 to 1.0.0
 
-* Removed REST::DisconnectedError, please use REST::Error::Connection instead.
+- Removed REST::DisconnectedError, please use REST::Error::Connection instead.

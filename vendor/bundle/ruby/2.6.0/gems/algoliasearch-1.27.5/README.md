@@ -30,12 +30,12 @@
 ## 💡 Getting Started
 
 First, install Algolia Ruby API Client via the [RubyGems](https://rubygems.org/) package manager:
+
 ```bash
 gem install algoliasearch
 ```
 
 Then, create objects on your index:
-
 
 ```ruby
 Algolia.init(application_id: 'YourApplicationID',
@@ -46,6 +46,7 @@ index.save_objects([objectID:  1, name: 'Foo'])
 ```
 
 Finally, you may begin searching a object using the `search` method:
+
 ```ruby
 objects = index.search('Fo')
 ```
