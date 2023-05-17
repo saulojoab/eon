@@ -4,7 +4,6 @@
 <div align="center">
 <img src="https://github.com/saulojoab/eon/assets/37988252/5c3366cf-f9c5-42b5-ba29-d12ece7651b0" width="200px" />&nbsp;&nbsp;&nbsp; 
 <img src="https://github.com/saulojoab/eon/assets/37988252/aea17b53-9538-4626-9438-c3a14179d067" width="200px" />&nbsp;&nbsp;&nbsp; 
-<img src="https://github.com/saulojoab/eon/assets/37988252/0e8eccb4-4299-46ca-a215-35c8d67d3d16" width="200px" />&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/saulojoab/eon/assets/37988252/cbc5e512-a592-465a-a141-cc4d6735ad4e" width="200px" />&nbsp;&nbsp;&nbsp;
 </div>
 <br/>
