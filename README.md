@@ -1,6 +1,5 @@
 # 📖 EON
 
-
 <div align="center">
 <img src="https://github.com/saulojoab/eon/assets/37988252/5c3366cf-f9c5-42b5-ba29-d12ece7651b0" width="200px" />&nbsp;&nbsp;&nbsp; 
 <img src="https://github.com/saulojoab/eon/assets/37988252/aea17b53-9538-4626-9438-c3a14179d067" width="200px" />&nbsp;&nbsp;&nbsp; 
@@ -12,7 +11,7 @@
  </div>
 <br/>
 
-EON is a cross-platform React Native manga reading application, which will have an application for Android, iOS, and Desktop (Mac, Windows, and Linux). The great differential of EON is that it uses open-source manga sources.
+EON is a cross-platform React Native manga reading application, which will have an application for Android, iOS, and Desktop (Mac, Windows, and Linux).
 
 With EON, users are able to access a wide variety of Japanese mangas, with the possibility of reading on different devices and operating systems. In addition, being open-source, users can contribute to the development of the application and help make it even better.
 
