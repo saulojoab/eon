@@ -1,52 +1,157 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useEffect } from 'react'
-import { Dimensions } from 'react-native'
+import { ActivityIndicator, Dimensions, Image } from 'react-native'
 import api from '@/services/api'
 import styled from 'styled-components/native'
+import ImageViewer from 'react-native-image-zoom-viewer'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import { useTheme } from 'styled-components/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import { useNavigation } from '@react-navigation/native'
+import responsive from '@/global/utils/responsive'
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated'
 
 interface Chapter {
   page: number
   img: string
 }
 
+interface ImageViewerImages {
+  url: string
+  width: number
+  height: number
+}
+
 export default function MangaReader({ route }: { route: any }) {
-  const { id } = route.params
-  const [mangaChapters, setMangaChapters] = React.useState<Chapter[]>()
+  const { id, chapter: chapterNumber, mangaName } = route.params
+  const [mangaChapters, setMangaChapters] =
+    React.useState<ImageViewerImages[]>()
+  const [showOverlay, setShowOverlay] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
+  const [currentPage, setCurrentPage] = React.useState(0)
+
+  const theme = useTheme()
+
+  const navigation = useNavigation<NativeStackNavigationProp<any>>()
 
   async function getMangaData() {
+    setLoading(true)
     const response = await api.get(`/manga/mangapill/read?chapterId=${id}`)
-    console.log(response.data)
-    setMangaChapters(response.data)
+
+    const pages: ImageViewerImages[] = []
+
+    response.data.map((chapter: Chapter) =>
+      pages.push({
+        url: chapter.img,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+      })
+    )
+
+    console.log(pages)
+
+    setMangaChapters(pages)
+    setLoading(false)
+  }
+
+  function toggleOverlay() {
+    setShowOverlay(!showOverlay)
   }
 
   useEffect(() => {
     getMangaData()
   }, [])
 
+  if (loading) {
+    return (
+      <Container>
+        <ActivityIndicator size="large" color="#fff" />
+      </Container>
+    )
+  }
+
   return (
     <Container>
-      <PageImagesScrollView>
-        {mangaChapters?.map(chapter => (
-          <PageImage
-            resizeMode="contain"
-            source={{ uri: chapter.img }}
-            key={chapter.page}
-          />
-        ))}
-      </PageImagesScrollView>
+      <ImageViewer
+        renderImage={props => <Image {...props} resizeMode="contain" />}
+        imageUrls={mangaChapters}
+        onChange={index => setCurrentPage(index || 0)}
+        onClick={toggleOverlay}
+        renderIndicator={() => <></>}
+        enablePreload
+      />
+
+      {showOverlay && (
+        <OverlayTouchable onPress={toggleOverlay}>
+          <Overlay
+            key="overlay"
+            entering={FadeIn.duration(300)}
+            exiting={FadeOut.duration(300)}
+          >
+            <TitleAndBackButtonSection>
+              <Icon
+                name="arrow-left"
+                size={30}
+                color={theme.colors.white}
+                onPress={() => navigation.goBack()}
+              />
+              <YouAreReadingSection>
+                <YouAreReadingText style={{ fontWeight: 'bold' }}>
+                  {mangaName}:
+                </YouAreReadingText>
+                <YouAreReadingText>Chapter {chapterNumber}</YouAreReadingText>
+              </YouAreReadingSection>
+            </TitleAndBackButtonSection>
+            <CurrentPageText>
+              You are currently on page {Number(currentPage) + 1}. There are a
+              total of {mangaChapters?.length} pages on this chapter.
+            </CurrentPageText>
+          </Overlay>
+        </OverlayTouchable>
+      )}
     </Container>
   )
 }
 
 const Container = styled.View`
   flex: 1;
-  background-color: #000;
+  background-color: ${props => props.theme.colors.background};
 `
 
-const PageImage = styled.Image`
-  width: ${Dimensions.get('window').width}px;
+const OverlayTouchable = styled.TouchableWithoutFeedback``
+
+const Overlay = styled(Animated.View)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: ${Dimensions.get('window').height}px;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
 `
 
-const PageImagesScrollView = styled.ScrollView`
-  flex: 1;
+const TitleAndBackButtonSection = styled.View`
+  flex-direction: row;
+  align-items: center;
+  padding: ${responsive(20)}px;
+  padding-top: ${responsive(60)}px;
+`
+
+const YouAreReadingSection = styled.View`
+  flex-direction: row;
+  align-items: center;
+  align-self: flex-end;
+  margin-left: ${responsive(10)}px;
+`
+
+const YouAreReadingText = styled.Text`
+  font-size: ${responsive(20)}px;
+  color: ${props => props.theme.colors.white};
+  margin-left: ${responsive(10)}px;
+`
+const CurrentPageText = styled.Text`
+  font-size: ${responsive(14)}px;
+  color: ${props => props.theme.colors.white};
+  padding-left: ${responsive(20)}px;
+  padding-right: ${responsive(20)}px;
 `

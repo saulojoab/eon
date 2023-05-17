@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
-import { ScrollView } from 'react-native'
+import { FlatList, StatusBar } from 'react-native'
 import api from '@/services/api'
-import styled from 'styled-components/native'
+import styled, { useTheme } from 'styled-components/native'
 import { useNavigation } from '@react-navigation/core'
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack'
+import responsive from '@/global/utils/responsive'
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import { FavoriteButton } from '@/components'
 
 interface MangaData {
   id: string
@@ -23,15 +26,27 @@ interface MangaData {
 }
 
 export default function MangaDetails({ route }: { route: any }) {
-  const { id } = route.params
+  const { id, image } = route.params
+
   const [mangaData, setMangaData] = React.useState<MangaData>()
+  const [showFullDescription, setShowFullDescription] = React.useState(false)
+  const [isFavorite, setIsFavorite] = React.useState(false)
+
+  const theme = useTheme()
 
   const navigation = useNavigation<NativeStackNavigationProp<any>>()
 
   async function getMangaData() {
-    const response = await api.get(`/manga/mangapill/info?id=${id}`)
-    console.log(response.data)
-    setMangaData(response.data)
+    try {
+      const response = await api.get(`/manga/mangapill/info?id=${id}`)
+      if (!response.data) return
+      setMangaData({
+        ...response.data,
+        chapters: response.data.chapters.reverse(),
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   useEffect(() => {
@@ -39,75 +54,140 @@ export default function MangaDetails({ route }: { route: any }) {
   }, [])
 
   function handleSelectChapter(chapter: any) {
-    navigation.navigate('MangaReader', { id: chapter.id })
+    navigation.navigate('MangaReader', {
+      id: chapter.id,
+      chapter: chapter.chapter,
+      mangaName: mangaData?.title,
+    })
+  }
+
+  const toggleShowFullDescription = () => {
+    setShowFullDescription(!showFullDescription)
+  }
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite)
   }
 
   return (
     <Container>
-      <MangaTitle>
-        {mangaData?.title} - {mangaData?.authors?.map(value => value)}
-      </MangaTitle>
-      <MangaImage source={{ uri: mangaData?.image }} />
-      <MangaDescription>{mangaData?.description}</MangaDescription>
-      <ScrollView>
-        <ChapterGridList>
-          {mangaData?.chapters.reverse().map(chapter => (
-            <ChapterItem
-              onPress={() => {
-                handleSelectChapter(chapter)
-              }}
-            >
-              <ChapterTitle>{chapter.chapter}</ChapterTitle>
-            </ChapterItem>
-          ))}
-        </ChapterGridList>
-      </ScrollView>
+      <StatusBar
+        barStyle={'light-content'}
+        backgroundColor={theme.colors.primary}
+      />
+
+      <TitleAndBackButtonSection>
+        <BackButton onPress={() => navigation.goBack()}>
+          <Icon size={30} color={theme.colors.white} name="arrow-left" />
+        </BackButton>
+        <MangaTitle>{mangaData?.title}</MangaTitle>
+        <Favorite isFavorite={isFavorite} onPress={toggleFavorite} />
+      </TitleAndBackButtonSection>
+
+      <MangaImage source={{ uri: image }} />
+
+      <DataSection>
+        <SectionTitle>Description (press to expand)</SectionTitle>
+
+        <MangaDescription
+          onPress={toggleShowFullDescription}
+          numberOfLines={showFullDescription ? undefined : 4}
+        >
+          {mangaData?.description}
+        </MangaDescription>
+
+        <SectionTitle>Chapters</SectionTitle>
+      </DataSection>
+      <FlatList
+        data={mangaData?.chapters}
+        renderItem={({ item }) => (
+          <ChapterItem
+            onPress={() => {
+              handleSelectChapter(item)
+            }}
+          >
+            <ChapterTitle>{item.chapter}</ChapterTitle>
+          </ChapterItem>
+        )}
+        keyExtractor={item => item.id}
+        numColumns={5}
+      />
     </Container>
   )
 }
 
 const Container = styled.View`
   flex: 1;
-  padding: 30px;
-  padding-top: 60px;
+  background-color: ${props => props.theme.colors.background};
+  padding-bottom: ${responsive(20)}px;
 `
 
 const MangaDescription = styled.Text`
-  font-size: 16px;
-  margin-top: 20px;
+  font-size: ${responsive(14)}px;
+  text-align: justify;
+  margin-top: ${responsive(10)}px;
+  color: ${props => props.theme.colors.white};
 `
 
 const MangaImage = styled.Image`
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
+  width: 100%;
+  height: ${responsive(100)}px;
 `
 
 const MangaTitle = styled.Text`
-  font-size: 16px;
+  font-size: ${responsive(20)}px;
+  color: ${props => props.theme.colors.white};
   font-weight: bold;
-  width: 100%;
-`
-
-const ChapterGridList = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 20px;
+  margin-left: ${responsive(20)}px;
 `
 
 const ChapterItem = styled.TouchableOpacity`
-  width: 80px;
-  height: 50px;
-  background-color: #fff;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  padding: 10px;
+  flex: 1;
+  margin: ${responsive(4)}px;
+  background-color: ${props => props.theme.colors.accent};
+  border-radius: ${responsive(5)}px;
+  margin-bottom: ${responsive(10)}px;
+  padding: ${responsive(10)}px;
   justify-content: center;
   align-items: center;
 `
 
 const ChapterTitle = styled.Text`
-  font-size: 16px;
+  font-size: ${responsive(14)}px;
   font-weight: bold;
+`
+
+const TitleAndBackButtonSection = styled.View`
+  flex-direction: row;
+  align-items: center;
+  background-color: ${props => props.theme.colors.primary};
+  padding: ${responsive(20)}px;
+  padding-top: ${responsive(60)}px;
+`
+
+const BackButton = styled.TouchableOpacity`
+  width: ${responsive(30)}px;
+  height: ${responsive(30)}px;
+  border-radius: ${responsive(15)}px;
+  justify-content: center;
+  align-items: center;
+`
+
+const SectionTitle = styled.Text`
+  font-size: ${responsive(20)}px;
+  color: ${props => props.theme.colors.white};
+  font-weight: bold;
+  width: 100%;
+  margin-top: ${responsive(20)}px;
+`
+const DataSection = styled.View`
+  flex-direction: column;
+  padding: ${responsive(20)}px;
+  padding-top: 0px;
+`
+
+const Favorite = styled(FavoriteButton)`
+  position: absolute;
+  right: ${responsive(15)}px;
+  bottom: ${responsive(15)}px;
 `

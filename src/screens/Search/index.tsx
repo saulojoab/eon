@@ -47,7 +47,7 @@ export default function Search(): JSX.Element {
   }
 
   function handleSelectManga(manga: MangaResult): void {
-    navigation.navigate('MangaDetails', { id: manga.id })
+    navigation.navigate('MangaDetails', { id: manga.id, image: manga.image })
   }
 
   return (
@@ -56,7 +56,7 @@ export default function Search(): JSX.Element {
         onChangeText={handleInputChange}
         placeholder="Ex: Oyasumi Punpun"
         autoCapitalize="none"
-        placeholderTextColor={theme?.colors.gray}
+        placeholderTextColor={theme.colors.gray}
       />
       {search === '' && (
         <SearchGuideText>Search for any manga above!</SearchGuideText>
@@ -72,10 +72,7 @@ export default function Search(): JSX.Element {
                 }}
                 key={idx.toString()}
               >
-                <MangaImage
-                  resizeMode="contain"
-                  source={{ uri: manga.image }}
-                />
+                <MangaImage resizeMode="cover" source={{ uri: manga.image }} />
                 <MangaInfo>
                   <MangaInfoBackground>
                     <MangaTitle>{manga.title}</MangaTitle>

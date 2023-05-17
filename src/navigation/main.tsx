@@ -16,14 +16,14 @@ function TabNavigator() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: theme?.colors.background,
+          backgroundColor: theme.colors.background,
           borderTopWidth: 0,
         },
         tabBarLabelStyle: {
-          color: theme?.colors.white,
+          color: theme.colors.white,
         },
         tabBarIconStyle: {
-          color: theme?.colors.white,
+          color: theme.colors.white,
         },
       }}
     >
@@ -34,7 +34,7 @@ function TabNavigator() {
           tabBarIcon: ({ color, focused }) => (
             <Icon
               size={18}
-              color={focused ? theme?.colors.accent : color}
+              color={focused ? theme.colors.accent : color}
               name="home"
             />
           ),
@@ -47,7 +47,7 @@ function TabNavigator() {
           tabBarIcon: ({ color, focused }) => (
             <Icon
               size={18}
-              color={focused ? theme?.colors.accent : color}
+              color={focused ? theme.colors.accent : color}
               name="search"
             />
           ),
@@ -60,7 +60,7 @@ function TabNavigator() {
           tabBarIcon: ({ color, focused }) => (
             <Icon
               size={18}
-              color={focused ? theme?.colors.accent : color}
+              color={focused ? theme.colors.accent : color}
               name="user"
             />
           ),
