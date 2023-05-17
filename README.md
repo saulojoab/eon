@@ -24,6 +24,7 @@ The EON application is an excellent option for Japanese manga lovers who want to
 - [ ] Intuitive, minimalistic and beautiful design
 - [ ] Cross-platform syncing, continue where you left off with any device! (iOS, Android, Windows, Mac, Linux)
 - [ ] Community of manga readers
+- [ ] Download mangas to read offline
 
 # 🤝 CODE OF CONDUCT
 
