@@ -1,103 +1,117 @@
-import React from 'react'
-import { ActivityIndicator, ScrollView } from 'react-native'
-import api from '@/services/api'
-import styled, { useTheme } from 'styled-components/native'
-import responsive from '@/global/utils/responsive'
-import _ from 'lodash'
-import { useNavigation } from '@react-navigation/core'
-import { type NativeStackNavigationProp } from '@react-navigation/native-stack'
+/* eslint-disable react-native/no-inline-styles */
+import React, { useEffect } from 'react';
+import { ActivityIndicator } from 'react-native';
+import api from '@/services/api';
+import styled, { useTheme } from 'styled-components/native';
+import responsive from '@/global/utils/responsive';
+import { useNavigation } from '@react-navigation/core';
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { isIos } from '@/global/utils/platformChecker';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { setSelectedManga } from '@/redux/features/mangaSlice';
 
 interface MangaResult {
-  id: string
-  title: string
-  altTitles: string[]
-  headerForImage: { Referer: string }
-  image: string
+  id: string;
+  title: string;
+  altTitles: string[];
+  headerForImage: { Referer: string };
+  image: string;
 }
 
 export default function Search(): JSX.Element {
-  const [mangaData, setMangaData] = React.useState<MangaResult[]>([])
-  const [search, setSearch] = React.useState('')
-  const [loading, setLoading] = React.useState(false)
+  const [mangaData, setMangaData] = React.useState<MangaResult[]>([]);
+  const [search, setSearch] = React.useState('');
+  const [loading, setLoading] = React.useState(false);
 
-  const navigation = useNavigation<NativeStackNavigationProp<any>>()
-  const theme = useTheme()
+  const selectedSource = useAppSelector(state => state.manga.selectedSource);
+
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const theme = useTheme();
+  const dispatch = useAppDispatch();
 
   async function getMangaData(): Promise<void> {
-    setLoading(true)
-    const response = await api.get(`/manga/mangapill/${search}`)
-    setLoading(false)
-    console.log(response.data.results)
-    setMangaData(response.data.results)
+    setLoading(true);
+
+    const response = await api.get(`/manga/${selectedSource}/${search}`);
+
+    setLoading(false);
+
+    setMangaData(response.data.results);
   }
 
-  const handleSearch = _.debounce(() => {
-    getMangaData()
-  }, 500)
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      getMangaData();
+    }, 1000);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [search]);
 
   const handleInputChange = (text: string): void => {
-    setSearch(text)
+    setSearch(text);
     if (text === '') {
-      setMangaData([])
-      setLoading(false)
-      return
+      setMangaData([]);
+      setLoading(false);
+      return;
     }
-
-    handleSearch()
-  }
+  };
 
   function handleSelectManga(manga: MangaResult): void {
-    navigation.navigate('MangaDetails', { id: manga.id, image: manga.image })
+    dispatch(setSelectedManga({ id: manga.id, image: manga.image }));
+    navigation.navigate('MangaDetails');
   }
 
   return (
     <Container>
-      <MangaSearchInput
-        onChangeText={handleInputChange}
-        placeholder="Ex: Oyasumi Punpun"
-        autoCapitalize="none"
-        placeholderTextColor={theme.colors.gray}
-      />
+      <SearchAndOptionsContainer>
+        <MangaSearchInput
+          onChangeText={handleInputChange}
+          placeholder="Ex: Oyasumi Punpun"
+          autoCapitalize="none"
+          placeholderTextColor={theme.colors.gray}
+        />
+        <SettingsIcon onPress={() => navigation.navigate('SelectSources')}>
+          <Icon name="cog" size={responsive(20)} color={theme.colors.gray} />
+        </SettingsIcon>
+      </SearchAndOptionsContainer>
       {search === '' && (
         <SearchGuideText>Search for any manga above!</SearchGuideText>
       )}
       {loading && <ActivityIndicator />}
-      <ScrollView>
-        <MangaList>
-          {search !== '' &&
-            mangaData?.map((manga, idx) => (
-              <MangaItem
-                onPress={() => {
-                  handleSelectManga(manga)
-                }}
-                key={idx.toString()}
-              >
-                <MangaImage resizeMode="cover" source={{ uri: manga.image }} />
-                <MangaInfo>
-                  <MangaInfoBackground>
-                    <MangaTitle>{manga.title}</MangaTitle>
-                  </MangaInfoBackground>
-                </MangaInfo>
-              </MangaItem>
-            ))}
-        </MangaList>
-      </ScrollView>
+      <MangaList
+        data={mangaData}
+        renderItem={({ item }: any) => (
+          <MangaItem
+            onPress={() => {
+              handleSelectManga(item);
+            }}
+          >
+            <MangaImage resizeMode="cover" source={{ uri: item.image }} />
+            <MangaTitle numberOfLines={1}>{item.title}</MangaTitle>
+          </MangaItem>
+        )}
+        keyExtractor={(item: any) => item.title}
+        numColumns={2}
+        contentContainerStyle={{ alignItems: 'center' }}
+      />
     </Container>
-  )
+  );
 }
 
 const Container = styled.View`
   flex: 1;
   padding: ${responsive(30)}px;
-  padding-top: ${responsive(60)}px;
-  background-color: ${props => props.theme.colors.secondary};
-`
+  padding-top: ${isIos ? responsive(60) : responsive(20)}px;
+  background-color: ${props => props.theme.colors.background};
+`;
 
 const MangaItem = styled.TouchableOpacity`
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   width: ${responsive(150)}px;
   height: ${responsive(220)}px;
+  margin: ${responsive(10)}px;
   margin-bottom: ${responsive(20)}px;
   background-color: ${props => props.theme.colors.white};
   shadow-color: ${props => props.theme.colors.black};
@@ -106,54 +120,45 @@ const MangaItem = styled.TouchableOpacity`
   shadow-radius: 2px;
   elevation: 2;
   border-radius: 5px;
-`
+`;
 
-const MangaList = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 20px;
-`
+const MangaList = styled.FlatList`
+  flex: 1;
+  width: 100%;
+`;
 
 const MangaImage = styled.Image`
   width: 100%;
   height: 100%;
-`
+`;
 
 const MangaTitle = styled.Text`
-  font-size: ${responsive(14)}px;
-  font-weight: bold;
+  font-size: ${responsive(12)}px;
+  font-weight: 300;
   color: ${props => props.theme.colors.white};
-`
-
-const MangaInfoBackground = styled.View`
-  width: 100%;
-  height: ${responsive(50)}px;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: ${responsive(10)}px;
-`
-
-const MangaInfo = styled.View`
-  width: 100%;
-  flex-direction: column;
-  position: absolute;
-  bottom: 0;
-`
+`;
 
 const SearchGuideText = styled.Text`
   font-size: ${responsive(14)}px;
   color: ${props => props.theme.colors.gray};
   margin-bottom: ${responsive(20)}px;
   align-self: center;
-`
+`;
 
 const MangaSearchInput = styled.TextInput`
-  width: 100%;
+  width: 90%;
   height: ${responsive(50)}px;
   border-radius: 5px;
   border: 1px solid ${props => props.theme.colors.gray};
   padding: ${responsive(10)}px;
-  margin-bottom: ${responsive(20)}px;
   color: ${props => props.theme.colors.white};
-`
+`;
+
+const SearchAndOptionsContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: ${responsive(20)}px;
+`;
+
+const SettingsIcon = styled.TouchableOpacity``;

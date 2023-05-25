@@ -1,5 +1,5 @@
-import { RFValue } from 'react-native-responsive-fontsize'
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export default function responsive(value: number) {
-  return RFValue(value, 812)
+  return RFValue(value, 812);
 }

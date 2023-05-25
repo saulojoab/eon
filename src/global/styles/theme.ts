@@ -20,4 +20,4 @@ export default {
   fonts: {
     default: 'OpenSans-Regular',
   },
-}
+};
