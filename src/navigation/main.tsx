@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Search, MangaDetails, MangaReader } from '@/screens'
+import { Search, MangaDetails, MangaReader, Home } from '@/screens'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { useTheme } from 'styled-components'
 
@@ -29,7 +29,7 @@ function TabNavigator() {
     >
       <Tab.Screen
         name="Home"
-        component={Search}
+        component={Home}
         options={{
           tabBarIcon: ({ color, focused }) => (
             <Icon
