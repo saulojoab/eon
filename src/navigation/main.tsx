@@ -1,16 +1,22 @@
 /* eslint-disable react/no-unstable-nested-components */
-import * as React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Search, MangaDetails, MangaReader, Home } from '@/screens'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import { useTheme } from 'styled-components'
+import * as React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  Search,
+  MangaDetails,
+  MangaReader,
+  Home,
+  SelectSources,
+} from '@/screens';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useTheme } from 'styled-components';
 
-const Tab = createBottomTabNavigator()
-const Stack = createNativeStackNavigator()
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 function TabNavigator() {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -51,6 +57,7 @@ function TabNavigator() {
               name="search"
             />
           ),
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen
@@ -67,7 +74,7 @@ function TabNavigator() {
         }}
       />
     </Tab.Navigator>
-  )
+  );
 }
 
 export default function App() {
@@ -80,6 +87,7 @@ export default function App() {
       <Stack.Screen name="Main" component={TabNavigator} />
       <Stack.Screen name="MangaDetails" component={MangaDetails} />
       <Stack.Screen name="MangaReader" component={MangaReader} />
+      <Stack.Screen name="SelectSources" component={SelectSources} />
     </Stack.Navigator>
-  )
+  );
 }

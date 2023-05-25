@@ -1,73 +1,80 @@
-import React, { useEffect } from 'react'
-import { FlatList, StatusBar } from 'react-native'
-import api from '@/services/api'
-import styled, { useTheme } from 'styled-components/native'
-import { useNavigation } from '@react-navigation/core'
-import { type NativeStackNavigationProp } from '@react-navigation/native-stack'
-import responsive from '@/global/utils/responsive'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import { FavoriteButton } from '@/components'
+import React, { useEffect } from 'react';
+import { FlatList, StatusBar } from 'react-native';
+import api from '@/services/api';
+import styled, { useTheme } from 'styled-components/native';
+import { useNavigation } from '@react-navigation/core';
+import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
+import responsive from '@/global/utils/responsive';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { FavoriteButton } from '@/components';
+import LinearGradient from 'react-native-linear-gradient';
+import { useAppSelector } from '@/hooks/redux';
 
 interface MangaData {
-  id: string
-  title: string
-  altTitles: string[]
-  authors: string[]
-  headerForImage: { Referer: string }
-  image: string
-  status: string
-  genres: string[]
-  description: string
+  id: string;
+  title: string;
+  altTitles: string[];
+  authors: string[];
+  headerForImage: { Referer: string };
+  image: string;
+  status: string;
+  genres: string[];
+  description: string;
   chapters: Array<{
-    id: string
-    chapter: string
-    title: string
-  }>
+    id: string;
+    chapter: string;
+    title: string;
+  }>;
 }
 
-export default function MangaDetails({ route }: { route: any }) {
-  const { id, image } = route.params
+export default function MangaDetails() {
+  const { id, image } = useAppSelector(state => state.manga.selectedManga);
 
-  const [mangaData, setMangaData] = React.useState<MangaData>()
-  const [showFullDescription, setShowFullDescription] = React.useState(false)
-  const [isFavorite, setIsFavorite] = React.useState(false)
+  const [mangaData, setMangaData] = React.useState<MangaData>();
+  const [showFullDescription, setShowFullDescription] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(false);
 
-  const theme = useTheme()
+  const selectedSource = useAppSelector(state => state.manga.selectedSource);
 
-  const navigation = useNavigation<NativeStackNavigationProp<any>>()
+  const theme = useTheme();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   async function getMangaData() {
     try {
-      const response = await api.get(`/manga/mangapill/info?id=${id}`)
-      if (!response.data) return
+      const response = await api.get(`/manga/${selectedSource}/info?id=${id}`);
+
+      if (!response.data) return;
+
+      console.log(response.data.chapters);
+
       setMangaData({
         ...response.data,
         chapters: response.data.chapters.reverse(),
-      })
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
   useEffect(() => {
-    getMangaData()
-  }, [])
+    getMangaData();
+  }, []);
 
   function handleSelectChapter(chapter: any) {
     navigation.navigate('MangaReader', {
       id: chapter.id,
       chapter: chapter.chapter,
       mangaName: mangaData?.title,
-    })
+    });
   }
 
   const toggleShowFullDescription = () => {
-    setShowFullDescription(!showFullDescription)
-  }
+    setShowFullDescription(!showFullDescription);
+  };
 
   const toggleFavorite = () => {
-    setIsFavorite(!isFavorite)
-  }
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <Container>
@@ -80,15 +87,18 @@ export default function MangaDetails({ route }: { route: any }) {
         <BackButton onPress={() => navigation.goBack()}>
           <Icon size={30} color={theme.colors.white} name="arrow-left" />
         </BackButton>
-        <MangaTitle>{mangaData?.title}</MangaTitle>
         <Favorite isFavorite={isFavorite} onPress={toggleFavorite} />
       </TitleAndBackButtonSection>
 
-      <MangaImage source={{ uri: image }} />
+      <MangaImageTitleContainer>
+        <MangaImage resizeMode="cover" source={{ uri: image }} />
+        <MangaImageFadingForeground
+          colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.8)']}
+        />
+        <MangaTitle>{mangaData?.title}</MangaTitle>
+      </MangaImageTitleContainer>
 
       <DataSection>
-        <SectionTitle>Description (press to expand)</SectionTitle>
-
         <MangaDescription
           onPress={toggleShowFullDescription}
           numberOfLines={showFullDescription ? undefined : 4}
@@ -103,67 +113,82 @@ export default function MangaDetails({ route }: { route: any }) {
         renderItem={({ item }) => (
           <ChapterItem
             onPress={() => {
-              handleSelectChapter(item)
+              handleSelectChapter(item);
             }}
           >
-            <ChapterTitle>{item.chapter}</ChapterTitle>
+            <ChapterTitle>{item.title.slice(6)}</ChapterTitle>
           </ChapterItem>
         )}
         keyExtractor={item => item.id}
         numColumns={5}
       />
     </Container>
-  )
+  );
 }
 
 const Container = styled.View`
   flex: 1;
   background-color: ${props => props.theme.colors.background};
   padding-bottom: ${responsive(20)}px;
-`
+`;
 
 const MangaDescription = styled.Text`
   font-size: ${responsive(14)}px;
   text-align: justify;
   margin-top: ${responsive(10)}px;
   color: ${props => props.theme.colors.white};
-`
+  font-weight: 300;
+`;
 
 const MangaImage = styled.Image`
   width: 100%;
-  height: ${responsive(100)}px;
-`
+  height: ${responsive(250)}px;
+`;
+
+const MangaImageTitleContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
 
 const MangaTitle = styled.Text`
-  font-size: ${responsive(20)}px;
+  font-size: ${responsive(30)}px;
   color: ${props => props.theme.colors.white};
-  font-weight: bold;
-  margin-left: ${responsive(20)}px;
-`
+  font-weight: 100;
+  position: absolute;
+  z-index: 1;
+  bottom: ${responsive(20)}px;
+  left: 0;
+  right: 0;
+  text-align: center;
+`;
 
 const ChapterItem = styled.TouchableOpacity`
   flex: 1;
   margin: ${responsive(4)}px;
-  background-color: ${props => props.theme.colors.accent};
+  border: 1px solid ${props => props.theme.colors.white};
   border-radius: ${responsive(5)}px;
   margin-bottom: ${responsive(10)}px;
   padding: ${responsive(10)}px;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const ChapterTitle = styled.Text`
-  font-size: ${responsive(14)}px;
+  font-size: ${responsive(13)}px;
   font-weight: bold;
-`
+  text-align: center;
+  color: ${props => props.theme.colors.white};
+`;
 
 const TitleAndBackButtonSection = styled.View`
   flex-direction: row;
   align-items: center;
-  background-color: ${props => props.theme.colors.primary};
   padding: ${responsive(20)}px;
-  padding-top: ${responsive(60)}px;
-`
+  position: absolute;
+  justify-content: space-between;
+  z-index: 1;
+  width: 100%;
+`;
 
 const BackButton = styled.TouchableOpacity`
   width: ${responsive(30)}px;
@@ -171,7 +196,7 @@ const BackButton = styled.TouchableOpacity`
   border-radius: ${responsive(15)}px;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const SectionTitle = styled.Text`
   font-size: ${responsive(20)}px;
@@ -179,15 +204,22 @@ const SectionTitle = styled.Text`
   font-weight: bold;
   width: 100%;
   margin-top: ${responsive(20)}px;
-`
+`;
 const DataSection = styled.View`
   flex-direction: column;
   padding: ${responsive(20)}px;
   padding-top: 0px;
-`
+`;
 
 const Favorite = styled(FavoriteButton)`
   position: absolute;
   right: ${responsive(15)}px;
   bottom: ${responsive(15)}px;
-`
+`;
+
+const MangaImageFadingForeground = styled(LinearGradient)`
+  width: 100%;
+  height: 100%;
+  padding: ${responsive(10)}px;
+  position: absolute;
+`;

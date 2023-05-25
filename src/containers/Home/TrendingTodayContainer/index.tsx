@@ -1,12 +1,12 @@
-import responsive from '@/global/utils/responsive'
-import React from 'react'
-import LinearGradient from 'react-native-linear-gradient'
-import styled from 'styled-components/native'
-import { useTheme } from 'styled-components'
-import Icon from 'react-native-vector-icons/FontAwesome5'
+import responsive from '@/global/utils/responsive';
+import React from 'react';
+import LinearGradient from 'react-native-linear-gradient';
+import styled from 'styled-components/native';
+import { useTheme } from 'styled-components';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default function TrendingTodayContainer() {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <TrendingTodayContainerView>
@@ -30,7 +30,7 @@ export default function TrendingTodayContainer() {
         <TrendingTodayMangaName>Berserk</TrendingTodayMangaName>
       </TrendingTodayInfoBackground>
     </TrendingTodayContainerView>
-  )
+  );
 }
 
 const TrendingTodayContainerView = styled.View`
@@ -39,19 +39,19 @@ const TrendingTodayContainerView = styled.View`
   justify-content: space-between;
   width: 100%;
   height: ${responsive(200)}px;
-`
+`;
 
 const TrendingTodayImage = styled.Image`
   width: 100%;
   height: 100%;
-`
+`;
 
 const TrendingTodayInfoBackground = styled(LinearGradient)`
   width: 100%;
   height: 100%;
   padding: ${responsive(10)}px;
   position: absolute;
-`
+`;
 
 const TrendingTodayTag = styled.View`
   height: ${responsive(30)}px;
@@ -62,14 +62,14 @@ const TrendingTodayTag = styled.View`
   top: ${responsive(5)}px;
   flex-direction: row;
   border-radius: ${responsive(10)}px;
-`
+`;
 
 const TrendingTodayTagText = styled.Text`
   font-size: ${responsive(12)}px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.white};
   margin-left: ${responsive(5)}px;
-`
+`;
 
 const TrendingTodayMangaName = styled.Text`
   font-size: ${responsive(20)}px;
@@ -79,4 +79,4 @@ const TrendingTodayMangaName = styled.Text`
   bottom: ${responsive(10)}px;
   right: ${responsive(10)}px;
   position: absolute;
-`
+`;

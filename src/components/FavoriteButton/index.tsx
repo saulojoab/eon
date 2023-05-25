@@ -1,13 +1,13 @@
-import React from 'react'
-import { useTheme } from 'styled-components/native'
-import styled from 'styled-components/native'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import responsive from '@/global/utils/responsive'
+import React from 'react';
+import { useTheme } from 'styled-components/native';
+import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import responsive from '@/global/utils/responsive';
 
 interface FavoriteButtonProps {
-  isFavorite: boolean
-  onPress: () => void
-  style?: any
+  isFavorite: boolean;
+  onPress: () => void;
+  style?: any;
 }
 
 export default function FavoriteButton({
@@ -15,7 +15,7 @@ export default function FavoriteButton({
   onPress,
   style,
 }: FavoriteButtonProps) {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <Container style={style} onPress={onPress}>
@@ -27,11 +27,11 @@ export default function FavoriteButton({
         size={responsive(20)}
       />
     </Container>
-  )
+  );
 }
 
 const Container = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   padding: ${responsive(10)}px;
-`
+`;

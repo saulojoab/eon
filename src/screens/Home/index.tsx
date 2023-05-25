@@ -1,13 +1,14 @@
-import { TrendingTodayContainer } from '@/containers/Home'
-import responsive from '@/global/utils/responsive'
-import React from 'react'
-import { useTheme } from 'styled-components'
-import styled from 'styled-components/native'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import { FlatList } from 'react-native'
+import { TrendingTodayContainer } from '@/containers/Home';
+import responsive from '@/global/utils/responsive';
+import React from 'react';
+import { useTheme } from 'styled-components';
+import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { FlatList } from 'react-native';
+import { isIos } from '@/global/utils/platformChecker';
 
 export default function Home() {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <Container>
       <TopLogoContainer>
@@ -72,31 +73,31 @@ export default function Home() {
         />
       </HomeContent>
     </Container>
-  )
+  );
 }
 
 const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.secondary};
-`
+`;
 
-const HomeContent = styled.ScrollView``
+const HomeContent = styled.ScrollView``;
 
 const TopLogoContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-top: ${responsive(60)}px;
+  padding-top: ${isIos ? responsive(60) : responsive(20)}px;
   background-color: ${({ theme }) => theme.colors.background};
   padding-bottom: ${responsive(20)}px;
-`
+`;
 
 const LogoText = styled.Text`
   font-size: ${responsive(30)}px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.white};
   margin-left: ${responsive(10)}px;
-`
+`;
 
 const SectionView = styled.View`
   flex-direction: row;
@@ -105,17 +106,17 @@ const SectionView = styled.View`
   height: ${responsive(50)}px;
   padding-left: ${responsive(10)}px;
   margin-top: ${responsive(5)}px;
-`
+`;
 
 const SectionTitle = styled.Text`
   font-size: ${responsive(15)}px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.white};
   margin-left: ${responsive(10)}px;
-`
+`;
 
 const MangaImage = styled.Image`
   width: ${responsive(150)}px;
   height: ${responsive(220)}px;
   margin-right: ${responsive(15)}px;
-`
+`;

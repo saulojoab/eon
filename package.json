@@ -12,9 +12,12 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "55": "^0.0.0",
+    "@react-native-async-storage/async-storage": "^1.18.1",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "@reduxjs/toolkit": "^1.9.5",
     "@types/react-native-vector-icons": "^6.4.13",
     "axios": "^1.4.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -33,6 +36,7 @@
     "react-native-vector-icons": "^9.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
