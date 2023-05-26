@@ -78,6 +78,7 @@ export default function Search(): JSX.Element {
           placeholder="Ex: Oyasumi Punpun"
           autoCapitalize="none"
           placeholderTextColor={theme.colors.gray}
+          autoComplete="off"
         />
         <SettingsIcon onPress={() => navigation.navigate('SelectSources')}>
           <Icon name="cog" size={responsive(20)} color={theme.colors.gray} />
@@ -109,18 +110,17 @@ export default function Search(): JSX.Element {
 
 const Container = styled.View`
   flex: 1;
-  padding: ${responsive(30)}px;
+  padding: ${responsive(10)}px;
   padding-top: ${isIos ? responsive(60) : responsive(20)}px;
   background-color: ${props => props.theme.colors.background};
 `;
 
 const MangaItem = styled.TouchableOpacity`
   flex-direction: column;
-  align-items: center;
-  width: ${responsive(150)}px;
+  width: ${responsive(180)}px;
   height: ${responsive(220)}px;
   margin: ${responsive(10)}px;
-  margin-bottom: ${responsive(20)}px;
+  margin-bottom: ${responsive(30)}px;
   background-color: ${props => props.theme.colors.white};
   shadow-color: ${props => props.theme.colors.black};
   shadow-offset: 0px 2px;
@@ -138,12 +138,14 @@ const MangaList = styled.FlatList`
 const MangaImage = styled.Image`
   width: 100%;
   height: 100%;
+  align-self: center;
 `;
 
 const MangaTitle = styled.Text`
   font-size: ${responsive(12)}px;
   font-weight: 300;
   color: ${props => props.theme.colors.white};
+  margin-top: ${responsive(5)}px;
 `;
 
 const SearchGuideText = styled.Text`

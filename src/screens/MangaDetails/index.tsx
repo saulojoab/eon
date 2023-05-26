@@ -8,7 +8,12 @@ import responsive from '@/global/utils/responsive';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { FavoriteButton } from '@/components';
 import LinearGradient from 'react-native-linear-gradient';
-import { useAppSelector } from '@/hooks/redux';
+import { isIos } from '@/global/utils/platformChecker';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import {
+  addToCurrentlyReading,
+  updateCurrentChapter,
+} from '@/redux/features/mangaSlice';
 
 interface MangaData {
   id: string;
@@ -34,18 +39,31 @@ export default function MangaDetails() {
   const [showFullDescription, setShowFullDescription] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
 
-  const selectedSource = useAppSelector(state => state.manga.selectedSource);
+  const { selectedSource, currentlyReading } = useAppSelector(
+    state => state.manga,
+  );
+
+  console.log(currentlyReading);
 
   const theme = useTheme();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const dispatch = useAppDispatch();
 
   async function getMangaData() {
+    const mangaInCurrentlyReading = currentlyReading.find(
+      item => item.id === id,
+    );
+
     try {
-      const response = await api.get(`/manga/${selectedSource}/info?id=${id}`);
+      const response = await api.get(
+        `/manga/${
+          mangaInCurrentlyReading
+            ? mangaInCurrentlyReading.source
+            : selectedSource
+        }/info?id=${id}`,
+      );
 
       if (!response.data) return;
-
-      console.log(response.data.chapters);
 
       setMangaData({
         ...response.data,
@@ -61,9 +79,24 @@ export default function MangaDetails() {
   }, []);
 
   function handleSelectChapter(chapter: any) {
+    if (!currentlyReading.find(item => item.id === id)) {
+      dispatch(
+        addToCurrentlyReading({
+          id: id,
+          currentChapter: chapter.id,
+          finishedChapters: [],
+          image: image,
+          source: selectedSource,
+          referer: mangaData?.headerForImage.Referer,
+        }),
+      );
+    }
+
+    dispatch(updateCurrentChapter({ id: id, currentChapter: chapter.id }));
+
     navigation.navigate('MangaReader', {
       id: chapter.id,
-      chapter: chapter.chapter,
+      chapter: chapter.title,
       mangaName: mangaData?.title,
     });
   }
@@ -93,7 +126,7 @@ export default function MangaDetails() {
       <MangaImageTitleContainer>
         <MangaImage resizeMode="cover" source={{ uri: image }} />
         <MangaImageFadingForeground
-          colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.8)']}
+          colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.8)']}
         />
         <MangaTitle>{mangaData?.title}</MangaTitle>
       </MangaImageTitleContainer>
@@ -112,6 +145,14 @@ export default function MangaDetails() {
         data={mangaData?.chapters}
         renderItem={({ item }) => (
           <ChapterItem
+            currentlyReading={currentlyReading.some(
+              manga => manga.id === id && manga.currentChapter === item.id,
+            )}
+            isRead={currentlyReading.some(
+              manga =>
+                manga.id === id &&
+                manga.finishedChapters.find(chapter => chapter === item.id),
+            )}
             onPress={() => {
               handleSelectChapter(item);
             }}
@@ -120,7 +161,7 @@ export default function MangaDetails() {
           </ChapterItem>
         )}
         keyExtractor={item => item.id}
-        numColumns={5}
+        numColumns={3}
       />
     </Container>
   );
@@ -162,9 +203,16 @@ const MangaTitle = styled.Text`
   text-align: center;
 `;
 
-const ChapterItem = styled.TouchableOpacity`
+interface ChapterItemProps {
+  currentlyReading: boolean;
+  isRead: boolean;
+}
+
+const ChapterItem = styled.TouchableOpacity<ChapterItemProps>`
   flex: 1;
   margin: ${responsive(4)}px;
+  background-color: ${props =>
+    props.currentlyReading && props.theme.colors.primary};
   border: 1px solid ${props => props.theme.colors.white};
   border-radius: ${responsive(5)}px;
   margin-bottom: ${responsive(10)}px;
@@ -188,6 +236,7 @@ const TitleAndBackButtonSection = styled.View`
   justify-content: space-between;
   z-index: 1;
   width: 100%;
+  padding-top: ${isIos ? responsive(60) : responsive(20)}px;
 `;
 
 const BackButton = styled.TouchableOpacity`

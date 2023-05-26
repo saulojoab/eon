@@ -55,7 +55,7 @@ export default function MangaReader({ route }: { route: any }) {
         );
 
         pages.push({
-          url: `https://api.consumet.org/utils/image-proxy?url=${encoded}&headers=${encodedReferer}`,
+          url: `http://192.168.0.14:3000/image-proxy?url=${encoded}&headers=${encodedReferer}`,
           width: Dimensions.get('window').width,
           height: Dimensions.get('window').height,
         });
@@ -121,11 +121,18 @@ export default function MangaReader({ route }: { route: any }) {
               />
               <YouAreReadingSection>
                 <YouAreReadingText style={{ fontWeight: 'bold' }}>
-                  {mangaName}:
+                  {mangaName}
                 </YouAreReadingText>
-                <YouAreReadingText>Chapter {chapterNumber}</YouAreReadingText>
               </YouAreReadingSection>
             </TitleAndBackButtonSection>
+            <YouAreReadingText
+              style={{
+                paddingLeft: responsive(10),
+                marginBottom: responsive(10),
+              }}
+            >
+              {chapterNumber}
+            </YouAreReadingText>
             <CurrentPageText>
               You are currently on page {Number(currentPage) + 1}. There are a
               total of {mangaChapters?.length} pages on this chapter.

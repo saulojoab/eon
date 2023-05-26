@@ -7,6 +7,7 @@ import responsive from '@/global/utils/responsive';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { updateSource } from '@/redux/features/mangaSlice';
+import { isIos } from '@/global/utils/platformChecker';
 
 interface Source {
   name: string;
@@ -102,6 +103,7 @@ const TitleAndBackButtonSection = styled.View`
   justify-content: space-between;
   z-index: 1;
   width: 100%;
+  padding-top: ${isIos ? responsive(60) : responsive(20)}px;
 `;
 
 const BackButton = styled.TouchableOpacity`
