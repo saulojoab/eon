@@ -35,6 +35,8 @@ export default function Search(): JSX.Element {
 
     const response = await api.get(`/manga/${selectedSource}/${search}`);
 
+    console.log(response.data.results);
+
     setLoading(false);
 
     setMangaData(response.data.results);
@@ -58,7 +60,13 @@ export default function Search(): JSX.Element {
   };
 
   function handleSelectManga(manga: MangaResult): void {
-    dispatch(setSelectedManga({ id: manga.id, image: manga.image }));
+    dispatch(
+      setSelectedManga({
+        id: manga.id,
+        image: manga.image,
+        referer: manga.headerForImage.Referer,
+      }),
+    );
     navigation.navigate('MangaDetails');
   }
 

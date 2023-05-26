@@ -4,6 +4,7 @@ export interface MangaSliceProps {
   selectedManga: {
     id: string;
     image: string;
+    referer: string;
   };
   selectedSource: string;
 }
@@ -12,6 +13,7 @@ const initialState: MangaSliceProps = {
   selectedManga: {
     id: '',
     image: '',
+    referer: '',
   },
   selectedSource: 'mangakakalot',
 };
