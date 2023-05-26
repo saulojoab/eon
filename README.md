@@ -29,3 +29,6 @@ The EON application is an excellent option for Japanese manga lovers who want to
 # 🤝 CODE OF CONDUCT
 
 Please refer to our [Code of Conduct](https://github.com/saulojoab/eon/blob/main/CODE_OF_CONDUCT.md) before contributing.
+
+# 🫂 CONTRIBUTING
+For contributing, check out our [Github Project board](https://github.com/users/saulojoab/projects/2/views/1) to find tasks and bugs to fix.
