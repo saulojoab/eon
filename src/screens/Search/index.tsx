@@ -10,6 +10,7 @@ import { isIos } from '@/global/utils/platformChecker';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setSelectedManga } from '@/redux/features/mangaSlice';
+import Lottie from 'lottie-react-native';
 
 interface MangaResult {
   id: string;
@@ -44,7 +45,9 @@ export default function Search(): JSX.Element {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      getMangaData();
+      if (search !== '') {
+        getMangaData();
+      }
     }, 1000);
 
     return () => clearTimeout(delayDebounceFn);
@@ -86,7 +89,14 @@ export default function Search(): JSX.Element {
         </SettingsIcon>
       </SearchAndOptionsContainer>
       {search === '' && (
-        <SearchGuideText>Search for any manga above!</SearchGuideText>
+        <>
+          <PointingUpAnimation
+            source={require('@/assets/lottie/pointingUp.json')}
+            autoPlay
+            loop
+          />
+          <SearchGuideText>Search for any manga above!</SearchGuideText>
+        </>
       )}
       {loading && <ActivityIndicator />}
       <MangaList
@@ -120,7 +130,7 @@ const MangaItem = styled.TouchableOpacity`
   flex-direction: column;
   width: ${responsive(180)}px;
   height: ${responsive(220)}px;
-  margin: ${responsive(10)}px;
+  margin: ${responsive(20)}px;
   margin-bottom: ${responsive(30)}px;
   background-color: ${props => props.theme.colors.white};
   shadow-color: ${props => props.theme.colors.black};
@@ -173,3 +183,8 @@ const SearchAndOptionsContainer = styled.View`
 `;
 
 const SettingsIcon = styled.TouchableOpacity``;
+
+const PointingUpAnimation = styled(Lottie)`
+  width: ${responsive(80)}px;
+  align-self: center;
+`;
