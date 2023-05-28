@@ -23,6 +23,10 @@ interface ImageViewerImages {
   height: number;
 }
 
+function LoadingRender() {
+  return <LoadingSpinner size="large" color={'#fff'} />;
+}
+
 export default function MangaReader({ route }: { route: any }) {
   const { id, chapter: chapterNumber, mangaName } = route.params;
   const [mangaChapters, setMangaChapters] =
@@ -31,7 +35,9 @@ export default function MangaReader({ route }: { route: any }) {
   const [loading, setLoading] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(0);
 
-  const selectedSource = useAppSelector(state => state.manga.selectedSource);
+  const { selectedSource, selectedManga } = useAppSelector(
+    state => state.manga,
+  );
 
   const theme = useTheme();
 
@@ -39,24 +45,35 @@ export default function MangaReader({ route }: { route: any }) {
 
   async function getMangaData() {
     setLoading(true);
-    const response = await api.get(
-      `/manga/${selectedSource}/read?chapterId=${id}`,
-    );
+    try {
+      const response = await api.get(
+        `/manga/${selectedSource}/read?chapterId=${id}`,
+      );
 
-    const pages: ImageViewerImages[] = [];
+      const pages: ImageViewerImages[] = [];
 
-    response.data.map((chapter: Chapter) =>
-      pages.push({
-        url: chapter.img,
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
-      }),
-    );
+      response.data.map((chapter: Chapter) => {
+        const encoded = encodeURIComponent(chapter.img);
+        const encodedReferer = encodeURIComponent(
+          JSON.stringify({ Referer: selectedManga.referer }),
+        );
 
-    console.log(pages);
+        console.log(chapter.img);
 
-    setMangaChapters(pages);
-    setLoading(false);
+        pages.push({
+          url: `${api.defaults.baseURL}/utils/image-proxy?url=${encoded}&headers=${encodedReferer}`,
+          width: Dimensions.get('window').width,
+          height: Dimensions.get('window').height,
+        });
+      });
+
+      console.log(pages);
+
+      setMangaChapters(pages);
+      setLoading(false);
+    } catch (error: any) {
+      console.log(error.response.status);
+    }
   }
 
   function toggleOverlay() {
@@ -70,27 +87,30 @@ export default function MangaReader({ route }: { route: any }) {
   if (loading) {
     return (
       <Container>
-        <LoadingSpinner size="large" color="#fff" />
+        <LoadingRender />
       </Container>
     );
   }
 
   return (
     <Container>
-      <ImageViewer
-        renderImage={props => (
-          <Image
-            onError={() => console.log('error ocurred')}
-            {...props}
-            resizeMode="contain"
-          />
-        )}
-        imageUrls={mangaChapters}
-        onChange={index => setCurrentPage(index || 0)}
-        onClick={toggleOverlay}
-        renderIndicator={() => <></>}
-        enablePreload
-      />
+      {mangaChapters && (
+        <ImageViewer
+          renderImage={props => (
+            <Image
+              onError={() => console.log('error ocurred')}
+              {...props}
+              resizeMode="contain"
+            />
+          )}
+          loadingRender={LoadingRender}
+          imageUrls={mangaChapters}
+          onChange={index => setCurrentPage(index || 0)}
+          onClick={toggleOverlay}
+          renderIndicator={() => <></>}
+          enablePreload
+        />
+      )}
 
       {showOverlay && (
         <OverlayTouchable onPress={toggleOverlay}>
@@ -108,11 +128,18 @@ export default function MangaReader({ route }: { route: any }) {
               />
               <YouAreReadingSection>
                 <YouAreReadingText style={{ fontWeight: 'bold' }}>
-                  {mangaName}:
+                  {mangaName}
                 </YouAreReadingText>
-                <YouAreReadingText>Chapter {chapterNumber}</YouAreReadingText>
               </YouAreReadingSection>
             </TitleAndBackButtonSection>
+            <YouAreReadingText
+              style={{
+                paddingLeft: responsive(10),
+                marginBottom: responsive(10),
+              }}
+            >
+              {chapterNumber}
+            </YouAreReadingText>
             <CurrentPageText>
               You are currently on page {Number(currentPage) + 1}. There are a
               total of {mangaChapters?.length} pages on this chapter.
