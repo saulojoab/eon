@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Dimensions } from 'react-native';
 import api from '@/services/api';
 import styled from 'styled-components/native';
@@ -10,8 +10,10 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import responsive from '@/global/utils/responsive';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
-import { useAppSelector } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import FastImage from 'react-native-fast-image';
+import Lottie from 'lottie-react-native';
+import { addFinishedChapter } from '@/redux/features/mangaSlice';
 
 interface Chapter {
   page: number;
@@ -29,18 +31,24 @@ function LoadingRender() {
 }
 
 export default function MangaReader({ route }: { route: any }) {
-  const { id, chapter: chapterNumber, mangaName } = route.params;
-  const [mangaChapters, setMangaChapters] =
-    React.useState<ImageViewerImages[]>();
+  const { id, chapter: chapterNumber } = route.params;
+
+  const [mangaChapters, setMangaChapters] = React.useState<ImageViewerImages[]>(
+    [],
+  );
   const [showOverlay, setShowOverlay] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(0);
+  const [finished, setFinished] = React.useState(false);
+
+  const animationRef = useRef<Lottie>(null);
 
   const { selectedSource, selectedManga } = useAppSelector(
     state => state.manga,
   );
 
   const theme = useTheme();
+  const dispatch = useAppDispatch();
 
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
@@ -107,6 +115,19 @@ export default function MangaReader({ route }: { route: any }) {
     );
   }
 
+  function handlePageChange(index: number) {
+    setCurrentPage(index);
+
+    if (index === mangaChapters?.length - 1) {
+      dispatch(addFinishedChapter({ id: selectedManga.id, chapter: id }));
+      setFinished(true);
+    }
+  }
+
+  function handleGoBack() {
+    navigation.goBack();
+  }
+
   return (
     <Container>
       {mangaChapters && (
@@ -120,10 +141,20 @@ export default function MangaReader({ route }: { route: any }) {
           )}
           loadingRender={LoadingRender}
           imageUrls={mangaChapters}
-          onChange={index => setCurrentPage(index || 0)}
+          onChange={index => handlePageChange(index || 0)}
           onClick={toggleOverlay}
           renderIndicator={() => <></>}
           enablePreload
+        />
+      )}
+
+      {finished && (
+        <FinishedAnimation
+          ref={animationRef}
+          source={require('@/assets/lottie/finishedChapter.json')}
+          onAnimationFinish={() => setFinished(false)}
+          autoPlay
+          loop={false}
         />
       )}
 
@@ -139,11 +170,11 @@ export default function MangaReader({ route }: { route: any }) {
                 name="arrow-left"
                 size={30}
                 color={theme.colors.white}
-                onPress={() => navigation.goBack()}
+                onPress={handleGoBack}
               />
               <YouAreReadingSection>
                 <YouAreReadingText style={{ fontWeight: 'bold' }}>
-                  {mangaName}
+                  {selectedManga.title}
                 </YouAreReadingText>
               </YouAreReadingSection>
             </TitleAndBackButtonSection>
@@ -215,4 +246,12 @@ const CurrentPageText = styled.Text`
   color: ${props => props.theme.colors.white};
   padding-left: ${responsive(20)}px;
   padding-right: ${responsive(20)}px;
+`;
+
+const FinishedAnimation = styled(Lottie)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 `;

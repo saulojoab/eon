@@ -15,6 +15,11 @@ import {
   updateCurrentChapter,
 } from '@/redux/features/mangaSlice';
 
+interface Chapter {
+  id: string;
+  chapter: string;
+  title: string;
+}
 interface MangaData {
   id: string;
   title: string;
@@ -25,11 +30,7 @@ interface MangaData {
   status: string;
   genres: string[];
   description: string;
-  chapters: Array<{
-    id: string;
-    chapter: string;
-    title: string;
-  }>;
+  chapters: Array<Chapter>;
 }
 
 export default function MangaDetails() {
@@ -97,7 +98,6 @@ export default function MangaDetails() {
     navigation.navigate('MangaReader', {
       id: chapter.id,
       chapter: chapter.title,
-      mangaName: mangaData?.title,
     });
   }
 
@@ -107,6 +107,19 @@ export default function MangaDetails() {
 
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
+  };
+
+  const isCurrentlyReading = (chapter: Chapter): boolean =>
+    currentlyReading.some(item => item.currentChapter === chapter.id);
+
+  const isRead = (chapter: Chapter): boolean => {
+    console.log(currentlyReading);
+
+    return (
+      currentlyReading.filter(manga =>
+        manga.finishedChapters.some(cpt => cpt === chapter.id),
+      ).length > 0
+    );
   };
 
   return (
@@ -145,14 +158,9 @@ export default function MangaDetails() {
         data={mangaData?.chapters}
         renderItem={({ item }) => (
           <ChapterItem
-            currentlyReading={currentlyReading.some(
-              manga => manga.id === id && manga.currentChapter === item.id,
-            )}
-            isRead={currentlyReading.some(
-              manga =>
-                manga.id === id &&
-                manga.finishedChapters.find(chapter => chapter === item.id),
-            )}
+            currentlyReading={isCurrentlyReading(item)}
+            isRead={isRead(item)}
+            //isRead={false}
             onPress={() => {
               handleSelectChapter(item);
             }}
@@ -211,6 +219,7 @@ interface ChapterItemProps {
 const ChapterItem = styled.TouchableOpacity<ChapterItemProps>`
   flex: 1;
   margin: ${responsive(4)}px;
+  opacity: ${props => (props.isRead ? 0.5 : 1)};
   background-color: ${props =>
     props.currentlyReading ? props.theme.colors.primary : 'transparent'};
   border: 1px solid ${props => props.theme.colors.white};
