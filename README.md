@@ -1,9 +1,9 @@
 # 📖 EON
 
 <div align="center">
-<img src="https://github.com/saulojoab/eon/assets/37988252/5c3366cf-f9c5-42b5-ba29-d12ece7651b0" width="200px" />&nbsp;&nbsp;&nbsp; 
-<img src="https://github.com/saulojoab/eon/assets/37988252/aea17b53-9538-4626-9438-c3a14179d067" width="200px" />&nbsp;&nbsp;&nbsp; 
-<img src="https://github.com/saulojoab/eon/assets/37988252/cbc5e512-a592-465a-a141-cc4d6735ad4e" width="200px" />&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/saulojoab/eon/assets/37988252/ffb79b85-60b6-4515-9c8f-3fdb3869b9cb" width="200px" />&nbsp;&nbsp;&nbsp; 
+<img src="https://github.com/saulojoab/eon/assets/37988252/ccc13594-d484-48e6-8daa-d803268e1342" width="200px" />&nbsp;&nbsp;&nbsp; 
+<img src="https://github.com/saulojoab/eon/assets/37988252/833c0998-de4c-4da3-a87b-c80d57206f76" width="200px" />&nbsp;&nbsp;&nbsp;
 </div>
 <br/>
 <div align="center">
