@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect } from 'react';
-import { Dimensions, Image } from 'react-native';
+import { Dimensions } from 'react-native';
 import api from '@/services/api';
 import styled from 'styled-components/native';
 import ImageViewer from 'react-native-image-zoom-viewer';
@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import responsive from '@/global/utils/responsive';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useAppSelector } from '@/hooks/redux';
+import FastImage from 'react-native-fast-image';
 
 interface Chapter {
   page: number;
@@ -51,6 +52,20 @@ export default function MangaReader({ route }: { route: any }) {
       );
 
       const pages: ImageViewerImages[] = [];
+
+      FastImage.preload(
+        response.data.map((chapter: Chapter) => {
+          return {
+            uri: `${
+              api.defaults.baseURL
+            }/utils/image-proxy?url=${encodeURIComponent(
+              chapter.img,
+            )}&headers=${encodeURIComponent(
+              JSON.stringify({ Referer: selectedManga.referer }),
+            )}`,
+          };
+        }),
+      );
 
       response.data.map((chapter: Chapter) => {
         const encoded = encodeURIComponent(chapter.img);
@@ -97,10 +112,10 @@ export default function MangaReader({ route }: { route: any }) {
       {mangaChapters && (
         <ImageViewer
           renderImage={props => (
-            <Image
+            <FastImage
               onError={() => console.log('error ocurred')}
               {...props}
-              resizeMode="contain"
+              resizeMode={FastImage.resizeMode.contain}
             />
           )}
           loadingRender={LoadingRender}

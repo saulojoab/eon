@@ -212,7 +212,7 @@ const ChapterItem = styled.TouchableOpacity<ChapterItemProps>`
   flex: 1;
   margin: ${responsive(4)}px;
   background-color: ${props =>
-    props.currentlyReading && props.theme.colors.primary};
+    props.currentlyReading ? props.theme.colors.primary : 'transparent'};
   border: 1px solid ${props => props.theme.colors.white};
   border-radius: ${responsive(5)}px;
   margin-bottom: ${responsive(10)}px;
