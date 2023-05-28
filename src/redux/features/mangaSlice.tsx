@@ -5,6 +5,7 @@ export interface MangaSliceProps {
     id: string;
     image: string;
     referer: string;
+    title: string;
   };
   currentlyReading: Array<{
     id: string;
@@ -22,6 +23,7 @@ const initialState: MangaSliceProps = {
     id: '',
     image: '',
     referer: '',
+    title: '',
   },
   selectedSource: 'mangakakalot',
   currentlyReading: [],
@@ -81,8 +83,19 @@ const mangaSlice = createSlice({
       const newState = {
         ...state,
         currentlyReading: state.currentlyReading.map(manga => {
-          if (manga.id === action.payload.id) {
-            manga.finishedChapters.push(action.payload.finishedChapter);
+          if (
+            manga.id === action.payload.id &&
+            !manga.finishedChapters.some(
+              chapter => chapter === action.payload.chapter,
+            )
+          ) {
+            return {
+              ...manga,
+              finishedChapters: [
+                ...manga.finishedChapters,
+                action.payload.chapter,
+              ],
+            };
           }
           return manga;
         }),

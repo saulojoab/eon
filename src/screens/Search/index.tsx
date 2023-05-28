@@ -65,6 +65,7 @@ export default function Search(): JSX.Element {
         id: manga.id,
         image: manga.image,
         referer: manga.headerForImage.Referer,
+        title: manga.title,
       }),
     );
     navigation.navigate('MangaDetails');

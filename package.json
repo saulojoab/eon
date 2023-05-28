@@ -23,6 +23,7 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
+    "lottie-react-native": "^5.1.6",
     "postcss": "^8.4.23",
     "react": "18.2.0",
     "react-native": "0.71.8",
