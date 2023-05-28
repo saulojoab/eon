@@ -23,6 +23,10 @@ interface ImageViewerImages {
   height: number;
 }
 
+function LoadingRender() {
+  return <LoadingSpinner size="large" color={'#fff'} />;
+}
+
 export default function MangaReader({ route }: { route: any }) {
   const { id, chapter: chapterNumber, mangaName } = route.params;
   const [mangaChapters, setMangaChapters] =
@@ -54,8 +58,10 @@ export default function MangaReader({ route }: { route: any }) {
           JSON.stringify({ Referer: selectedManga.referer }),
         );
 
+        console.log(chapter.img);
+
         pages.push({
-          url: `http://192.168.0.14:3000/image-proxy?url=${encoded}&headers=${encodedReferer}`,
+          url: `${api.defaults.baseURL}/utils/image-proxy?url=${encoded}&headers=${encodedReferer}`,
           width: Dimensions.get('window').width,
           height: Dimensions.get('window').height,
         });
@@ -81,7 +87,7 @@ export default function MangaReader({ route }: { route: any }) {
   if (loading) {
     return (
       <Container>
-        <LoadingSpinner size="large" color="#fff" />
+        <LoadingRender />
       </Container>
     );
   }
@@ -97,6 +103,7 @@ export default function MangaReader({ route }: { route: any }) {
               resizeMode="contain"
             />
           )}
+          loadingRender={LoadingRender}
           imageUrls={mangaChapters}
           onChange={index => setCurrentPage(index || 0)}
           onClick={toggleOverlay}

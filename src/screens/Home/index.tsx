@@ -13,6 +13,8 @@ import {
 } from '@/redux/features/mangaSlice';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import LinearGradient from 'react-native-linear-gradient';
+import { useTheme } from 'styled-components';
 
 interface CurrentlyReadingMangaProps {
   id: string;
@@ -41,6 +43,7 @@ export default function Home() {
   ];
 
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const theme = useTheme();
 
   const dispatch = useAppDispatch();
   //dispatch(resetState());
@@ -61,7 +64,7 @@ export default function Home() {
   }
 
   return (
-    <Container>
+    <Container colors={[theme.colors.black, theme.colors.secondary]}>
       <TopLogoContainer>
         <LogoText>EON</LogoText>
       </TopLogoContainer>
@@ -99,7 +102,7 @@ export default function Home() {
   );
 }
 
-const Container = styled.View`
+const Container = styled(LinearGradient)`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.secondary};
 `;

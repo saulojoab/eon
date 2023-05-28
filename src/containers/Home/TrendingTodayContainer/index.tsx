@@ -38,7 +38,7 @@ const TrendingTodayContainerView = styled.View`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: ${responsive(200)}px;
+  height: ${responsive(250)}px;
 `;
 
 const TrendingTodayImage = styled.Image`
