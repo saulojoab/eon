@@ -33,8 +33,8 @@ const Container = styled.View`
 `;
 
 const SectionTitle = styled.Text`
-  font-size: ${responsive(15)}px;
-  font-weight: bold;
+  font-size: ${responsive(16)}px;
+  font-family: ${({ theme }) => theme.fonts.extraBold};
   color: ${({ theme }) => theme.colors.white};
   margin-left: ${responsive(10)}px;
 `;

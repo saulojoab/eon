@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FlatList, StatusBar } from 'react-native';
-import api from '@/services/api';
+import api from '@/services/manga-api';
 import styled, { useTheme } from 'styled-components/native';
 import { useNavigation } from '@react-navigation/core';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';

@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
-import api from '@/services/api';
+import { mangaApi } from '@/services/apis';
 import styled, { useTheme } from 'styled-components/native';
 import responsive from '@/global/utils/responsive';
 import { useNavigation } from '@react-navigation/core';
@@ -34,7 +34,7 @@ export default function Search(): JSX.Element {
   async function getMangaData(): Promise<void> {
     setLoading(true);
 
-    const response = await api.get(`/manga/${selectedSource}/${search}`);
+    const response = await mangaApi.get(`/manga/${selectedSource}/${search}`);
 
     console.log(response.data.results);
 
@@ -153,14 +153,15 @@ const MangaImage = styled.Image`
 `;
 
 const MangaTitle = styled.Text`
-  font-size: ${responsive(12)}px;
-  font-weight: 300;
+  font-size: ${responsive(14)}px;
+  font-family: ${props => props.theme.fonts.italic};
   color: ${props => props.theme.colors.white};
   margin-top: ${responsive(5)}px;
 `;
 
 const SearchGuideText = styled.Text`
   font-size: ${responsive(14)}px;
+  font-family: ${props => props.theme.fonts.boldItalic};
   color: ${props => props.theme.colors.gray};
   margin-bottom: ${responsive(20)}px;
   align-self: center;
@@ -169,6 +170,7 @@ const SearchGuideText = styled.Text`
 const MangaSearchInput = styled.TextInput`
   width: 90%;
   height: ${responsive(50)}px;
+  font-family: ${props => props.theme.fonts.default};
   border-radius: 5px;
   border: 1px solid ${props => props.theme.colors.gray};
   padding: ${responsive(10)}px;

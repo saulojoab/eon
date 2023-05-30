@@ -12,8 +12,26 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		152723B51A1F40E98894ED0E /* Latinka Thin Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E3AA53D8ABA4986BCA005F3 /* Latinka Thin Italic.ttf */; };
+		1A85B397D2084CBA9FF9ADEE /* Latinka Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14D99425D1D54A038A13F6F3 /* Latinka Italic.ttf */; };
+		2A016BAF05274B32B117C4F0 /* Latinka Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8B35DCBAF434BF7B7B1BDE2 /* Latinka Thin.ttf */; };
+		2D31439955D64B38A669AAE1 /* Latinka Bold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED46B2FC8AED46ADBFE99AB5 /* Latinka Bold Italic.ttf */; };
+		3B02E7D97B234FD696D9610A /* Latinka Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140FD5AC34BC49FFA7D11EA7 /* Latinka Bold.ttf */; };
+		4055F5150A0F44D6A4A02697 /* Latinka ExtraBold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B989B2CDE5345FE8DBE165E /* Latinka ExtraBold Italic.ttf */; };
+		480F23CC11974FDD821315DF /* Latinka Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E935FE45B6F74D9EB56DFA44 /* Latinka Black.ttf */; };
+		4E41142B86FC49FEB236566D /* Latinka Light Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7C42997E26C42EBA6F877EB /* Latinka Light Italic.ttf */; };
+		5FD80087F798489DAE88E846 /* Latinka Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9FB40943C584FEEAF276058 /* Latinka Regular.ttf */; };
+		608DAAC409AB4FFC844DE2E0 /* Latinka SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C82BD1E7D23490789B54B22 /* Latinka SemiBold.ttf */; };
+		6E6FFD03B79D43448A90C0FA /* Latinka Medium Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDF08105615B49E19D448420 /* Latinka Medium Italic.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-eon-eonTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-eon-eonTests.a */; };
+		8115B371D2F040409F8712BB /* Latinka Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B6FAD73F27647B3A9E68785 /* Latinka Light.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		97FBF67CB6054DA7BAF7898C /* Latinka Black Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A16A6B8C220244A1BEC10DA2 /* Latinka Black Italic.ttf */; };
+		C7A10756FDA547D9A963E910 /* Latinka Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FED6D032393541EAAE72F823 /* Latinka Medium.ttf */; };
+		C7E9B3DDF25B49E09C621779 /* Latinka ExtraLight Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 930F08FC25D44301978FF71D /* Latinka ExtraLight Italic.ttf */; };
+		DB636344041C4631972353D6 /* Latinka ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F705964F055E42C4BA1EAAB3 /* Latinka ExtraLight.ttf */; };
+		E7B7094F6C4A4829A93D9A10 /* Latinka SemiBold Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27FAACF1646D40949DA51422 /* Latinka SemiBold Italic.ttf */; };
+		F5BA56CCB3BA4B4F869A1252 /* Latinka ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0B433EDAD504D028D1077BF /* Latinka ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +48,28 @@
 		00E356EE1AD99517003FC87E /* eonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* eonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eonTests.m; sourceTree = "<group>"; };
+		0B6FAD73F27647B3A9E68785 /* Latinka Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Light.ttf"; path = "../src/assets/fonts/Latinka Light.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* eon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = eon/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = eon/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = eon/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = eon/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = eon/main.m; sourceTree = "<group>"; };
+		140FD5AC34BC49FFA7D11EA7 /* Latinka Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Bold.ttf"; path = "../src/assets/fonts/Latinka Bold.ttf"; sourceTree = "<group>"; };
+		14D99425D1D54A038A13F6F3 /* Latinka Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Italic.ttf"; path = "../src/assets/fonts/Latinka Italic.ttf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-eon-eonTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eon-eonTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27FAACF1646D40949DA51422 /* Latinka SemiBold Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka SemiBold Italic.ttf"; path = "../src/assets/fonts/Latinka SemiBold Italic.ttf"; sourceTree = "<group>"; };
+		2B989B2CDE5345FE8DBE165E /* Latinka ExtraBold Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka ExtraBold Italic.ttf"; path = "../src/assets/fonts/Latinka ExtraBold Italic.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-eon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eon.debug.xcconfig"; path = "Target Support Files/Pods-eon/Pods-eon.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-eon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eon.release.xcconfig"; path = "Target Support Files/Pods-eon/Pods-eon.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-eon-eonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eon-eonTests.debug.xcconfig"; path = "Target Support Files/Pods-eon-eonTests/Pods-eon-eonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-eon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-eon.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C82BD1E7D23490789B54B22 /* Latinka SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka SemiBold.ttf"; path = "../src/assets/fonts/Latinka SemiBold.ttf"; sourceTree = "<group>"; };
+		7E3AA53D8ABA4986BCA005F3 /* Latinka Thin Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Thin Italic.ttf"; path = "../src/assets/fonts/Latinka Thin Italic.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = eon/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-eon-eonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eon-eonTests.release.xcconfig"; path = "Target Support Files/Pods-eon-eonTests/Pods-eon-eonTests.release.xcconfig"; sourceTree = "<group>"; };
+		930F08FC25D44301978FF71D /* Latinka ExtraLight Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka ExtraLight Italic.ttf"; path = "../src/assets/fonts/Latinka ExtraLight Italic.ttf"; sourceTree = "<group>"; };
+		A16A6B8C220244A1BEC10DA2 /* Latinka Black Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Black Italic.ttf"; path = "../src/assets/fonts/Latinka Black Italic.ttf"; sourceTree = "<group>"; };
 		B71E2DE82A1449F5008FE4B4 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		B71E2DE92A1449F5008FE4B4 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		B71E2DEA2A1449F5008FE4B4 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -59,7 +86,16 @@
 		B71E2DF52A1449F6008FE4B4 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		B71E2DF62A1449F6008FE4B4 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		B71E2DF72A1449F6008FE4B4 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		E7C42997E26C42EBA6F877EB /* Latinka Light Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Light Italic.ttf"; path = "../src/assets/fonts/Latinka Light Italic.ttf"; sourceTree = "<group>"; };
+		E8B35DCBAF434BF7B7B1BDE2 /* Latinka Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Thin.ttf"; path = "../src/assets/fonts/Latinka Thin.ttf"; sourceTree = "<group>"; };
+		E935FE45B6F74D9EB56DFA44 /* Latinka Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Black.ttf"; path = "../src/assets/fonts/Latinka Black.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED46B2FC8AED46ADBFE99AB5 /* Latinka Bold Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Bold Italic.ttf"; path = "../src/assets/fonts/Latinka Bold Italic.ttf"; sourceTree = "<group>"; };
+		EDF08105615B49E19D448420 /* Latinka Medium Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Medium Italic.ttf"; path = "../src/assets/fonts/Latinka Medium Italic.ttf"; sourceTree = "<group>"; };
+		F0B433EDAD504D028D1077BF /* Latinka ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka ExtraBold.ttf"; path = "../src/assets/fonts/Latinka ExtraBold.ttf"; sourceTree = "<group>"; };
+		F705964F055E42C4BA1EAAB3 /* Latinka ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka ExtraLight.ttf"; path = "../src/assets/fonts/Latinka ExtraLight.ttf"; sourceTree = "<group>"; };
+		F9FB40943C584FEEAF276058 /* Latinka Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Regular.ttf"; path = "../src/assets/fonts/Latinka Regular.ttf"; sourceTree = "<group>"; };
+		FED6D032393541EAAE72F823 /* Latinka Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Latinka Medium.ttf"; path = "../src/assets/fonts/Latinka Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +190,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				966C276B8652481CA55CF37D /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -167,6 +204,32 @@
 				00E356EE1AD99517003FC87E /* eonTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		966C276B8652481CA55CF37D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A16A6B8C220244A1BEC10DA2 /* Latinka Black Italic.ttf */,
+				E935FE45B6F74D9EB56DFA44 /* Latinka Black.ttf */,
+				ED46B2FC8AED46ADBFE99AB5 /* Latinka Bold Italic.ttf */,
+				140FD5AC34BC49FFA7D11EA7 /* Latinka Bold.ttf */,
+				2B989B2CDE5345FE8DBE165E /* Latinka ExtraBold Italic.ttf */,
+				F0B433EDAD504D028D1077BF /* Latinka ExtraBold.ttf */,
+				930F08FC25D44301978FF71D /* Latinka ExtraLight Italic.ttf */,
+				F705964F055E42C4BA1EAAB3 /* Latinka ExtraLight.ttf */,
+				14D99425D1D54A038A13F6F3 /* Latinka Italic.ttf */,
+				E7C42997E26C42EBA6F877EB /* Latinka Light Italic.ttf */,
+				0B6FAD73F27647B3A9E68785 /* Latinka Light.ttf */,
+				EDF08105615B49E19D448420 /* Latinka Medium Italic.ttf */,
+				FED6D032393541EAAE72F823 /* Latinka Medium.ttf */,
+				F9FB40943C584FEEAF276058 /* Latinka Regular.ttf */,
+				27FAACF1646D40949DA51422 /* Latinka SemiBold Italic.ttf */,
+				7C82BD1E7D23490789B54B22 /* Latinka SemiBold.ttf */,
+				7E3AA53D8ABA4986BCA005F3 /* Latinka Thin Italic.ttf */,
+				E8B35DCBAF434BF7B7B1BDE2 /* Latinka Thin.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -276,6 +339,24 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				97FBF67CB6054DA7BAF7898C /* Latinka Black Italic.ttf in Resources */,
+				480F23CC11974FDD821315DF /* Latinka Black.ttf in Resources */,
+				2D31439955D64B38A669AAE1 /* Latinka Bold Italic.ttf in Resources */,
+				3B02E7D97B234FD696D9610A /* Latinka Bold.ttf in Resources */,
+				4055F5150A0F44D6A4A02697 /* Latinka ExtraBold Italic.ttf in Resources */,
+				F5BA56CCB3BA4B4F869A1252 /* Latinka ExtraBold.ttf in Resources */,
+				C7E9B3DDF25B49E09C621779 /* Latinka ExtraLight Italic.ttf in Resources */,
+				DB636344041C4631972353D6 /* Latinka ExtraLight.ttf in Resources */,
+				1A85B397D2084CBA9FF9ADEE /* Latinka Italic.ttf in Resources */,
+				4E41142B86FC49FEB236566D /* Latinka Light Italic.ttf in Resources */,
+				8115B371D2F040409F8712BB /* Latinka Light.ttf in Resources */,
+				6E6FFD03B79D43448A90C0FA /* Latinka Medium Italic.ttf in Resources */,
+				C7A10756FDA547D9A963E910 /* Latinka Medium.ttf in Resources */,
+				5FD80087F798489DAE88E846 /* Latinka Regular.ttf in Resources */,
+				E7B7094F6C4A4829A93D9A10 /* Latinka SemiBold Italic.ttf in Resources */,
+				608DAAC409AB4FFC844DE2E0 /* Latinka SemiBold.ttf in Resources */,
+				152723B51A1F40E98894ED0E /* Latinka Thin Italic.ttf in Resources */,
+				2A016BAF05274B32B117C4F0 /* Latinka Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

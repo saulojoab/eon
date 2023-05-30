@@ -66,14 +66,14 @@ const TrendingTodayTag = styled.View`
 
 const TrendingTodayTagText = styled.Text`
   font-size: ${responsive(12)}px;
-  font-weight: bold;
+  font-family: ${({ theme }) => theme.fonts.black};
   color: ${({ theme }) => theme.colors.white};
   margin-left: ${responsive(5)}px;
 `;
 
 const TrendingTodayMangaName = styled.Text`
-  font-size: ${responsive(20)}px;
-  font-weight: 200;
+  font-size: ${responsive(30)}px;
+  font-family: ${({ theme }) => theme.fonts.lightItalic};
   color: ${({ theme }) => theme.colors.white};
   margin-left: ${responsive(5)}px;
   bottom: ${responsive(10)}px;

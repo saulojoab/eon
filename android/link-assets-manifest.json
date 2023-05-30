@@ -1,0 +1,77 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Latinka Black Italic.ttf",
+      "sha1": "bc3599c80f3dbbf5f6a9b5cd54e92731d5d01681"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Black.ttf",
+      "sha1": "364e056047f9bca1149293592ecd30660215dc96"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Bold Italic.ttf",
+      "sha1": "12674cf97e0218ce33e108058897b3e27144ddac"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Bold.ttf",
+      "sha1": "4748729ccd3741a4216b0d6672df784fd7ef0066"
+    },
+    {
+      "path": "src/assets/fonts/Latinka ExtraBold Italic.ttf",
+      "sha1": "6b237efe9cecb76415c7ef560d533cba16804cbe"
+    },
+    {
+      "path": "src/assets/fonts/Latinka ExtraBold.ttf",
+      "sha1": "37a2cad9ee8b40a23d1352ae7f64b9925de2bcfd"
+    },
+    {
+      "path": "src/assets/fonts/Latinka ExtraLight Italic.ttf",
+      "sha1": "c8ac02dd1e0261b389bbc7b5b9b98eea2a953a2c"
+    },
+    {
+      "path": "src/assets/fonts/Latinka ExtraLight.ttf",
+      "sha1": "916f732dcc72d03de0997290a1f195395b3cf447"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Italic.ttf",
+      "sha1": "8ee752493e1734e78b554fe3bdc368e71e2ad368"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Light Italic.ttf",
+      "sha1": "b111f89010e1d343345d82911804b27569c068b4"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Light.ttf",
+      "sha1": "0057361c32e3063fa8bb8dd9159c7c0ce01dc88d"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Medium Italic.ttf",
+      "sha1": "57b4c0bc152ddafb00549d342456d9d78300b4db"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Medium.ttf",
+      "sha1": "93fce5263d80b3a24e9e98f1235252675db52009"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Regular.ttf",
+      "sha1": "5754eb04fe7b6ce03b07882f258b54bd49a24df2"
+    },
+    {
+      "path": "src/assets/fonts/Latinka SemiBold Italic.ttf",
+      "sha1": "28d7a5c2847c9468baf67199297f227629ba241d"
+    },
+    {
+      "path": "src/assets/fonts/Latinka SemiBold.ttf",
+      "sha1": "53311e098b996dfec9baf30fad1a8fe3fa7fb836"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Thin Italic.ttf",
+      "sha1": "3d73577bd33f32c12ac7828a63e9bdfb663ee1fa"
+    },
+    {
+      "path": "src/assets/fonts/Latinka Thin.ttf",
+      "sha1": "a2caf0a0934af7bb77099096b394e69439619a6f"
+    }
+  ]
+}

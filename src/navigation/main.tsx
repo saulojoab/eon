@@ -8,6 +8,8 @@ import {
   MangaReader,
   Home,
   SelectSources,
+  Login,
+  SignUp,
 } from '@/screens';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useTheme } from 'styled-components';
@@ -84,6 +86,8 @@ export default function App() {
         headerShown: false,
       }}
     >
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="SignUp" component={SignUp} />
       <Stack.Screen name="Main" component={TabNavigator} />
       <Stack.Screen name="MangaDetails" component={MangaDetails} />
       <Stack.Screen name="MangaReader" component={MangaReader} />

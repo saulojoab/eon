@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -55,6 +55,24 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
+		<string>Latinka Black Italic.ttf</string>
+		<string>Latinka Black.ttf</string>
+		<string>Latinka Bold Italic.ttf</string>
+		<string>Latinka Bold.ttf</string>
+		<string>Latinka ExtraBold Italic.ttf</string>
+		<string>Latinka ExtraBold.ttf</string>
+		<string>Latinka ExtraLight Italic.ttf</string>
+		<string>Latinka ExtraLight.ttf</string>
+		<string>Latinka Italic.ttf</string>
+		<string>Latinka Light Italic.ttf</string>
+		<string>Latinka Light.ttf</string>
+		<string>Latinka Medium Italic.ttf</string>
+		<string>Latinka Medium.ttf</string>
+		<string>Latinka Regular.ttf</string>
+		<string>Latinka SemiBold Italic.ttf</string>
+		<string>Latinka SemiBold.ttf</string>
+		<string>Latinka Thin Italic.ttf</string>
+		<string>Latinka Thin.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -70,5 +88,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs to access your gallery to set your profile picture.</string>
 </dict>
 </plist>

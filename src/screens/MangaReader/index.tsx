@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect, useRef } from 'react';
 import { Dimensions } from 'react-native';
-import api from '@/services/api';
+import api from '@/services/manga-api';
 import styled from 'styled-components/native';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import Icon from 'react-native-vector-icons/FontAwesome5';
