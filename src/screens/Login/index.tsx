@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 import responsive from '@/global/utils/responsive';
@@ -7,23 +7,26 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { eonApi } from '@/services/apis';
 import { HttpStatusCode } from 'axios';
 import { ActivityIndicator } from 'react-native';
-import { useAppDispatch } from '@/hooks/redux';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setUser } from '@/redux/features/authSlice';
 
 export default function Login() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
-
   const [loading, setLoading] = React.useState(false);
-
-  function toggleShowPassword() {
-    setShowPassword(!showPassword);
-  }
 
   const navigation = useNavigation<any>();
   const theme = useTheme();
   const dispatch = useAppDispatch();
+
+  const isAuth = useAppSelector(state => state.auth.user).username !== '';
+
+  useEffect(() => {
+    if (isAuth) {
+      navigation.navigate('Main');
+    }
+  }, [isAuth]);
 
   function search() {
     navigation.navigate('Main');
@@ -31,6 +34,10 @@ export default function Login() {
 
   function goToSignUp() {
     navigation.navigate('SignUp');
+  }
+
+  function toggleShowPassword() {
+    setShowPassword(!showPassword);
   }
 
   async function login() {
@@ -46,7 +53,6 @@ export default function Login() {
         return;
       }
 
-      console.log(response.data);
       dispatch(setUser(response.data));
       navigation.navigate('Main');
     } catch (error) {

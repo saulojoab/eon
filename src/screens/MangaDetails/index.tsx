@@ -34,7 +34,9 @@ interface MangaData {
 }
 
 export default function MangaDetails() {
-  const { id, image } = useAppSelector(state => state.manga.selectedManga);
+  const { id, image, views } = useAppSelector(
+    state => state.manga.selectedManga,
+  );
 
   const [mangaData, setMangaData] = React.useState<MangaData>();
   const [showFullDescription, setShowFullDescription] = React.useState(false);
@@ -43,8 +45,6 @@ export default function MangaDetails() {
   const { selectedSource, currentlyReading } = useAppSelector(
     state => state.manga,
   );
-
-  console.log(currentlyReading);
 
   const theme = useTheme();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
@@ -113,8 +113,6 @@ export default function MangaDetails() {
     currentlyReading.some(item => item.currentChapter === chapter.id);
 
   const isRead = (chapter: Chapter): boolean => {
-    console.log(currentlyReading);
-
     return (
       currentlyReading.filter(manga =>
         manga.finishedChapters.some(cpt => cpt === chapter.id),
@@ -142,6 +140,14 @@ export default function MangaDetails() {
           colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.8)']}
         />
         <MangaTitle>{mangaData?.title}</MangaTitle>
+        <ViewsContainer>
+          <ViewsIcon
+            size={responsive(15)}
+            color={theme.colors.white}
+            name="eye"
+          />
+          <ViewCount>{views}</ViewCount>
+        </ViewsContainer>
       </MangaImageTitleContainer>
 
       <DataSection>
@@ -205,7 +211,7 @@ const MangaTitle = styled.Text`
   font-weight: 100;
   position: absolute;
   z-index: 1;
-  bottom: ${responsive(20)}px;
+  bottom: ${responsive(25)}px;
   left: 0;
   right: 0;
   text-align: center;
@@ -281,3 +287,23 @@ const MangaImageFadingForeground = styled(LinearGradient)`
   padding: ${responsive(10)}px;
   position: absolute;
 `;
+
+const ViewsContainer = styled.View`
+  flex-direction: row;
+  position: absolute;
+  z-index: 1;
+  bottom: ${responsive(5)}px;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ViewCount = styled.Text`
+  font-size: ${responsive(14)}px;
+  color: ${props => props.theme.colors.white};
+  font-family: ${props => props.theme.fonts.light};
+  margin-left: ${responsive(5)}px;
+`;
+
+const ViewsIcon = styled(Icon)``;

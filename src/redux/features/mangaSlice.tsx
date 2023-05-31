@@ -6,6 +6,11 @@ export interface MangaSliceProps {
     image: string;
     referer: string;
     title: string;
+    views: number;
+    todayViews: {
+      date: Date;
+      views: number;
+    };
   };
   currentlyReading: Array<{
     id: string;
@@ -24,6 +29,11 @@ const initialState: MangaSliceProps = {
     image: '',
     referer: '',
     title: '',
+    views: -1,
+    todayViews: {
+      date: new Date(),
+      views: -1,
+    },
   },
   selectedSource: 'mangakakalot',
   currentlyReading: [],

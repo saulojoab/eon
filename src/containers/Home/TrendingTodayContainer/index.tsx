@@ -1,20 +1,73 @@
 import responsive from '@/global/utils/responsive';
-import React from 'react';
+import React, { useEffect } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
 import { useTheme } from 'styled-components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import trycatcher from '@/global/utils/trycatcher';
+import { eonApi } from '@/services/apis';
+import { ActivityIndicator } from 'react-native';
+
+interface TrendingTodayMangaProps {
+  __v: number;
+  _id: string;
+  createdAt: Date;
+  image: string;
+  manga_id: string;
+  referer: string;
+  title: string;
+  todayViews: {
+    _id: string;
+    count: number;
+    date: Date;
+  };
+  views: number;
+}
 
 export default function TrendingTodayContainer() {
   const theme = useTheme();
+  const [trendingTodayManga, setTrendingTodayManga] =
+    React.useState<TrendingTodayMangaProps>();
+  const [loading, setLoading] = React.useState(false);
+
+  async function getTrendingTodayManga() {
+    setLoading(true);
+    const { response, error } = await trycatcher(
+      eonApi.get('/manga/trending-today'),
+    );
+
+    if (error) {
+      console.log(error.response.status);
+      setLoading(false);
+      return;
+    }
+
+    setTrendingTodayManga(response?.data);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    getTrendingTodayManga();
+  }, []);
+
+  if (loading) {
+    return (
+      <LoadingContainer>
+        <ActivityIndicator size="large" color={theme.colors.accent} />
+      </LoadingContainer>
+    );
+  }
 
   return (
     <TrendingTodayContainerView>
-      <TrendingTodayImage
-        source={{
-          uri: 'https://m.media-amazon.com/images/I/91D07epNE9L.jpg',
-        }}
-      />
+      {trendingTodayManga?.image && (
+        <TrendingTodayImage
+          source={{
+            uri: trendingTodayManga?.image,
+          }}
+        />
+      )}
+
       <TrendingTodayInfoBackground
         colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.9)']}
       >
@@ -27,7 +80,9 @@ export default function TrendingTodayContainer() {
           />
           <TrendingTodayTagText>TRENDING TODAY</TrendingTodayTagText>
         </TrendingTodayTag>
-        <TrendingTodayMangaName>Berserk</TrendingTodayMangaName>
+        <TrendingTodayMangaName>
+          {trendingTodayManga?.title}
+        </TrendingTodayMangaName>
       </TrendingTodayInfoBackground>
     </TrendingTodayContainerView>
   );
@@ -79,4 +134,11 @@ const TrendingTodayMangaName = styled.Text`
   bottom: ${responsive(10)}px;
   right: ${responsive(10)}px;
   position: absolute;
+`;
+
+const LoadingContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: ${responsive(250)}px;
 `;

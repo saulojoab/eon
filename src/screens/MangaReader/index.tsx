@@ -81,16 +81,12 @@ export default function MangaReader({ route }: { route: any }) {
           JSON.stringify({ Referer: selectedManga.referer }),
         );
 
-        console.log(chapter.img);
-
         pages.push({
           url: `${api.defaults.baseURL}/utils/image-proxy?url=${encoded}&headers=${encodedReferer}`,
           width: Dimensions.get('window').width,
           height: Dimensions.get('window').height,
         });
       });
-
-      console.log(pages);
 
       setMangaChapters(pages);
       setLoading(false);
