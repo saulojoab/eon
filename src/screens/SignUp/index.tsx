@@ -42,7 +42,7 @@ export default function SignUp() {
       username: userName,
       email,
       password,
-      profile_picture: profilePicture,
+      profilePicture,
     });
 
     if (response.status !== HttpStatusCode.Created) {
