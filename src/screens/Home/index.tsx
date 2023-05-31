@@ -17,7 +17,7 @@ export default function Home() {
   const theme = useTheme();
 
   return (
-    <Container colors={[theme.colors.black, theme.colors.secondary]}>
+    <Container colors={[theme.colors.secondary, theme.colors.black]}>
       <TopLogoContainer>
         <LogoText>EON</LogoText>
       </TopLogoContainer>

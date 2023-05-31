@@ -10,12 +10,26 @@ import {
   SelectSources,
   Login,
   SignUp,
+  Profile,
 } from '@/screens';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useTheme } from 'styled-components';
+import styled from 'styled-components/native';
+import responsive from '@/global/utils/responsive';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+
+interface TabBarLabelProps {
+  focused: boolean;
+}
+const TabBarLabel = styled.Text<TabBarLabelProps>`
+  font-size: ${responsive(12)}px;
+  color: ${({ theme, focused }) =>
+    focused ? theme.colors.accent : theme.colors.white};
+  font-family: ${({ theme, focused }) =>
+    focused ? theme.fonts.black : theme.fonts.default};
+`;
 
 function TabNavigator() {
   const theme = useTheme();
@@ -27,9 +41,9 @@ function TabNavigator() {
           backgroundColor: theme.colors.background,
           borderTopWidth: 0,
         },
-        tabBarLabelStyle: {
-          color: theme.colors.white,
-        },
+        tabBarLabel: ({ focused, children }) => (
+          <TabBarLabel focused={focused}>{children}</TabBarLabel>
+        ),
         tabBarIconStyle: {
           color: theme.colors.white,
         },
@@ -65,7 +79,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Profile"
-        component={Search}
+        component={Profile}
         options={{
           tabBarIcon: ({ color, focused }) => (
             <Icon
