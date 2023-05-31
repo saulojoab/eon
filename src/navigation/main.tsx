@@ -46,6 +46,7 @@ function TabNavigator() {
               name="home"
             />
           ),
+          unmountOnBlur: true,
         }}
       />
       <Tab.Screen

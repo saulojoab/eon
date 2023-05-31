@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { mangaApi } from '@/services/apis';
+import { eonApi, mangaApi } from '@/services/apis';
 import styled, { useTheme } from 'styled-components/native';
 import responsive from '@/global/utils/responsive';
 import { useNavigation } from '@react-navigation/core';
@@ -11,6 +11,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setSelectedManga } from '@/redux/features/mangaSlice';
 import Lottie from 'lottie-react-native';
+import { HttpStatusCode } from 'axios';
+import trycatcher from '@/global/utils/trycatcher';
 
 interface MangaResult {
   id: string;
@@ -36,8 +38,6 @@ export default function Search(): JSX.Element {
 
     const response = await mangaApi.get(`/manga/${selectedSource}/${search}`);
 
-    console.log(response.data.results);
-
     setLoading(false);
 
     setMangaData(response.data.results);
@@ -62,13 +62,65 @@ export default function Search(): JSX.Element {
     }
   };
 
-  function handleSelectManga(manga: MangaResult): void {
+  async function getMangaDataFromEonApi(manga: MangaResult) {
+    const { response, error } = await trycatcher(
+      eonApi.get(`/manga/${manga.id}`),
+    );
+
+    if (error && error.response.status === HttpStatusCode.NotFound) {
+      const { response: createdManga } = await trycatcher(
+        eonApi.post('/manga', {
+          manga_id: manga.id,
+          image: manga.image,
+          referer: manga.headerForImage.Referer,
+          title: manga.title,
+        }),
+      );
+
+      if (createdManga?.status !== HttpStatusCode.Created) {
+        return;
+      }
+
+      return {
+        id: createdManga.data._id,
+        manga_id: createdManga.data.manga_id,
+        image: createdManga.data.image,
+        referer: createdManga.data.referer,
+        title: createdManga.data.title,
+        views: createdManga.data.views,
+        todayViews: createdManga.data.todayViews,
+      };
+    }
+
+    if (error || response?.status !== HttpStatusCode.Ok) {
+      return;
+    }
+
+    return {
+      id: response.data._id,
+      manga_id: response.data.manga_id,
+      image: response.data.image,
+      referer: response.data.referer,
+      title: response.data.title,
+      views: response.data.views,
+      todayViews: response.data.todayViews,
+    };
+  }
+
+  async function handleSelectManga(manga: MangaResult) {
+    const mangaFromApi = await getMangaDataFromEonApi(manga);
+
     dispatch(
       setSelectedManga({
-        id: manga.id,
-        image: manga.image,
-        referer: manga.headerForImage.Referer,
-        title: manga.title,
+        id: mangaFromApi?.manga_id || manga.id,
+        image: mangaFromApi?.image || manga.image,
+        referer: mangaFromApi?.referer || manga.headerForImage.Referer,
+        title: mangaFromApi?.title || manga.title,
+        views: mangaFromApi?.views || 1,
+        todayViews: mangaFromApi?.todayViews || {
+          date: new Date(),
+          views: 1,
+        },
       }),
     );
     navigation.navigate('MangaDetails');
