@@ -58,6 +58,10 @@ export default function TrendingTodayContainer() {
     );
   }
 
+  if (!loading && !trendingTodayManga) {
+    return null;
+  }
+
   return (
     <TrendingTodayContainerView>
       {trendingTodayManga?.image && (
