@@ -36,6 +36,8 @@ export default function Search(): JSX.Element {
   async function getMangaData(): Promise<void> {
     setLoading(true);
 
+    console.log(`/manga/${selectedSource}/${search}`);
+
     const response = await mangaApi.get(`/manga/${selectedSource}/${search}`);
 
     setLoading(false);
@@ -52,6 +54,11 @@ export default function Search(): JSX.Element {
 
     return () => clearTimeout(delayDebounceFn);
   }, [search]);
+
+  useEffect(() => {
+    setSearch('');
+    setMangaData([]);
+  }, [selectedSource]);
 
   const handleInputChange = (text: string): void => {
     setSearch(text);

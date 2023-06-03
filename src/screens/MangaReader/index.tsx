@@ -56,7 +56,11 @@ export default function MangaReader({ route }: { route: any }) {
     setLoading(true);
     try {
       const response = await api.get(
-        `/manga/${selectedSource}/read?chapterId=${id}`,
+        `/manga/${selectedSource}/read?${
+          selectedSource === 'mangahost'
+            ? `mangaId=` + selectedManga.id + '&'
+            : ''
+        }chapterId=${id}`,
       );
 
       const pages: ImageViewerImages[] = [];

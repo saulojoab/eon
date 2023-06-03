@@ -12,6 +12,7 @@ import { isIos } from '@/global/utils/platformChecker';
 interface Source {
   name: string;
   value: string;
+  language: string;
 }
 
 export default function SelectSources() {
@@ -26,30 +27,47 @@ export default function SelectSources() {
     {
       name: 'MangaHere',
       value: 'mangahere',
+      language: 'en',
     },
     {
       name: 'MangaKakalot',
       value: 'mangakakalot',
+      language: 'en',
     },
     {
       name: 'MangaDex',
       value: 'mangadex',
+      language: 'en',
     },
     {
       name: 'MangaPark',
       value: 'mangapark',
+      language: 'en',
     },
     {
       name: 'MangaPill',
       value: 'mangapill',
+      language: 'en',
     },
     {
       name: 'MangaReader',
       value: 'mangareader',
+      language: 'en',
     },
     {
       name: 'MangaSee123',
       value: 'mangasee123',
+      language: 'en',
+    },
+    {
+      name: 'MangaHost',
+      value: 'mangahost',
+      language: 'pt-br',
+    },
+    {
+      name: 'BRMangas',
+      value: 'brmangas',
+      language: 'pt-br',
     },
   ];
 
@@ -80,6 +98,7 @@ export default function SelectSources() {
           >
             <SourceText selected={selectedSource === item.value}>
               {item.name}
+              {`\n(${item.language})`}
             </SourceText>
           </SourceButton>
         )}
@@ -149,6 +168,7 @@ const SourceText = styled.Text<SourceTextProps>`
   color: ${props =>
     props.selected ? props.theme.colors.black : props.theme.colors.white};
   font-weight: bold;
+  text-align: center;
 `;
 
 const SourceList = styled.FlatList``;
