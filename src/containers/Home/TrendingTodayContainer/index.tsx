@@ -5,45 +5,66 @@ import styled from 'styled-components/native';
 import { useTheme } from 'styled-components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import trycatcher from '@/global/utils/trycatcher';
-import { eonApi } from '@/services/apis';
 import { ActivityIndicator } from 'react-native';
-
-interface TrendingTodayMangaProps {
-  __v: number;
-  _id: string;
-  createdAt: Date;
-  image: string;
-  manga_id: string;
-  referer: string;
-  title: string;
-  todayViews: {
-    _id: string;
-    count: number;
-    date: Date;
-  };
-  views: number;
-}
+import MANGA_REQUESTS from '@/services/requests/manga';
+import { useAppDispatch } from '@/hooks/redux';
+import SOURCE_UTILS from '@/global/utils/sources';
+import { setSelectedManga, updateSource } from '@/redux/features/mangaSlice';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { MangaFromDatabase } from '@/global/utils/mangaSerializer';
 
 export default function TrendingTodayContainer() {
   const theme = useTheme();
   const [trendingTodayManga, setTrendingTodayManga] =
-    React.useState<TrendingTodayMangaProps>();
+    React.useState<MangaFromDatabase>();
   const [loading, setLoading] = React.useState(false);
+
+  const dispatch = useAppDispatch();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   async function getTrendingTodayManga() {
     setLoading(true);
     const { response, error } = await trycatcher(
-      eonApi.get('/manga/trending-today'),
+      MANGA_REQUESTS.getTrendingTodayManga(),
     );
 
     if (error) {
-      console.log(error.response.status);
       setLoading(false);
       return;
     }
 
-    setTrendingTodayManga(response?.data);
+    setTrendingTodayManga(response);
     setLoading(false);
+  }
+
+  async function handleSelectManga() {
+    if (!trendingTodayManga) {
+      return;
+    }
+
+    dispatch(
+      updateSource(SOURCE_UTILS.getSourceByURL(trendingTodayManga.referer)),
+    );
+
+    const mangaFromApi = await MANGA_REQUESTS.getMangaInformationFromDatabase(
+      trendingTodayManga,
+    );
+
+    dispatch(
+      setSelectedManga({
+        id: mangaFromApi?.manga_id || trendingTodayManga._id,
+        image: mangaFromApi?.image || trendingTodayManga.image,
+        referer: mangaFromApi?.referer || trendingTodayManga.referer,
+        title: mangaFromApi?.title || trendingTodayManga.title,
+        views: mangaFromApi?.views || 1,
+        todayViews: mangaFromApi?.todayViews || {
+          date: new Date(),
+          views: 1,
+        },
+      }),
+    );
+    navigation.navigate('MangaDetails');
   }
 
   useEffect(() => {
@@ -63,7 +84,7 @@ export default function TrendingTodayContainer() {
   }
 
   return (
-    <TrendingTodayContainerView>
+    <TrendingTodayContainerView onPress={handleSelectManga}>
       {trendingTodayManga?.image && (
         <TrendingTodayImage
           source={{
@@ -92,7 +113,7 @@ export default function TrendingTodayContainer() {
   );
 }
 
-const TrendingTodayContainerView = styled.View`
+const TrendingTodayContainerView = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

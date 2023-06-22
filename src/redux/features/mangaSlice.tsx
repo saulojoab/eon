@@ -1,5 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+export interface CurrentlyReadingMangaProps {
+  manga: {
+    manga_id: string;
+    image: string;
+    referer: string;
+    title: string;
+    views: number;
+    todayViews: {
+      date: string;
+      count: 0;
+    };
+    createdAt: string;
+  };
+  current_chapter: string;
+  finished_chapters: string[];
+  createdAt: string;
+}
+
 export interface MangaSliceProps {
   selectedManga: {
     id: string;
@@ -12,14 +30,7 @@ export interface MangaSliceProps {
       views: number;
     };
   };
-  currentlyReading: Array<{
-    id: string;
-    currentChapter: string;
-    finishedChapters: string[];
-    image: string;
-    source: string;
-    referer: string;
-  }>;
+  currentlyReading: Array<CurrentlyReadingMangaProps>;
   selectedSource: string;
 }
 
@@ -64,51 +75,10 @@ const mangaSlice = createSlice({
       };
       return newState;
     },
-    removeFromCurrentlyReading: (state, action) => {
+    setCurrentlyReading: (state, action) => {
       const newState = {
         ...state,
-        currentlyReading: state.currentlyReading.filter(
-          manga => manga.id !== action.payload,
-        ),
-      };
-      return newState;
-    },
-    updateCurrentChapter: (state, action) => {
-      const newState = {
-        ...state,
-        currentlyReading: state.currentlyReading.map(manga => {
-          if (manga.id === action.payload.id) {
-            return {
-              ...manga,
-              currentChapter: action.payload.currentChapter,
-            };
-          }
-          return manga;
-        }),
-      };
-
-      return newState;
-    },
-    addFinishedChapter: (state, action) => {
-      const newState = {
-        ...state,
-        currentlyReading: state.currentlyReading.map(manga => {
-          if (
-            manga.id === action.payload.id &&
-            !manga.finishedChapters.some(
-              chapter => chapter === action.payload.chapter,
-            )
-          ) {
-            return {
-              ...manga,
-              finishedChapters: [
-                ...manga.finishedChapters,
-                action.payload.chapter,
-              ],
-            };
-          }
-          return manga;
-        }),
+        currentlyReading: action.payload,
       };
       return newState;
     },
@@ -120,9 +90,7 @@ export const {
   updateSource,
   setSelectedManga,
   addToCurrentlyReading,
-  addFinishedChapter,
-  updateCurrentChapter,
   resetState,
-  removeFromCurrentlyReading,
+  setCurrentlyReading,
 } = mangaSlice.actions;
 export default mangaSlice.reducer;

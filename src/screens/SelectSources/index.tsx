@@ -8,12 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { updateSource } from '@/redux/features/mangaSlice';
 import { isIos } from '@/global/utils/platformChecker';
-
-interface Source {
-  name: string;
-  value: string;
-  language: string;
-}
+import { sources } from '@/global/utils/sources';
 
 export default function SelectSources() {
   const theme = useTheme();
@@ -21,55 +16,6 @@ export default function SelectSources() {
 
   const selectedSource = useAppSelector(state => state.manga.selectedSource);
   const dispatch = useAppDispatch();
-
-  // sources: mangahere, magakakalot, mangadex, mangapark, mangapill, mangareader, mangasee123
-  const sources: Source[] = [
-    {
-      name: 'MangaHere',
-      value: 'mangahere',
-      language: 'en',
-    },
-    {
-      name: 'MangaKakalot',
-      value: 'mangakakalot',
-      language: 'en',
-    },
-    {
-      name: 'MangaDex',
-      value: 'mangadex',
-      language: 'en',
-    },
-    {
-      name: 'MangaPark',
-      value: 'mangapark',
-      language: 'en',
-    },
-    {
-      name: 'MangaPill',
-      value: 'mangapill',
-      language: 'en',
-    },
-    {
-      name: 'MangaReader',
-      value: 'mangareader',
-      language: 'en',
-    },
-    {
-      name: 'MangaSee123',
-      value: 'mangasee123',
-      language: 'en',
-    },
-    {
-      name: 'MangaHost',
-      value: 'mangahost',
-      language: 'pt-br',
-    },
-    {
-      name: 'BRMangas',
-      value: 'brmangas',
-      language: 'pt-br',
-    },
-  ];
 
   function handleSelectSource(source: string) {
     dispatch(updateSource(source));

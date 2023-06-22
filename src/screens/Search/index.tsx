@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { eonApi, mangaApi } from '@/services/apis';
+import MANGA_REQUESTS from '@/services/requests/manga';
 import styled, { useTheme } from 'styled-components/native';
 import responsive from '@/global/utils/responsive';
 import { useNavigation } from '@react-navigation/core';
@@ -11,19 +11,10 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setSelectedManga } from '@/redux/features/mangaSlice';
 import Lottie from 'lottie-react-native';
-import { HttpStatusCode } from 'axios';
-import trycatcher from '@/global/utils/trycatcher';
-
-interface MangaResult {
-  id: string;
-  title: string;
-  altTitles: string[];
-  headerForImage: { Referer: string };
-  image: string;
-}
+import { MangaFromDatabase } from '@/global/utils/mangaSerializer';
 
 export default function Search(): JSX.Element {
-  const [mangaData, setMangaData] = React.useState<MangaResult[]>([]);
+  const [mangaData, setMangaData] = React.useState<MangaFromDatabase[]>([]);
   const [search, setSearch] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
@@ -35,14 +26,9 @@ export default function Search(): JSX.Element {
 
   async function getMangaData(): Promise<void> {
     setLoading(true);
-
-    console.log(`/manga/${selectedSource}/${search}`);
-
-    const response = await mangaApi.get(`/manga/${selectedSource}/${search}`);
-
+    const response = await MANGA_REQUESTS.searchManga(selectedSource, search);
+    setMangaData(response);
     setLoading(false);
-
-    setMangaData(response.data.results);
   }
 
   useEffect(() => {
@@ -69,59 +55,16 @@ export default function Search(): JSX.Element {
     }
   };
 
-  async function getMangaDataFromEonApi(manga: MangaResult) {
-    const { response, error } = await trycatcher(
-      eonApi.get(`/manga/${manga.id}`),
+  async function handleSelectManga(manga: MangaFromDatabase) {
+    const mangaFromApi = await MANGA_REQUESTS.getMangaInformationFromDatabase(
+      manga,
     );
-
-    if (error && error.response.status === HttpStatusCode.NotFound) {
-      const { response: createdManga } = await trycatcher(
-        eonApi.post('/manga', {
-          manga_id: manga.id,
-          image: manga.image,
-          referer: manga.headerForImage.Referer,
-          title: manga.title,
-        }),
-      );
-
-      if (createdManga?.status !== HttpStatusCode.Created) {
-        return;
-      }
-
-      return {
-        id: createdManga.data._id,
-        manga_id: createdManga.data.manga_id,
-        image: createdManga.data.image,
-        referer: createdManga.data.referer,
-        title: createdManga.data.title,
-        views: createdManga.data.views,
-        todayViews: createdManga.data.todayViews,
-      };
-    }
-
-    if (error || response?.status !== HttpStatusCode.Ok) {
-      return;
-    }
-
-    return {
-      id: response.data._id,
-      manga_id: response.data.manga_id,
-      image: response.data.image,
-      referer: response.data.referer,
-      title: response.data.title,
-      views: response.data.views,
-      todayViews: response.data.todayViews,
-    };
-  }
-
-  async function handleSelectManga(manga: MangaResult) {
-    const mangaFromApi = await getMangaDataFromEonApi(manga);
 
     dispatch(
       setSelectedManga({
-        id: mangaFromApi?.manga_id || manga.id,
+        id: mangaFromApi?.manga_id || manga.manga_id,
         image: mangaFromApi?.image || manga.image,
-        referer: mangaFromApi?.referer || manga.headerForImage.Referer,
+        referer: mangaFromApi?.referer || manga.referer,
         title: mangaFromApi?.title || manga.title,
         views: mangaFromApi?.views || 1,
         todayViews: mangaFromApi?.todayViews || {
