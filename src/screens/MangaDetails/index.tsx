@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FlatList, StatusBar } from 'react-native';
-import api from '@/services/manga-api';
+import MANGA_REQUESTS from '@/services/requests/manga';
 import styled, { useTheme } from 'styled-components/native';
 import { useNavigation } from '@react-navigation/core';
 import { type NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -10,35 +10,15 @@ import { FavoriteButton } from '@/components';
 import LinearGradient from 'react-native-linear-gradient';
 import { isIos } from '@/global/utils/platformChecker';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import {
-  addToCurrentlyReading,
-  updateCurrentChapter,
-} from '@/redux/features/mangaSlice';
-
-interface Chapter {
-  id: string;
-  chapter: string;
-  title: string;
-}
-interface MangaData {
-  id: string;
-  title: string;
-  altTitles: string[];
-  authors: string[];
-  headerForImage: { Referer: string };
-  image: string;
-  status: string;
-  genres: string[];
-  description: string;
-  chapters: Array<Chapter>;
-}
+import { addToCurrentlyReading } from '@/redux/features/mangaSlice';
+import { ChapterProps } from '@/global/utils/mangaSerializer';
 
 export default function MangaDetails() {
   const { id, image, views } = useAppSelector(
     state => state.manga.selectedManga,
   );
 
-  const [mangaData, setMangaData] = React.useState<MangaData>();
+  const [mangaData, setMangaData] = React.useState<any>({});
   const [showFullDescription, setShowFullDescription] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
 
@@ -51,28 +31,22 @@ export default function MangaDetails() {
   const dispatch = useAppDispatch();
 
   async function getMangaData() {
-    const mangaInCurrentlyReading = currentlyReading.find(
-      item => item.id === id,
+    //const mangaInCurrentlyReading = currentlyReading.find(
+    //  item => item.id === id,
+    //);
+    console.log(selectedSource);
+
+    const response = await MANGA_REQUESTS.getMangaInformationFromCrawlers(
+      selectedSource,
+      id,
     );
 
-    try {
-      const response = await api.get(
-        `/manga/${
-          mangaInCurrentlyReading
-            ? mangaInCurrentlyReading.source
-            : selectedSource
-        }/info?id=${id}`,
-      );
+    if (!response) return;
 
-      if (!response.data) return;
-
-      setMangaData({
-        ...response.data,
-        chapters: response.data.chapters.reverse(),
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    setMangaData({
+      ...response,
+      chapters: response.chapters.reverse(),
+    });
   }
 
   useEffect(() => {
@@ -80,7 +54,7 @@ export default function MangaDetails() {
   }, []);
 
   function handleSelectChapter(chapter: any) {
-    if (!currentlyReading.find(item => item.id === id)) {
+    if (!currentlyReading.find(item => item.manga.manga_id === id)) {
       dispatch(
         addToCurrentlyReading({
           id: id,
@@ -88,12 +62,10 @@ export default function MangaDetails() {
           finishedChapters: [],
           image: image,
           source: selectedSource,
-          referer: mangaData?.headerForImage.Referer,
+          referer: mangaData?.referer,
         }),
       );
     }
-
-    dispatch(updateCurrentChapter({ id: id, currentChapter: chapter.id }));
 
     navigation.navigate('MangaReader', {
       id: chapter.id,
@@ -109,13 +81,13 @@ export default function MangaDetails() {
     setIsFavorite(!isFavorite);
   };
 
-  const isCurrentlyReading = (chapter: Chapter): boolean =>
-    currentlyReading.some(item => item.currentChapter === chapter.id);
+  const isCurrentlyReading = (chapter: ChapterProps): boolean =>
+    currentlyReading.some(item => item.current_chapter === chapter.id);
 
-  const isRead = (chapter: Chapter): boolean => {
+  const isRead = (chapter: ChapterProps): boolean => {
     return (
       currentlyReading.filter(manga =>
-        manga.finishedChapters.some(cpt => cpt === chapter.id),
+        manga.finished_chapters.some(cpt => cpt === chapter.id),
       ).length > 0
     );
   };

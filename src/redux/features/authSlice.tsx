@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface AuthProps {
   user: {
+    _id: string;
     username: string;
     email: string;
     password: string;
@@ -14,6 +15,7 @@ export interface AuthProps {
 
 const initialState: AuthProps = {
   user: {
+    _id: '',
     username: '',
     email: '',
     password: '',

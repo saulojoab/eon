@@ -1,13 +1,13 @@
 import responsive from '@/global/utils/responsive';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import {
-  removeFromCurrentlyReading,
-  setSelectedManga,
-} from '@/redux/features/mangaSlice';
+import { setSelectedManga } from '@/redux/features/mangaSlice';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
+import { setCurrentlyReading } from '@/redux/features/mangaSlice';
+import { ActivityIndicator } from 'react-native';
+import CURRENTLY_READING_REQUESTS from '@/services/requests/currently-reading';
 
 interface CurrentlyReadingMangaProps {
   id: string;
@@ -20,9 +20,26 @@ interface CurrentlyReadingMangaProps {
 
 export default function ContinueReadingContainer() {
   const { currentlyReading } = useAppSelector(state => state.manga);
+  const user = useAppSelector(state => state.auth.user);
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useAppDispatch();
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
+  async function getCurrentlyReading() {
+    setLoading(true);
+
+    const response = await CURRENTLY_READING_REQUESTS.getCurrentlyReading(
+      user._id,
+    );
+
+    dispatch(setCurrentlyReading(response));
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    getCurrentlyReading();
+  }, []);
 
   function handleContinueReading(manga: CurrentlyReadingMangaProps) {
     dispatch(
@@ -35,8 +52,8 @@ export default function ContinueReadingContainer() {
     navigation.navigate('MangaDetails');
   }
 
-  function handleRemoveFromReading(manga: CurrentlyReadingMangaProps) {
-    dispatch(removeFromCurrentlyReading(manga.id));
+  function handleRemoveFromReading() {
+    console.log('remove');
   }
 
   function getRandomText() {
@@ -55,6 +72,16 @@ export default function ContinueReadingContainer() {
     return texts[Math.floor(Math.random() * texts.length)];
   }
 
+  if (loading) {
+    return (
+      <LoadingContainer>
+        <ActivityIndicator size="large" color="#fff" />
+      </LoadingContainer>
+    );
+  }
+
+  console.log(currentlyReading);
+
   if (currentlyReading.length === 0) {
     return <NotReadingAnythingText>{getRandomText()}</NotReadingAnythingText>;
   }
@@ -65,7 +92,7 @@ export default function ContinueReadingContainer() {
         data={currentlyReading}
         renderItem={({ item: manga }: any) => (
           <MangaPressable
-            onLongPress={() => handleRemoveFromReading(manga)}
+            onLongPress={() => handleRemoveFromReading()}
             onPress={() => handleContinueReading(manga)}
           >
             <MangaImage source={{ uri: manga.image || '' }} />
@@ -97,3 +124,10 @@ const NotReadingAnythingText = styled.Text`
 const MangaPressable = styled.TouchableOpacity``;
 
 const MangaList = styled.FlatList``;
+
+const LoadingContainer = styled.View`
+  width: ${responsive(150)}px;
+  height: ${responsive(220)}px;
+  align-items: center;
+  justify-content: center;
+`;

@@ -9,6 +9,7 @@ import { HttpStatusCode } from 'axios';
 import { ActivityIndicator } from 'react-native';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { setUser } from '@/redux/features/authSlice';
+import trycatcher from '@/global/utils/trycatcher';
 
 export default function Login() {
   const [email, setEmail] = React.useState('');
@@ -42,23 +43,21 @@ export default function Login() {
 
   async function login() {
     setLoading(true);
-    try {
-      const response = await eonApi.post('/users/login', {
+
+    const { response, error } = await trycatcher(
+      eonApi.post('/users/login', {
         email,
         password,
-      });
+      }),
+    );
 
-      if (response.status !== HttpStatusCode.Ok) {
-        setLoading(false);
-        return;
-      }
-
-      dispatch(setUser(response.data));
-      navigation.navigate('Main');
-    } catch (error) {
+    if (error || response?.status !== HttpStatusCode.Ok) {
       setLoading(false);
-      console.log(error);
+      return;
     }
+
+    dispatch(setUser(response.data));
+    navigation.navigate('Main');
   }
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

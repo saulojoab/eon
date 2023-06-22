@@ -10,10 +10,10 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import responsive from '@/global/utils/responsive';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
-import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { useAppSelector } from '@/hooks/redux';
 import FastImage from 'react-native-fast-image';
 import Lottie from 'lottie-react-native';
-import { addFinishedChapter } from '@/redux/features/mangaSlice';
+import MANGA_REQUESTS from '@/services/requests/manga';
 
 interface Chapter {
   page: number;
@@ -48,25 +48,21 @@ export default function MangaReader({ route }: { route: any }) {
   );
 
   const theme = useTheme();
-  const dispatch = useAppDispatch();
 
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
   async function getMangaData() {
     setLoading(true);
     try {
-      const response = await api.get(
-        `/manga/${selectedSource}/read?${
-          selectedSource === 'mangahost'
-            ? `mangaId=` + selectedManga.id + '&'
-            : ''
-        }chapterId=${id}`,
+      const response = await MANGA_REQUESTS.getMangaChapterPages(
+        selectedSource,
+        id,
       );
 
       const pages: ImageViewerImages[] = [];
 
       FastImage.preload(
-        response.data.map((chapter: Chapter) => {
+        response.map((chapter: Chapter) => {
           return {
             uri: `${
               api.defaults.baseURL
@@ -79,7 +75,7 @@ export default function MangaReader({ route }: { route: any }) {
         }),
       );
 
-      response.data.map((chapter: Chapter) => {
+      response.map((chapter: Chapter) => {
         const encoded = encodeURIComponent(chapter.img);
         const encodedReferer = encodeURIComponent(
           JSON.stringify({ Referer: selectedManga.referer }),
@@ -119,7 +115,6 @@ export default function MangaReader({ route }: { route: any }) {
     setCurrentPage(index);
 
     if (index === mangaChapters?.length - 1) {
-      dispatch(addFinishedChapter({ id: selectedManga.id, chapter: id }));
       setFinished(true);
     }
   }
