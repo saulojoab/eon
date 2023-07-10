@@ -14,4 +14,9 @@ module.exports = {
       },
     }),
   },
+  resolver: {
+    alias: {
+      'moti/skeleton': 'moti/skeleton/react-native-linear-gradient',
+    },
+  },
 };

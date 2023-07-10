@@ -1,0 +1,17 @@
+{
+  "presets": ["module:metro-react-native-babel-preset"],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "extensions": [".ios.js", ".android.js", ".js", ".ts", ".tsx", ".json"],
+        "root": ["./"],
+        "alias": {
+          "@": "./src",
+          "moti/skeleton": "moti/skeleton/react-native-linear-gradient"
+        }
+      }
+    ],
+    "react-native-reanimated/plugin"
+  ]
+}

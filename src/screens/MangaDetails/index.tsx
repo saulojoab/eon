@@ -12,6 +12,7 @@ import { isIos } from '@/global/utils/platformChecker';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { addToCurrentlyReading } from '@/redux/features/mangaSlice';
 import { ChapterProps } from '@/global/utils/mangaSerializer';
+import { Skeleton } from 'moti/skeleton';
 
 export default function MangaDetails() {
   const { id, image, views } = useAppSelector(
@@ -21,6 +22,7 @@ export default function MangaDetails() {
   const [mangaData, setMangaData] = React.useState<any>({});
   const [showFullDescription, setShowFullDescription] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
 
   const { selectedSource, currentlyReading } = useAppSelector(
     state => state.manga,
@@ -31,6 +33,7 @@ export default function MangaDetails() {
   const dispatch = useAppDispatch();
 
   async function getMangaData() {
+    setLoading(true);
     //const mangaInCurrentlyReading = currentlyReading.find(
     //  item => item.id === id,
     //);
@@ -47,6 +50,8 @@ export default function MangaDetails() {
       ...response,
       chapters: response.chapters.reverse(),
     });
+
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -87,7 +92,7 @@ export default function MangaDetails() {
   const isRead = (chapter: ChapterProps): boolean => {
     return (
       currentlyReading.filter(manga =>
-        manga.finished_chapters.some(cpt => cpt === chapter.id),
+        manga.finished_chapters?.some(cpt => cpt === chapter.id),
       ).length > 0
     );
   };
@@ -107,11 +112,18 @@ export default function MangaDetails() {
       </TitleAndBackButtonSection>
 
       <MangaImageTitleContainer>
-        <MangaImage resizeMode="cover" source={{ uri: image }} />
-        <MangaImageFadingForeground
-          colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.8)']}
-        />
-        <MangaTitle>{mangaData?.title}</MangaTitle>
+        <MangaTitleContainer>
+          <Skeleton
+            show={loading}
+            width={'50%'}
+            height={responsive(40)}
+            radius={0}
+            colorMode="dark"
+          >
+            <MangaTitle>{mangaData?.title}</MangaTitle>
+          </Skeleton>
+        </MangaTitleContainer>
+
         <ViewsContainer>
           <ViewsIcon
             size={responsive(15)}
@@ -120,35 +132,50 @@ export default function MangaDetails() {
           />
           <ViewCount>{views}</ViewCount>
         </ViewsContainer>
+
+        <MangaImage resizeMode="cover" source={{ uri: image }} />
+        <MangaImageFadingForeground
+          colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.8)']}
+        />
       </MangaImageTitleContainer>
 
       <DataSection>
-        <MangaDescription
-          onPress={toggleShowFullDescription}
-          numberOfLines={showFullDescription ? undefined : 4}
+        <Skeleton
+          show={loading}
+          width={'100%'}
+          height={responsive(80)}
+          colorMode="dark"
         >
-          {mangaData?.description}
-        </MangaDescription>
+          <MangaDescription
+            onPress={toggleShowFullDescription}
+            numberOfLines={showFullDescription ? undefined : 4}
+          >
+            {mangaData?.description}
+          </MangaDescription>
+        </Skeleton>
 
         <SectionTitle>Chapters</SectionTitle>
       </DataSection>
-      <FlatList
-        data={mangaData?.chapters}
-        renderItem={({ item }) => (
-          <ChapterItem
-            currentlyReading={isCurrentlyReading(item)}
-            isRead={isRead(item)}
-            //isRead={false}
-            onPress={() => {
-              handleSelectChapter(item);
-            }}
-          >
-            <ChapterTitle>{item.title.slice(6)}</ChapterTitle>
-          </ChapterItem>
-        )}
-        keyExtractor={item => item.id}
-        numColumns={3}
-      />
+
+      <Skeleton show={loading} width={'100%'} height={'100%'} colorMode="dark">
+        <FlatList
+          data={mangaData?.chapters}
+          renderItem={({ item }) => (
+            <ChapterItem
+              currentlyReading={isCurrentlyReading(item)}
+              isRead={isRead(item)}
+              //isRead={false}
+              onPress={() => {
+                handleSelectChapter(item);
+              }}
+            >
+              <ChapterTitle>{item.title.slice(6)}</ChapterTitle>
+            </ChapterItem>
+          )}
+          keyExtractor={item => item.id}
+          numColumns={3}
+        />
+      </Skeleton>
     </Container>
   );
 }
@@ -162,7 +189,6 @@ const Container = styled.View`
 const MangaDescription = styled.Text`
   font-size: ${responsive(14)}px;
   text-align: justify;
-  margin-top: ${responsive(10)}px;
   color: ${props => props.theme.colors.white};
   font-weight: 300;
 `;
@@ -177,16 +203,21 @@ const MangaImageTitleContainer = styled.View`
   align-items: center;
 `;
 
-const MangaTitle = styled.Text`
-  font-size: ${responsive(30)}px;
-  color: ${props => props.theme.colors.white};
-  font-weight: 100;
+const MangaTitleContainer = styled.View`
+  align-items: center;
+  justify-content: center;
   position: absolute;
   z-index: 1;
   bottom: ${responsive(25)}px;
   left: 0;
   right: 0;
+`;
+
+const MangaTitle = styled.Text`
+  font-size: ${responsive(30)}px;
+  font-weight: 100;
   text-align: center;
+  color: ${props => props.theme.colors.white};
 `;
 
 interface ChapterItemProps {
@@ -244,7 +275,8 @@ const SectionTitle = styled.Text`
 const DataSection = styled.View`
   flex-direction: column;
   padding: ${responsive(20)}px;
-  padding-top: 0px;
+
+  padding-top: ${responsive(10)}px;
 `;
 
 const Favorite = styled(FavoriteButton)`

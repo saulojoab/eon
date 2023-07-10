@@ -5,7 +5,6 @@ import styled from 'styled-components/native';
 import { useTheme } from 'styled-components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import trycatcher from '@/global/utils/trycatcher';
-import { ActivityIndicator } from 'react-native';
 import MANGA_REQUESTS from '@/services/requests/manga';
 import { useAppDispatch } from '@/hooks/redux';
 import SOURCE_UTILS from '@/global/utils/sources';
@@ -13,6 +12,7 @@ import { setSelectedManga, updateSource } from '@/redux/features/mangaSlice';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { MangaFromDatabase } from '@/global/utils/mangaSerializer';
+import { Skeleton } from 'moti/skeleton';
 
 export default function TrendingTodayContainer() {
   const theme = useTheme();
@@ -71,27 +71,21 @@ export default function TrendingTodayContainer() {
     getTrendingTodayManga();
   }, []);
 
-  if (loading) {
-    return (
-      <LoadingContainer>
-        <ActivityIndicator size="large" color={theme.colors.accent} />
-      </LoadingContainer>
-    );
-  }
-
   if (!loading && !trendingTodayManga) {
     return null;
   }
 
   return (
     <TrendingTodayContainerView onPress={handleSelectManga}>
-      {trendingTodayManga?.image && (
-        <TrendingTodayImage
-          source={{
-            uri: trendingTodayManga?.image,
-          }}
-        />
-      )}
+      <Skeleton width={'100%'} height={'100%'} show={loading} radius={0}>
+        {trendingTodayManga?.image && (
+          <TrendingTodayImage
+            source={{
+              uri: trendingTodayManga?.image,
+            }}
+          />
+        )}
+      </Skeleton>
 
       <TrendingTodayInfoBackground
         colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.2)', 'rgba(0,0,0,0.9)']}
@@ -105,8 +99,11 @@ export default function TrendingTodayContainer() {
           />
           <TrendingTodayTagText>TRENDING TODAY</TrendingTodayTagText>
         </TrendingTodayTag>
+
         <TrendingTodayMangaName>
-          {trendingTodayManga?.title}
+          {trendingTodayManga?.title || (
+            <Skeleton show width={responsive(200)} height={responsive(40)} />
+          )}
         </TrendingTodayMangaName>
       </TrendingTodayInfoBackground>
     </TrendingTodayContainerView>
@@ -159,11 +156,4 @@ const TrendingTodayMangaName = styled.Text`
   bottom: ${responsive(10)}px;
   right: ${responsive(10)}px;
   position: absolute;
-`;
-
-const LoadingContainer = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  height: ${responsive(250)}px;
 `;
