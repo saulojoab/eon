@@ -68,16 +68,17 @@ export default function Login() {
   return (
     <Container>
       <EonLogoContainer>
-        <EonLogo
+        {/*<EonLogo
           resizeMode="contain"
           source={{
             uri: 'https://images.squarespace-cdn.com/content/v1/5c4e60a512b13f52d82b57a2/1659753423495-KTB7GW7OBGIPV8PW0UAJ/webArtboard+1.png',
           }}
         />
+        */}
       </EonLogoContainer>
-      <Title onPress={search}>Login</Title>
+      <Title onPress={search}>Welcome back</Title>
       <InputContainer>
-        <InputIcon size={responsive(25)} color={theme.colors.gray} name="at" />
+        <InputIcon size={responsive(20)} color={theme.colors.gray} name="at" />
         <Input
           keyboardType="email-address"
           value={email}
@@ -88,7 +89,7 @@ export default function Login() {
       </InputContainer>
       <InputContainer>
         <InputIcon
-          size={responsive(25)}
+          size={responsive(20)}
           color={theme.colors.gray}
           name="lock"
         />
@@ -248,7 +249,7 @@ const EonLogoContainer = styled.View`
   width: 100%;
 `;
 
-const EonLogo = styled.Image`
+/* const EonLogo = styled.Image`
   width: ${responsive(400)}px;
   height: ${responsive(250)}px;
-`;
+`; */

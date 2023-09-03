@@ -69,12 +69,14 @@ export default function SignUp() {
   return (
     <Container>
       <EonLogoContainer>
-        <EonLogo
-          resizeMode="contain"
-          source={{
-            uri: 'https://images.squarespace-cdn.com/content/v1/5c4e60a512b13f52d82b57a2/1659753423495-KTB7GW7OBGIPV8PW0UAJ/webArtboard+1.png',
-          }}
-        />
+        {/*
+          <EonLogo
+            resizeMode="contain"
+            source={{
+              uri: 'https://images.squarespace-cdn.com/content/v1/5c4e60a512b13f52d82b57a2/1659753423495-KTB7GW7OBGIPV8PW0UAJ/webArtboard+1.png',
+            }}
+          />
+        */}
       </EonLogoContainer>
       <Title>Sign Up</Title>
       <ProfilePictureContainer onPress={pickImage}>
@@ -272,10 +274,10 @@ const EonLogoContainer = styled.View`
   width: 100%;
 `;
 
-const EonLogo = styled.Image`
+/* const EonLogo = styled.Image`
   width: ${responsive(400)}px;
   height: ${responsive(100)}px;
-`;
+`; */
 
 const ProfilePictureContainer = styled.TouchableOpacity`
   width: 100%;
