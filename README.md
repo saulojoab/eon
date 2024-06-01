@@ -8,9 +8,13 @@
 <br/>
 <div align="center">
   This repository is the <b>mobile React Native application</b> of the EON manga reading app.
+  
  </div>
 <br/>
 
+
+##### _NOTE: Eon depends entirely on the [Consumet API](https://github.com/consumet/consumet.ts) in order to work._
+ 
 EON is a cross-platform React Native manga reading application, which will have an application for Android, iOS, and Desktop (Mac, Windows, and Linux).
 
 With EON, users are able to access a wide variety of Japanese mangas, with the possibility of reading on different devices and operating systems. In addition, being open-source, users can contribute to the development of the application and help make it even better.
