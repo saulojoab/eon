@@ -32,7 +32,7 @@
 
 <samp>`ComponentName.service.ts` -> These files are React Hooks, and all component logic should be stored there. Anything that requires calculations, API fetching or data manipulation should be done there, exported, and imported on the main component file.</samp>
 
-<samp>`ComponentName.style.tsx`</samp>
+<samp>`ComponentName.style.tsx` -> These files are the styles for the component, using Styled Components. They are exported and used on the main file.</samp>
 
 <samp>`ComponentName.type.ts` -> These files will store any types that are created for a specific component. They are exported and imported in the main file.</samp>
 
