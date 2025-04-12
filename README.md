@@ -1,4 +1,4 @@
-# 📖 EON
+# 📖 <samp>EON</samp>
 
 <div align="center">
 <img src="https://github.com/saulojoab/eon/assets/37988252/ffb79b85-60b6-4515-9c8f-3fdb3869b9cb" width="200px" />&nbsp;&nbsp;&nbsp; 
@@ -7,32 +7,37 @@
 </div>
 <br/>
 <div align="center">
+<samp>
   This repository is the <b>mobile React Native application</b> of the EON manga reading app.
-  
- </div>
+</samp>
+</div>
 <br/>
 
+##### <samp>_NOTE: EON depends entirely on the [Consumet API](https://github.com/consumet/consumet.ts) in order to work._</samp>
 
-##### _NOTE: Eon depends entirely on the [Consumet API](https://github.com/consumet/consumet.ts) in order to work._
- 
-EON is a cross-platform React Native manga reading application, which will have an application for Android, iOS, and Desktop (Mac, Windows, and Linux).
+<samp>EON is a cross-platform React Native manga reading application, which will have an application for Android, iOS, and Desktop (Mac, Windows, and Linux).</samp>
 
-With EON, users are able to access a wide variety of Japanese mangas, with the possibility of reading on different devices and operating systems. In addition, being open-source, users can contribute to the development of the application and help make it even better.
+<samp>With EON, users are able to access a wide variety of Japanese mangas, with the possibility of reading on different devices and operating systems. In addition, being open-source, users can contribute to the development of the application and help make it even better.</samp>
 
-The EON application is an excellent option for Japanese manga lovers who want to have access to a vast library of works without restrictions on devices or operating systems.
+<samp>The EON application is an excellent option for Japanese manga lovers who want to have access to a vast library of works without restrictions on devices or operating systems.</samp>
 
-# 🤠 FEATURES
+# <samp>🤔 HOW?</samp>
+<samp>To understand how EON works, take a look at the [documentation](https://github.com/saulojoab/eon/blob/main/docs/HOW_IT_WORKS.md).</samp>
 
-- [x] Free, open-source and safe
-- [x] Search, view and read mangas!
-- [ ] Intuitive, minimalistic and beautiful design
-- [ ] Cross-platform syncing, continue where you left off with any device! (iOS, Android, Windows, Mac, Linux)
-- [ ] Community of manga readers
-- [ ] Download mangas to read offline
+# <samp>🤠 FEATURES</samp>
 
-# 🤝 CODE OF CONDUCT
+- [x] <samp> Free, open-source and safe</samp>  
+- [x] <samp>Search, view and read mangas!</samp>  
+- [ ] <samp>Intuitive, minimalistic and beautiful design</samp>  
+- [ ] <samp>Cross-platform syncing, continue where you left off with any device! (iOS, Android, Windows, Mac, Linux)</samp>  
+- [ ] <samp>Community of manga readers</samp>  
+- [ ] <samp>Download mangas to read offline</samp>  
 
-Please refer to our [Code of Conduct](https://github.com/saulojoab/eon/blob/main/CODE_OF_CONDUCT.md) before contributing.
+# <samp>🤝 CODE OF CONDUCT</samp>
 
-# 🫂 CONTRIBUTING
-For contributing, check out our [Github Project board](https://github.com/users/saulojoab/projects/2/views/1) to find tasks and bugs to fix.
+<samp>Please refer to our [Code of Conduct](https://github.com/saulojoab/eon/blob/main/CODE_OF_CONDUCT.md) before contributing.</samp>
+
+# <samp>🫂 CONTRIBUTING</samp>
+<samp>For contributing, check out our [Github Project board](https://github.com/users/saulojoab/projects/2/views/1) to find tasks and bugs to fix.</samp>
+
+<samp>To understand how EON works, take a look at the [documentation](https://github.com/saulojoab/eon/blob/main/docs/HOW_IT_WORKS.md).</samp>
