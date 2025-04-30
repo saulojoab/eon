@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+# 📖 <samp>EON</samp>
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<div align="center">
+<img src="https://github.com/saulojoab/eon/assets/37988252/ffb79b85-60b6-4515-9c8f-3fdb3869b9cb" width="200px" />&nbsp;&nbsp;&nbsp; 
+<img src="https://github.com/saulojoab/eon/assets/37988252/ccc13594-d484-48e6-8daa-d803268e1342" width="200px" />&nbsp;&nbsp;&nbsp; 
+<img src="https://github.com/saulojoab/eon/assets/37988252/833c0998-de4c-4da3-a87b-c80d57206f76" width="200px" />&nbsp;&nbsp;&nbsp;
+</div>
+<br/>
+<div align="center">
+<samp>
+  This repository is the <b>mobile Expo React Native application</b> of the EON manga reading app.
+</samp>
+</div>
+<br/>
 
-## Get started
+##### <samp>_NOTE: EON depends entirely on the [Consumet API](https://github.com/consumet/consumet.ts) in order to work._</samp>
 
-1. Install dependencies
+<samp>EON is a cross-platform React Native manga reading application, which will have an application for Android, iOS, and Desktop (Mac, Windows, and Linux).</samp>
 
-   ```bash
-   npm install
-   ```
+<samp>With EON, users are able to access a wide variety of Japanese mangas, with the possibility of reading on different devices and operating systems. In addition, being open-source, users can contribute to the development of the application and help make it even better.</samp>
 
-2. Start the app
+<samp>The EON application is an excellent option for Japanese manga lovers who want to have access to a vast library of works without restrictions on devices or operating systems.</samp>
 
-   ```bash
-    npx expo start
-   ```
+# <samp>🤔 HOW?</samp>
 
-In the output, you'll find options to open the app in a
+<samp>To understand how EON works, take a look at the [documentation](https://github.com/saulojoab/eon/blob/main/docs/HOW_IT_WORKS.md).</samp>
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+# <samp>🤠 FEATURES</samp>
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- [x] <samp> Free, open-source and safe</samp>
+- [x] <samp>Search, view and read mangas!</samp>
+- [x] <samp>Intuitive, minimalistic and beautiful design</samp>
+- [ ] <samp>Cross-platform syncing, continue where you left off with any device! (iOS, Android, Windows, Mac, Linux)</samp>
+- [x] <samp>Community of manga readers</samp>
+- [ ] <samp>Download mangas to read offline</samp>
 
-## Get a fresh project
+# <samp>🤝 CODE OF CONDUCT</samp>
 
-When you're ready, run:
+<samp>Please refer to our [Code of Conduct](https://github.com/saulojoab/eon/blob/main/CODE_OF_CONDUCT.md) before contributing.</samp>
 
-```bash
-npm run reset-project
-```
+# <samp>🫂 CONTRIBUTING</samp>
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+<samp>For contributing, check out our [Github Project board](https://github.com/users/saulojoab/projects/2/views/1) to find tasks and bugs to fix.</samp>
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+<samp>To understand how EON works, take a look at the [documentation](https://github.com/saulojoab/eon/blob/main/docs/HOW_IT_WORKS.md).</samp>
