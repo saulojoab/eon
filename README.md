@@ -13,7 +13,7 @@
 </div>
 <br/>
 
-##### <samp>_NOTE: EON depends entirely on the [Consumet API](https://github.com/consumet/consumet.ts) in order to work._</samp>
+##### <samp>_NOTE: EON depends entirely on the [Consumet Library](https://github.com/consumet/consumet.ts) in order to work. Please check the [Eon API](https://github.com/saulojoab/eon-server) for more information._</samp>
 
 <samp>EON is a cross-platform React Native manga reading application, which will have an application for Android, iOS, and Desktop (Mac, Windows, and Linux).</samp>
 
