@@ -3,7 +3,7 @@ import { useAuthStore } from "@/stores/auth/authStore";
 import { useMangaStore } from "@/stores/manga/mangaStore";
 import { useRouter } from "expo-router";
 import { getCurrentlyReading } from "@/services/requests/currently-reading/currently-reading";
-import { ICurrentlyReading } from "@/stores/manga/mangaStore.type";
+import { ICurrentlyReading, IUserManga } from "@/stores/manga/mangaStore.type";
 import { emptyReadingMessages } from "@/global/utils/randomPhrases";
 import { getMangaInformation } from "@/services/requests/manga";
 
@@ -29,10 +29,10 @@ export const useContinueReadingService = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function handleContinueReading(currentlyReading: ICurrentlyReading) {
+  async function handleContinueReading(userManga: IUserManga) {
     const manga = await getMangaInformation(
-      currentlyReading.manga.referer,
-      currentlyReading.manga.manga_id
+      userManga.referer,
+      userManga.manga_id
     );
 
     if (!manga) {
