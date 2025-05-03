@@ -1,6 +1,6 @@
 # <samp>Como o EON funciona? 🤔</samp>
 
-<samp>Você provavelmente deve estar se perguntando como exatamente o EON funciona? Essa documentação servirá para esclarecer essas dúvidas e ajudar a entender qualquer mudanças ou resoluções necessárias. 🛠️</samp>
+<samp>Você provavelmente deve estar se perguntando como exatamente o EON funciona? Essa documentação servirá para esclarecer essas dúvidas e ajudar a entender qualquer mudanças ou correções necessárias. 🛠️</samp>
 
 <samp>Eon é uma aplicação React Native. 📱</samp>
 
@@ -8,33 +8,33 @@
 
 # <samp>A API do Eon 🌟</samp>
 
-Nós usamos apenas uma API, a [Eon API](https://github.com/saulojoab/eon-server), lindando com todos os dados de Usuário e Mangas, o que faz tudo ser centralizado e mais fácil de entender.
+Nós usamos apenas uma API, a [Eon API](https://github.com/saulojoab/eon-server), que lida com todos os dados de Usuário e Mangás, o que faz tudo ser centralizado e mais fácil de entender.
 
-### <samp>De onde os dados do Manga vem? 📚</samp>
+### <samp>De onde os dados do Mangá vem? 📚</samp>
 
-<samp>Atualmente nós usamos [Consumet Library](https://github.com/consumet/consumet.ts) para buscar as informações do manga, títulos, capas, páginas, capítulos, etc. </samp>
+<samp>Atualmente nós usamos a [bilioteca Consumet](https://github.com/consumet/consumet.ts) para buscar as informações dos mangás, títulos, capas, páginas, capítulos, etc. </samp>
 
-<samp>Isso é legal pois Consumet é mantido pela comunidade, e o código é relativamente simples. Eu mesmo já implementei alguns componentes e contribuí para o código da Consumet. 💻</samp>
+<samp>Isso é legal pois Consumet é mantida pela comunidade, e o código é relativamente simples. Eu mesmo já implementei alguns componentes e contribuí para o código da Consumet. 💻</samp>
 
-<samp>Isso significa que qualquer um pode fazer fork, rodar, modificar e usar nossa versão do Consumet com Eon, e não dependender de nada além disso. 🔧</samp>
+<samp>Isso significa que qualquer um pode fazer um fork, rodar, modificar e usar nossa versão do Consumet com Eon, e não dependender de nada além disso. 🔧</samp>
 
-### <samp>De onde os dados de Usuário vem? 👤</samp>
+### <samp>De onde os dados dos Usuários vem? 👤</samp>
 
-<samp>Para qualquer coisa relacionada aos dados de Usuários, sendo login, favoritos, registros, recomendações, etc, nós usamos nosso próprio código da API. 🔒</samp>
+<samp>Nós usamos nosso próprio código da API para qualquer coisa relacionada aos dados do Usuário, como: login, favoritos, registros, recomendações, etc.🔒</samp>
 
-<samp>Sendo também de código aberto, e o código fácil de entender. Essa é o único propósito dos serviços terem uma melhor exemperiência de usuário, como contar qual é a continuação do manga do usuário, mangas favoritos, mostrar qual é o manga mais lido do dia, e coisas desse jeito. </samp>
+<samp>Sendo também Open Source e com código bastante fácil de entender. Seu próposito é oferecer uma melhor experiência de usuário, como armazenar o que o usuário está lendo no momento, mangás favoritos, verificar qual é o mangá mais lido do dia, entre outras coisas. </samp>
 
-<samp>Atualmente usamos o **_Fastify_** com o  **_MongoDB_** Banco de Dados onde nós armazenamos os dados e rodamos nosso servidor. 🚀 Curiosidade, como desafio pessoal, eu fiz o código original do EON em 3 dias! Isso serviu para mostrar como essas tecnologias são realmente rápidas e fáceis de trabalhar. </samp>
+<samp>Atualmente usamos o **_Fastify_** com o banco de dados **_MongoDB_** onde nós armazenamos os dados e rodamos nosso servidor. 🚀 Curiosidade, como desafio pessoal, eu fiz o código original do EON em 3 dias! Isso serviu para mostrar como essas tecnologias são realmente rápidas e fáceis de trabalhar. </samp>
 
-<samp>Agora, se você quiser rodar uma instância do EON por si mesmo, e falar que não precisa necessáriamente dessa API. Nesse caso, você pode apenas remover as referências e usar o EON sem qualquer autenticação. Essa é a mágica do Open Source (Código Aberto)! ✨ Por tanto, para o aplicativo principal, Eu acho que isso é bom para foco na diversão da experiência de usuário. </samp>
+<samp>Agora, caso você queira rodar uma instância do EON por conta própria, você não precisa necessáriamente dessa API. Nesse caso, você pode apenas remover as referências e usar o EON sem qualquer autenticação. Essa é a mágica do Open Source (Código Aberto)! ✨ No entanto, para o aplicativo principal, acho interessante focar em uma experiência de usuário divertida. </samp>
 
 # <samp>A Estrutura do Código 🏗️</samp>
 
 ### <samp>API 🔌</samp>
 
-<samp>Você consegue achar a configuração da API no diretório `src/services`. É ai onde definimos os endpoints para usar o app. Também, se você quiser dar uma olhada na pasta dos `requests`, você consegue checar as requisições que fizemos para diferentes partes do app. 📂</samp>
+<samp>Você consegue achar a configuração da API no diretório `src/services`. É ai onde definimos os endpoints para usar no app. Também, se você quiser dar uma olhada na pasta dos `requests`, você consegue checar as requisições que fizemos para diferentes partes do app. 📂</samp>
 
-<samp>Ainda há muito trabalho para deixar o código limpo, mas isso é o que você precisa saber para querer rodar o Eon do jeito atual, você precisa ter a API configurada localmente para que isso funcione corretamente. 🖥️</samp>
+<samp>Ainda há bastante trabalho a ser feito para tornar o código limpo, mas estas são as informações essenciais para rodar o Eon na versão Atual. É necessário ter a API configurada localmente para que tudo funcione corretamente. 🖥️</samp>
 
 ### <samp>Arquitetura 🏛️</samp>
 
@@ -44,8 +44,8 @@ Nós usamos apenas uma API, a [Eon API](https://github.com/saulojoab/eon-server)
 
 <samp>`ComponentName.style.tsx` -> Esses arquivos são os estilos dos componentes, usando o **Styled Components**. Eles são exportados e usados pelo arquivo principal. 🎨</samp>
 
-<samp>`ComponentName.type.ts` -> Esse arquivo vai armazenar quaisquer tipos criados para componentes específicos. Eles são importados e exportados par ao aquivo principal. 📝</samp>
+<samp>`ComponentName.type.ts` -> Esse arquivo vai armazenar quaisquer tipos criados para componentes específicos. Eles são importados e exportados para o aquivo principal. 📝</samp>
 
 <samp>`ComponentName.tsx` -> Esse é o principal aquivo dos componentes, ele contêm a estrutura HTML e importa todos os serviços, estilos e tipos. 🏗️</samp>
 
-<samp>Você consegue dar uma olhada na pasta `screens` e conseguirá entender como isso funciona. Essa é uma boa estrutura porque o código está organizado propriámente e isso também permite mudanças em diferentes arquivos sem que tenha conflitos nos arquivos. ✅</samp>
+<samp>Você pode dar uma olhada na pasta `screens` para entender como isso funciona. Essa é uma boa estrutura, pois o código está devidamente organizado e permite alterações em arquivos diferentes sem gerar conflitos. ✅</samp>
