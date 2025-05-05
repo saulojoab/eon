@@ -8,11 +8,11 @@
 
 # <samp>A API do Eon 🌟</samp>
 
-Nós usamos apenas uma API, a [Eon API](https://github.com/saulojoab/eon-server), que lida com todos os dados de Usuário e Mangás, o que faz tudo ser centralizado e mais fácil de entender.
+<samp> Nós usamos apenas uma API, a [Eon API](https://github.com/saulojoab/eon-server), que lida com todos os dados de Usuário e Mangás, o que faz tudo ser centralizado e mais fácil de entender. </samp>
 
-### <samp>De onde os dados do Mangá vem? 📚</samp>
+### <samp>De onde os dados de Mangá vem? 📚</samp>
 
-<samp>Atualmente nós usamos a [bilioteca Consumet](https://github.com/consumet/consumet.ts) para buscar as informações dos mangás, títulos, capas, páginas, capítulos, etc. </samp>
+<samp>Atualmente nós usamos a [bilioteca Consumet](https://github.com/consumet/consumet.ts) para buscar as informações dos mangás, como: títulos, capas, páginas, capítulos, etc. </samp>
 
 <samp>Isso é legal pois Consumet é mantida pela comunidade, e o código é relativamente simples. Eu mesmo já implementei alguns componentes e contribuí para o código da Consumet. 💻</samp>
 
@@ -22,7 +22,7 @@ Nós usamos apenas uma API, a [Eon API](https://github.com/saulojoab/eon-server)
 
 <samp>Nós usamos nosso próprio código da API para qualquer coisa relacionada aos dados do Usuário, como: login, favoritos, registros, recomendações, etc.🔒</samp>
 
-<samp>Sendo também Open Source e com código bastante fácil de entender. Seu próposito é oferecer uma melhor experiência de usuário, como armazenar o que o usuário está lendo no momento, mangás favoritos, verificar qual é o mangá mais lido do dia, entre outras coisas. </samp>
+<samp>A API também é Open Source e o código é bastante fácil de entender. Seu próposito é oferecer uma melhor experiência de usuário, como: armazenar o que o usuário está lendo no momento, mangás favoritos, verificar qual é o mangá mais lido do dia, entre outras coisas. </samp>
 
 <samp>Atualmente usamos o **_Fastify_** com o banco de dados **_MongoDB_** onde nós armazenamos os dados e rodamos nosso servidor. 🚀 Curiosidade, como desafio pessoal, eu fiz o código original do EON em 3 dias! Isso serviu para mostrar como essas tecnologias são realmente rápidas e fáceis de trabalhar. </samp>
 
