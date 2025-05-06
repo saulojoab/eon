@@ -1,10 +1,5 @@
 # 📖 <samp>EON</samp>
 
-<div align = "center">
-
-[![🇧🇷](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png "Português")](https://github.com/saulojoab/eon/blob/main/docs/portuguese/README.md) || [![United States](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/us.png "United States")](https://github.com/saulojoab/eon/blob/main/README.md)
-
-</div>
 <div align="center">
 <img src="https://github.com/saulojoab/eon/assets/37988252/ffb79b85-60b6-4515-9c8f-3fdb3869b9cb" width="200px" />&nbsp;&nbsp;&nbsp; 
 <img src="https://github.com/saulojoab/eon/assets/37988252/ccc13594-d484-48e6-8daa-d803268e1342" width="200px" />&nbsp;&nbsp;&nbsp; 
@@ -12,9 +7,17 @@
 </div>
 <br/>
 <div align="center">
+</div>
+<br/>
+
+<div align = "center">
+
 <samp>
   Este é o repositório da <b> aplicação mobile Expo React Native</b> do EON, um leitor de mangá.
 </samp>
+
+[![🇧🇷](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png "Português")](https://github.com/saulojoab/eon/blob/main/docs/portuguese/README.md) | [![United States](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/us.png "United States")](https://github.com/saulojoab/eon/blob/main/README.md)
+
 </div>
 <br/>
 
@@ -28,11 +31,11 @@
 
 # <samp>🤔 Como?</samp>
 
-<samp>Para entender como o EON funciona, consulte a  [documentação](https://github.com/saulojoab/eon/blob/main/docs/HOW_IT_WORKS.md).</samp>
+<samp>Para entender como o EON funciona, consulte a  [documentação](https://github.com/saulojoab/eon/blob/main/docs/portuguese/COMO_FUNCIONA.md).</samp>
 
 # <samp>🤠 FEATURES</samp>
 
-- [x] <samp> Gratuito, open-source e seguro.</samp>
+- [x] <samp>Gratuito, open-source e seguro!</samp>
 - [x] <samp>Pesquise, visualize e leia mangás!</samp>
 - [x] <samp>Intuitivo, minimalista e um belo desing.</samp>
 - [ ] <samp>Sincronização Multiplataforma, continue lendo de onde você parou em qualquer dispositivo! (iOS, Android, Windows, Mac, Linux)</samp>
@@ -45,6 +48,6 @@
 
 # <samp>🫂 CONTRIBUIÇÕES </samp>
 
-<samp>Para contribuir, cheque o nosso [Github Project board](https://github.com/users/saulojoab/projects/2/views/1) para achar tasks ou resolver bugs.</samp>
+<samp>Para contribuir, cheque o nosso [Github Project board](https://github.com/saulojoab/eon/issues) para achar tasks ou resolver bugs.</samp>
 
-<samp>Para entender como o EON funciona, consulte a  [documentação](https://github.com/saulojoab/eon/blob/main/docs/HOW_IT_WORKS.md).</samp>
+
