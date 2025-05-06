@@ -5,9 +5,8 @@
 <img src="https://github.com/saulojoab/eon/assets/37988252/ccc13594-d484-48e6-8daa-d803268e1342" width="200px" />&nbsp;&nbsp;&nbsp; 
 <img src="https://github.com/saulojoab/eon/assets/37988252/833c0998-de4c-4da3-a87b-c80d57206f76" width="200px" />&nbsp;&nbsp;&nbsp;
 </div>
+
 <br/>
-<div align="center">
-</div>
 <br/>
 
 <div align = "center">
@@ -37,7 +36,7 @@
 
 - [x] <samp>Gratuito, open-source e seguro!</samp>
 - [x] <samp>Pesquise, visualize e leia mangás!</samp>
-- [x] <samp>Intuitivo, minimalista e um belo desing.</samp>
+- [x] <samp>Intuitivo, minimalista e um belo design.</samp>
 - [ ] <samp>Sincronização Multiplataforma, continue lendo de onde você parou em qualquer dispositivo! (iOS, Android, Windows, Mac, Linux)</samp>
 - [x] <samp>Comunidade de leitores de mangás.</samp>
 - [ ] <samp>Baixe mangás para ler offline!</samp>
@@ -48,6 +47,6 @@
 
 # <samp>🫂 CONTRIBUIÇÕES </samp>
 
-<samp>Para contribuir, cheque o nosso [Github Project board](https://github.com/saulojoab/eon/issues) para achar tasks ou resolver bugs.</samp>
+<samp>Para contribuir, cheque o nosso [Github Issues](https://github.com/saulojoab/eon/issues) para achar tasks ou resolver bugs.</samp>
 
 

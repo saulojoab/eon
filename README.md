@@ -5,9 +5,8 @@
 <img src="https://github.com/saulojoab/eon/assets/37988252/ccc13594-d484-48e6-8daa-d803268e1342" width="200px" />&nbsp;&nbsp;&nbsp; 
 <img src="https://github.com/saulojoab/eon/assets/37988252/833c0998-de4c-4da3-a87b-c80d57206f76" width="200px" />&nbsp;&nbsp;&nbsp;
 </div>
+
 <br/>
-<div align="center">
-</div>
 <br/>
 
 <div align = "center">
@@ -35,9 +34,9 @@
 
 # <samp>🤠 FEATURES</samp>
 
-- [x] <samp> Free, open-source and safe!</samp>
+- [x] <samp>Free, open-source and safe!</samp>
 - [x] <samp>Search, view and read mangas!</samp>
-- [x] <samp>Intuitive, minimalistic and beautiful desing.</samp>
+- [x] <samp>Intuitive, minimalistic and beautiful design.</samp>
 - [ ] <samp>Cross-platform syncing, continue where you left off with any device! (iOS, Android, Windows, Mac, Linux)</samp>
 - [x] <samp>Community of manga readers.</samp>
 - [ ] <samp>Download mangas to read offline!</samp>
@@ -48,4 +47,4 @@
 
 # <samp>🫂 CONTRIBUTING</samp>
 
-<samp>For contributing, check out our [Github Project board](https://github.com/saulojoab/eon/issues) to find tasks and bugs to fix.</samp>
+<samp>For contributing, check out our [Github Issues](https://github.com/saulojoab/eon/issues) to find tasks and bugs to fix.</samp>
