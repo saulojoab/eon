@@ -1,7 +1,6 @@
 import React from "react";
 import { FlatList, StatusBar } from "react-native";
-import { useTheme } from "styled-components/native";
-import responsive from "@/global/utils/responsive";
+import { useTheme } from "@emotion/react";
 import { FontAwesome5 as Icon } from "@expo/vector-icons";
 
 import { Skeleton } from "moti/skeleton";
@@ -52,7 +51,11 @@ export default function Manga() {
 
       <TitleAndBackButtonSection>
         <BackButton onPress={goBack}>
-          <Icon size={30} color={theme.colors.white} name="arrow-left" />
+          <Icon
+            size={+theme.layout.icon.large}
+            color={theme.colors.white}
+            name="arrow-left"
+          />
         </BackButton>
         <Favorite isFavorite={isFavorite} onPress={toggleFavorite} />
       </TitleAndBackButtonSection>
@@ -62,7 +65,7 @@ export default function Manga() {
           <Skeleton
             show={loading}
             width={"50%"}
-            height={responsive(40)}
+            height={40}
             radius={0}
             colorMode="dark"
           >
@@ -72,7 +75,7 @@ export default function Manga() {
 
         <ViewsContainer>
           <ViewsIcon
-            size={responsive(15)}
+            size={+theme.layout.icon.small}
             color={theme.colors.white}
             name="eye"
           />
@@ -86,12 +89,7 @@ export default function Manga() {
       </MangaImageTitleContainer>
 
       <DataSection>
-        <Skeleton
-          show={loading}
-          width={"100%"}
-          height={responsive(80)}
-          colorMode="dark"
-        >
+        <Skeleton show={loading} width={"100%"} height={80} colorMode="dark">
           <MangaDescription
             onPress={toggleShowFullDescription}
             numberOfLines={showFullDescription ? undefined : 4}

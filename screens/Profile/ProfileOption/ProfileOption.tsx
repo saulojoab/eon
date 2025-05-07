@@ -1,6 +1,5 @@
-import { useTheme } from "styled-components/native";
+import { useTheme } from "@emotion/react";
 import { ProfileOptionProps } from "./ProfileOption.type";
-import responsive from "@/global/utils/responsive";
 import React from "react";
 import { FontAwesome5 as Icon } from "@expo/vector-icons";
 import {
@@ -23,14 +22,14 @@ export default function ProfileOption({
         <Icon
           name={icon}
           solid
-          size={responsive(20)}
+          size={+theme.layout.icon.medium}
           color={theme.colors.white}
         />
       </ProfileOptionIconContainer>
       <ProfileOptionText>{label}</ProfileOptionText>
       <ProfileOptionIndicatorIcon
         name="chevron-right"
-        size={responsive(20)}
+        size={+theme.layout.icon.medium}
         color={theme.colors.white}
       />
     </ProfileOptionContainer>

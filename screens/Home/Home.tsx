@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "styled-components/native";
+import { useTheme } from "@emotion/react";
 
 import {
   TopLogoContainer,
@@ -23,9 +23,7 @@ export default function Home() {
       <TopLogoContainer>
         <LogoText>EON</LogoText>
       </TopLogoContainer>
-      <WelcomeBackText>
-        Welcome back, {user?.username}! Hope you're doing good.
-      </WelcomeBackText>
+      <WelcomeBackText>Welcome back, {user?.username}!</WelcomeBackText>
       <HomeContent>
         <TrendingToday />
         <Section icon="book-open" title="CONTINUE READING" />

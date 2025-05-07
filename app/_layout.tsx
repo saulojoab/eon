@@ -1,12 +1,13 @@
 import { useFonts } from "expo-font";
-import { Slot, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "@emotion/react";
 import theme from "@/global/styles/theme";
+import { SafeArea } from "@/components/SafeArea/SafeArea.style";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -42,17 +43,20 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="signup" />
-        <Stack.Screen name="manga" />
-        <Stack.Screen name="reader" />
-        <Stack.Screen name="sources" />
-        <Slot />
-      </Stack>
+    <>
+      <ThemeProvider theme={theme}>
+        <SafeArea>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="signup" />
+            <Stack.Screen name="manga" />
+            <Stack.Screen name="reader" />
+            <Stack.Screen name="sources" />
+          </Stack>
+        </SafeArea>
+      </ThemeProvider>
       <StatusBar style="auto" />
-    </ThemeProvider>
+    </>
   );
 }

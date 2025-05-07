@@ -1,7 +1,6 @@
 import React from "react";
 import { FontAwesome5 as Icon } from "@expo/vector-icons";
-import responsive from "@/global/utils/responsive";
-import { useTheme } from "styled-components/native";
+import { useTheme } from "@emotion/react";
 import { SectionContainerProps } from "./Section.type";
 
 import { Container, SectionTitle } from "./Section.styles";
@@ -13,7 +12,7 @@ export default function Section({ title, icon }: SectionContainerProps) {
     <Container>
       <Icon
         name={icon as any}
-        size={responsive(22)}
+        size={+theme.layout.icon.small}
         color={theme.colors.accent}
       />
       <SectionTitle>{title}</SectionTitle>

@@ -5,11 +5,11 @@ import {
   LoadingContainer,
   NotReadingAnythingText,
   MangaList,
-  MangaPressable,
-  MangaImage,
   NotReadingAnythingAnimation,
   NotReadingAnythingContainer,
 } from "./ContinueReading.styles";
+import MangaPreview from "@/components/MangaPreview/MangaPreview";
+import { MangaContainer } from "../Home.styles";
 
 export default function ContinueReading() {
   const {
@@ -48,12 +48,13 @@ export default function ContinueReading() {
       <MangaList
         data={currentlyReading}
         renderItem={({ item }: any) => (
-          <MangaPressable
-            onLongPress={() => handleRemoveFromReading()}
-            onPress={() => handleContinueReading(item.manga)}
-          >
-            <MangaImage source={{ uri: item.manga.image ?? "" }} />
-          </MangaPressable>
+          <MangaContainer>
+            <MangaPreview
+              onLongPress={() => handleRemoveFromReading()}
+              onPress={() => handleContinueReading(item.manga)}
+              image={item.manga.image ?? ""}
+            />
+          </MangaContainer>
         )}
         horizontal
       />

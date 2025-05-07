@@ -9,19 +9,8 @@ export const useSignupService = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
   const [userName, setUserName] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirmation, setShowPasswordConfirmation] =
-    useState(false);
 
   const [loading, setLoading] = useState(false);
-
-  function toggleShowPassword() {
-    setShowPassword(!showPassword);
-  }
-
-  function toggleShowPasswordConfirmation() {
-    setShowPasswordConfirmation(!showPasswordConfirmation);
-  }
 
   const { navigate } = useRouter();
 
@@ -72,10 +61,6 @@ export const useSignupService = () => {
     setProfilePicture,
     userName,
     setUserName,
-    showPassword,
-    showPasswordConfirmation,
-    toggleShowPassword,
-    toggleShowPasswordConfirmation,
     loading,
     createUser,
     goToLogin,

@@ -1,19 +1,19 @@
 import FavoriteButton from "@/components/FavoriteButton/FavoriteButton";
-import { isIos } from "@/global/utils/platformChecker";
-import responsive from "@/global/utils/responsive";
 import { LinearGradient } from "expo-linear-gradient";
 import { FontAwesome5 as Icon } from "@expo/vector-icons";
-import styled from "styled-components/native";
+import styled from "@emotion/native";
 import { ChapterItemProps } from "./Manga.type";
+import { responsive } from "@/global/utils/responsive";
 
 export const Container = styled.View`
   flex: 1;
   background-color: ${(props) => props.theme.colors.background};
-  padding-bottom: ${responsive(20)}px;
+  padding-bottom: ${({ theme }) => theme.layout.spacing.large};
 `;
 
 export const MangaDescription = styled.Text`
-  font-size: ${responsive(14)}px;
+  font-size: ${({ theme }) => theme.layout.font.small};
+
   text-align: justify;
   color: ${(props) => props.theme.colors.white};
   font-weight: 300;
@@ -21,7 +21,7 @@ export const MangaDescription = styled.Text`
 
 export const MangaImage = styled.Image`
   width: 100%;
-  height: ${responsive(250)}px;
+  height: ${responsive(200, false)};
 `;
 
 export const MangaImageTitleContainer = styled.View`
@@ -34,13 +34,13 @@ export const MangaTitleContainer = styled.View`
   justify-content: center;
   position: absolute;
   z-index: 1;
-  bottom: ${responsive(25)}px;
+  bottom: 25px;
   left: 0;
   right: 0;
 `;
 
 export const MangaTitle = styled.Text`
-  font-size: ${responsive(30)}px;
+  font-size: ${({ theme }) => theme.layout.header.small};
   font-weight: 100;
   text-align: center;
   color: ${(props) => props.theme.colors.white};
@@ -48,20 +48,20 @@ export const MangaTitle = styled.Text`
 
 export const ChapterItem = styled.TouchableOpacity<ChapterItemProps>`
   flex: 1;
-  margin: ${responsive(4)}px;
+  margin: ${({ theme }) => theme.layout.spacing.small};
   opacity: ${(props) => (props.isRead ? 0.5 : 1)};
   background-color: ${(props) =>
     props.currentlyReading ? props.theme.colors.primary : "transparent"};
   border: 1px solid ${(props) => props.theme.colors.white};
-  border-radius: ${responsive(5)}px;
-  margin-bottom: ${responsive(10)}px;
-  padding: ${responsive(10)}px;
+  border-radius: 5px;
+  margin-bottom: ${({ theme }) => theme.layout.spacing.medium};
+  padding: ${({ theme }) => theme.layout.spacing.medium};
   justify-content: center;
   align-items: center;
 `;
 
 export const ChapterTitle = styled.Text`
-  font-size: ${responsive(13)}px;
+  font-size: ${({ theme }) => theme.layout.font.small};
   font-weight: bold;
   text-align: center;
   color: ${(props) => props.theme.colors.white};
@@ -70,46 +70,44 @@ export const ChapterTitle = styled.Text`
 export const TitleAndBackButtonSection = styled.View`
   flex-direction: row;
   align-items: center;
-  padding: ${responsive(20)}px;
+  padding: ${({ theme }) => theme.layout.spacing.large};
   position: absolute;
   justify-content: space-between;
   z-index: 1;
   width: 100%;
-  padding-top: ${isIos ? responsive(60) : responsive(20)}px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  width: ${responsive(30)}px;
-  height: ${responsive(30)}px;
-  border-radius: ${responsive(15)}px;
+  width: ${responsive(30, false)};
+  height: ${responsive(30, false)};
+  border-radius: 15px;
   justify-content: center;
   align-items: center;
 `;
 
 export const SectionTitle = styled.Text`
-  font-size: ${responsive(20)}px;
+  font-size: ${({ theme }) => theme.layout.font.large};
   color: ${(props) => props.theme.colors.white};
   font-weight: bold;
   width: 100%;
-  margin-top: ${responsive(20)}px;
+  margin-top: ${({ theme }) => theme.layout.spacing.xlarge};
 `;
 export const DataSection = styled.View`
   flex-direction: column;
-  padding: ${responsive(20)}px;
-
-  padding-top: ${responsive(10)}px;
+  padding: ${({ theme }) => theme.layout.spacing.large};
+  padding-top: ${({ theme }) => theme.layout.spacing.medium};
 `;
 
 export const Favorite = styled(FavoriteButton)`
   position: absolute;
-  right: ${responsive(15)}px;
-  bottom: ${responsive(15)}px;
+  right: ${({ theme }: any) => theme.layout.spacing.medium};
+  bottom: ${({ theme }: any) => theme.layout.spacing.medium};
 `;
 
 export const MangaImageFadingForeground = styled(LinearGradient)`
   width: 100%;
   height: 100%;
-  padding: ${responsive(10)}px;
+  padding: ${({ theme }) => theme.layout.spacing.medium};
   position: absolute;
 `;
 
@@ -117,7 +115,7 @@ export const ViewsContainer = styled.View`
   flex-direction: row;
   position: absolute;
   z-index: 1;
-  bottom: ${responsive(5)}px;
+  bottom: ${({ theme }) => theme.layout.spacing.small};
   left: 0;
   right: 0;
   justify-content: center;
@@ -125,10 +123,10 @@ export const ViewsContainer = styled.View`
 `;
 
 export const ViewCount = styled.Text`
-  font-size: ${responsive(14)}px;
+  font-size: ${({ theme }) => theme.layout.font.medium};
   color: ${(props) => props.theme.colors.white};
   font-family: ${(props) => props.theme.fonts.light};
-  margin-left: ${responsive(5)}px;
+  margin-left: ${({ theme }) => theme.layout.spacing.small};
 `;
 
 export const ViewsIcon = styled(Icon)``;
