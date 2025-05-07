@@ -1,7 +1,6 @@
-import responsive from "@/global/utils/responsive";
 import React from "react";
 import { Linking } from "react-native";
-import { useTheme } from "styled-components/native";
+import { useTheme } from "@emotion/react";
 import ProfileOption from "./ProfileOption/ProfileOption";
 
 import {
@@ -58,7 +57,7 @@ export default function Profile() {
         <MadeWithLoveText>Made with</MadeWithLoveText>
         <MadeWithLoveIcon
           name="heart"
-          size={responsive(14)}
+          size={+theme.layout.icon.small}
           color={theme.colors.accent}
         />
         <MadeWithLoveText>

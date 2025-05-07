@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { useTheme } from "styled-components/native";
+import { useTheme } from "@emotion/react";
 
 export default function TabNavigator() {
   const theme = useTheme();

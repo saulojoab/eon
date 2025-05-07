@@ -1,7 +1,6 @@
 import React from "react";
 import { FontAwesome5 as Icon } from "@expo/vector-icons";
-import { useTheme } from "styled-components/native";
-import responsive from "@/global/utils/responsive";
+import { useTheme } from "@emotion/react";
 import { FadeIn, FadeOut } from "react-native-reanimated";
 import PagerView from "react-native-pager-view";
 import { useReaderService } from "./Reader.service";
@@ -94,7 +93,7 @@ export default function Reader() {
               <TitleAndBackButtonSection>
                 <Icon
                   name="arrow-left"
-                  size={30}
+                  size={+theme.layout.icon.large}
                   color={theme.colors.white}
                   onPress={handleGoBack}
                 />
@@ -104,14 +103,7 @@ export default function Reader() {
                   </YouAreReadingText>
                 </YouAreReadingSection>
               </TitleAndBackButtonSection>
-              <YouAreReadingText
-                style={{
-                  paddingLeft: responsive(10),
-                  marginBottom: responsive(10),
-                }}
-              >
-                {selectedChapter?.title}
-              </YouAreReadingText>
+              <YouAreReadingText>{selectedChapter?.title}</YouAreReadingText>
               <CurrentPageText>
                 You are currently on page {Number(currentPage) + 1}. There are a
                 total of {mangaChapters?.length} pages on this chapter.

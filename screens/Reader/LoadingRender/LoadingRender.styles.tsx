@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from "@emotion/native";
 
 export const LoadingSpinner = styled.ActivityIndicator`
   position: absolute;

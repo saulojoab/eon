@@ -6,7 +6,6 @@ import { loginAPI } from "@/services/requests/user/user";
 export const useLoginService = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [showPassword, setShowPassword] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
   const { navigate } = useRouter();
@@ -20,10 +19,6 @@ export const useLoginService = () => {
 
   function goToSignUp() {
     navigate("/signup");
-  }
-
-  function toggleShowPassword() {
-    setShowPassword(!showPassword);
   }
 
   async function login() {
@@ -50,11 +45,9 @@ export const useLoginService = () => {
     setEmail,
     setPassword,
     goToSignUp,
-    toggleShowPassword,
     loading,
     login,
     buttonIsDisabled,
-    showPassword,
     email,
     password,
   };

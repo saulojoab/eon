@@ -1,23 +1,21 @@
 import React from "react";
 import { ActivityIndicator } from "react-native";
-import { useTheme } from "styled-components/native";
-import responsive from "@/global/utils/responsive";
+import { useTheme } from "@emotion/react";
 import { FontAwesome5 as Icon } from "@expo/vector-icons";
 import { useSearchService } from "./Search.service";
 
 import {
   SearchAndOptionsContainer,
-  MangaSearchInput,
   SettingsIcon,
   PointingUpAnimation,
   SearchGuideText,
   MangaList,
-  MangaItem,
-  MangaImage,
-  MangaTitle,
   Container,
-  MangaProviderText,
+  InputContainer,
 } from "./Search.styles";
+import MangaPreview from "@/components/MangaPreview/MangaPreview";
+import Input from "@/components/Input/Input";
+import { responsive } from "@/global/utils/responsive";
 
 export default function Search(): JSX.Element {
   const theme = useTheme();
@@ -34,15 +32,20 @@ export default function Search(): JSX.Element {
   return (
     <Container>
       <SearchAndOptionsContainer>
-        <MangaSearchInput
-          onChangeText={handleInputChange}
-          placeholder="Ex: Oyasumi Punpun"
-          autoCapitalize="none"
-          placeholderTextColor={theme.colors.gray}
-          autoComplete="off"
-        />
+        <InputContainer>
+          <Input
+            value={search}
+            onChangeText={handleInputChange}
+            placeholder="Ex: Oyasumi Punpun"
+            icon="search"
+          />
+        </InputContainer>
         <SettingsIcon onPress={goToSelectSources}>
-          <Icon name="cog" size={responsive(20)} color={theme.colors.gray} />
+          <Icon
+            name="cog"
+            size={+theme.layout.icon.medium}
+            color={theme.colors.gray}
+          />
         </SettingsIcon>
       </SearchAndOptionsContainer>
       {search === "" && (
@@ -66,19 +69,25 @@ export default function Search(): JSX.Element {
       <MangaList
         data={mangaData}
         renderItem={({ item }: any) => (
-          <MangaItem
+          <MangaPreview
             onPress={() => {
               handleSelectManga(item);
             }}
-          >
-            <MangaImage resizeMode="cover" source={{ uri: item.image }} />
-            <MangaProviderText>{item.provider}</MangaProviderText>
-            <MangaTitle numberOfLines={1}>{item.title}</MangaTitle>
-          </MangaItem>
+            image={item.image}
+            provider={item.provider}
+            title={item.title}
+          />
         )}
         keyExtractor={(item: any) => item.title}
-        numColumns={2}
-        contentContainerStyle={{ alignItems: "center" }}
+        numColumns={3}
+        contentContainerStyle={{
+          alignItems: "center",
+          paddingBottom: +responsive(16, false, true),
+        }}
+        columnWrapperStyle={{
+          margin: +responsive(16, false, true),
+          gap: +responsive(16, false, true),
+        }}
       />
     </Container>
   );

@@ -1,6 +1,5 @@
-import responsive from "@/global/utils/responsive";
 import React from "react";
-import { useTheme } from "styled-components/native";
+import { useTheme } from "@emotion/react";
 import { FontAwesome5 as Icon } from "@expo/vector-icons";
 import { Skeleton } from "moti/skeleton";
 import { useTrendingTodayService } from "./TrendingToday.service";
@@ -36,13 +35,17 @@ export default function TrendingToday() {
         colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.2)", "rgba(0,0,0,0.9)"]}
       >
         <TrendingTodayTag>
-          <Icon name="star" size={responsive(12)} color={theme.colors.accent} />
+          <Icon
+            name="star"
+            size={+theme.layout.icon.small}
+            color={theme.colors.accent}
+          />
           <TrendingTodayTagText>TRENDING TODAY</TrendingTodayTagText>
         </TrendingTodayTag>
 
         <TrendingTodayMangaName>
           {trendingTodayManga?.title ?? (
-            <Skeleton show width={responsive(200)} height={responsive(40)} />
+            <Skeleton show width={200} height={40} />
           )}
         </TrendingTodayMangaName>
       </TrendingTodayInfoBackground>

@@ -1,13 +1,13 @@
-import responsive from "@/global/utils/responsive";
 import { LinearGradient } from "expo-linear-gradient";
-import styled from "styled-components/native";
+import styled from "@emotion/native";
+import { responsive } from "@/global/utils/responsive";
 
 export const TrendingTodayContainerView = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: ${responsive(250)}px;
+  height: ${responsive(200, false)};
 `;
 
 export const TrendingTodayImage = styled.Image`
@@ -18,34 +18,34 @@ export const TrendingTodayImage = styled.Image`
 export const TrendingTodayInfoBackground = styled(LinearGradient)`
   width: 100%;
   height: 100%;
-  padding: ${responsive(10)}px;
+  padding: ${({ theme }) => theme.layout.spacing.medium};
   position: absolute;
 `;
 
 export const TrendingTodayTag = styled.View`
-  height: ${responsive(30)}px;
-  max-width: ${responsive(144)}px;
+  height: ${responsive(30, false)};
+  max-width: ${responsive(160, false)};
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.black};
-  top: ${responsive(5)}px;
+  top: ${({ theme }) => theme.layout.spacing.small};
   flex-direction: row;
-  border-radius: ${responsive(10)}px;
+  border-radius: 10px;
 `;
 
 export const TrendingTodayTagText = styled.Text`
-  font-size: ${responsive(12)}px;
+  font-size: ${({ theme }) => theme.layout.font.small};
   font-family: ${({ theme }) => theme.fonts.black};
   color: ${({ theme }) => theme.colors.white};
-  margin-left: ${responsive(5)}px;
+  margin-left: ${({ theme }) => theme.layout.spacing.small};
 `;
 
 export const TrendingTodayMangaName = styled.Text`
-  font-size: ${responsive(30)}px;
+  font-size: ${({ theme }) => theme.layout.font.xxlarge};
   font-family: ${({ theme }) => theme.fonts.lightItalic};
   color: ${({ theme }) => theme.colors.white};
-  margin-left: ${responsive(5)}px;
-  bottom: ${responsive(10)}px;
-  right: ${responsive(10)}px;
+  margin-left: ${({ theme }) => theme.layout.spacing.small};
+  bottom: ${({ theme }) => theme.layout.spacing.medium};
+  right: ${({ theme }) => theme.layout.spacing.medium};
   position: absolute;
 `;
