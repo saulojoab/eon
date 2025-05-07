@@ -30,7 +30,7 @@
 
 # <samp>🤔 HOW?</samp>
 
-<samp>To understand how EON works, take a look at the [documentation](https://github.com/saulojoab/eon/blob/main/docs/HOW_IT_WORKS.md).</samp>
+<samp>To understand how EON works, take a look at the [documentation](https://github.com/saulojoab/eon/blob/main/docs/english/HOW_IT_WORKS.md).</samp>
 
 # <samp>🤠 FEATURES</samp>
 
