@@ -1,18 +1,10 @@
 import { IProvider } from "@/stores/manga/mangaStore";
 
+// NOTE: Most providers have been removed due to DMCA concerns.
+// The Consumet library that powered this app is no longer available.
+// Only legal alternatives are kept below:
 export const providers = [
-  { name: "MangaDex" },
-  { name: "ComicK" },
-  { name: "MangaHere" },
-  { name: "MangaKakalot" },
-  { name: "Mangasee123" },
-  { name: "Mangapark" },
-  { name: "MangaPill" },
-  { name: "MangaReader" },
-  { name: "AsuraScans" },
-  { name: "FlameScans" },
-  { name: "MangaHost" },
-  { name: "BRMangas" },
-  { name: "ReadManga" },
-  { name: "VyvyManga" },
+  { name: "MangaDex" }, // Legal, licensed source
+  { name: "ComicK" }, // Licensed source
+  // Other providers removed due to copyright concerns
 ] as IProvider[];

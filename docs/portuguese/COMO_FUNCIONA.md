@@ -12,11 +12,11 @@
 
 ### <samp>De onde os dados de Mangá vem? 📚</samp>
 
-<samp>Atualmente nós usamos a [bilioteca Consumet](https://github.com/consumet/consumet.ts) para buscar as informações dos mangás, como: títulos, capas, páginas, capítulos, etc. </samp>
+⚠️ <samp>**NOTA: Essa seção descreve a arquitetura original. A biblioteca Consumet foi removida por DMCA. O aplicativo não está funcional no momento.**</samp>
 
-<samp>Isso é legal pois Consumet é mantida pela comunidade, e o código é relativamente simples. Eu mesmo já implementei alguns componentes e contribuí para o código da Consumet. 💻</samp>
+<samp>Originalmente, nós usávamos uma biblioteca para buscar informações dos mangás de vários provedores, como: títulos, capas, páginas, capítulos, etc. </samp>
 
-<samp>Isso significa que qualquer um pode fazer um fork, rodar, modificar e usar nossa versão do Consumet com Eon, e não dependender de nada além disso. 🔧</samp>
+<samp>A infraestrutura que alimentava isso foi afetada por takedowns de direitos autorais, e estamos explorando alternativas viáveis. 🔧</samp>
 
 ### <samp>De onde os dados dos Usuários vem? 👤</samp>
 

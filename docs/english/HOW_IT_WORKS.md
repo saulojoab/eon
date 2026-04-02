@@ -12,11 +12,11 @@ We use only one API, the [Eon API](https://github.com/saulojoab/eon-server), to 
 
 ### <samp>Where does the Manga data come from? 📚</samp>
 
-<samp>We currently use the [Consumet Library](https://github.com/consumet/consumet.ts) for crawling manga information, such as titles, covers, pages, chapters, etc. </samp>
+⚠️ <samp>**NOTE: This section describes the original architecture. The Consumet Library has been subject to DMCA takedown and is no longer available. The application is not functional at this time.**</samp>
 
-<samp>This is good because Consumet is community maintained, and the code is relatively simple. I myself have implemented some providers and contributed to the Consumet code. 💻</samp>
+<samp>Originally, we used a library for crawling manga information from various providers. This involved fetching titles, covers, pages, chapters, and other metadata from multiple sources.</samp>
 
-<samp>This means that anyone can fork, run, modify and use their own version of Consumet with Eon, and not depend on anything on my end. 🔧</samp>
+<samp>The infrastructure that powered this has been affected by copyright takedowns, and a viable alternative is currently being explored. 🔧</samp>
 
 ### <samp>Where does the User data come from? 👤</samp>
 

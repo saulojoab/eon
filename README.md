@@ -1,3 +1,9 @@
+⚠️ <samp>**DISCLAIMER: This project is currently NON-FUNCTIONAL and on standby.**</samp>
+
+<samp>The Consumet library, which powered this application, has been subject to DMCA takedown. **The app will not work** without a replacement library that provides manga source data. Development and maintenance are paused until a legal alternative is available.</samp>
+
+---
+
 # 📖 <samp>EON</samp>
 
 <div align="center">
@@ -15,12 +21,12 @@
   This repository is the <b>mobile Expo React Native application</b> of the EON manga reading app.
 </samp>
 
-[![🇧🇷](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png "Português")](https://github.com/saulojoab/eon/blob/main/docs/portuguese/README.md) | [![United States](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/us.png "United States")](https://github.com/saulojoab/eon/blob/main/README.md)
+<samp>[![🇧🇷](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png "Português")](https://github.com/saulojoab/eon/blob/main/docs/portuguese/README.md) | [![United States](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/us.png "United States")](https://github.com/saulojoab/eon/blob/main/README.md)</samp>
 
 </div>
 <br/>
 
-##### <samp>_NOTE: EON depends entirely on the [Consumet Library](https://github.com/consumet/consumet.ts) in order to work. Please check the [Eon API](https://github.com/saulojoab/eon-server) for more information._</samp>
+##### <samp>_NOTE: EON previously depended on the Consumet Library, which is no longer available. The app is not operational. Please see the disclaimer above for more information._</samp>
 
 <samp>EON is a cross-platform React Native manga reading application, which will have an application for Android, iOS, and Desktop (Mac, Windows, and Linux).</samp>
 

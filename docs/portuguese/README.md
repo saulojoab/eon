@@ -15,12 +15,12 @@
   Este é o repositório da <b> aplicação mobile Expo React Native</b> do EON, um leitor de mangá.
 </samp>
 
-[![🇧🇷](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png "Português")](https://github.com/saulojoab/eon/blob/main/docs/portuguese/README.md) | [![United States](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/us.png "United States")](https://github.com/saulojoab/eon/blob/main/README.md)
+<samp>[![🇧🇷](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/br.png "Português")](https://github.com/saulojoab/eon/blob/main/docs/portuguese/README.md) | [![United States](https://raw.githubusercontent.com/stevenrskelton/flag-icon/master/png/16/country-4x3/us.png "United States")](https://github.com/saulojoab/eon/blob/main/README.md)</samp>
 
 </div>
 <br/>
 
-##### <samp>_NOTA: EON depende totalmente da biblioteca [Consumet API](https://github.com/consumet/consumet.ts) para funcionar adequadamente._</samp>
+##### <samp>_NOTA: EON anteriormente dependia da biblioteca Consumet, que não está mais disponível. O aplicativo não está operacional. Consulte o aviso acima para mais informações._</samp>
 
 <samp>EON é um aplicativo multiplataforma de leitura de mangás, desenvolvido em React Native, com versões previstas para Android, iOS e Desktop (Mac, Windows e Linux).</samp>
 
@@ -30,7 +30,7 @@
 
 # <samp>🤔 Como?</samp>
 
-<samp>Para entender como o EON funciona, consulte a  [documentação](https://github.com/saulojoab/eon/blob/main/docs/portuguese/COMO_FUNCIONA.md).</samp>
+<samp>Para entender como o EON funciona, consulte a [documentação](https://github.com/saulojoab/eon/blob/main/docs/portuguese/COMO_FUNCIONA.md).</samp>
 
 # <samp>🤠 FEATURES</samp>
 
@@ -48,5 +48,3 @@
 # <samp>🫂 CONTRIBUIÇÕES </samp>
 
 <samp>Para contribuir, cheque o nosso [Github Issues](https://github.com/saulojoab/eon/issues) para achar tasks ou resolver bugs.</samp>
-
-
